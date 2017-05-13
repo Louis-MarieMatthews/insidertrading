@@ -5,18 +5,19 @@
 #include "I_ConstantObserver.h"
 #include "MenuButton.h"
 #include "ViewData.h"
+#include "GameMenuBar.h"
 
 namespace it
 {
   class MainMenu : public I_BitmapView, public I_ConstantObserver
   {
     ALLEGRO_BITMAP *    bitmap_;
-    PlanarDimensions    dimensions_;
-    bool                isLastFetchedBitmapUpToDate_;
     MenuButton          buttonQuit_;
     MenuButton          buttonPlay_;
-    DefaultObservableId observableId_;
+    PlanarDimensions    dimensions_;
+    bool                isLastFetchedBitmapUpToDate_;
     I_BitmapView *      next_;
+    DefaultObservableId observableId_;
 
     static const unsigned BUTTON_WIDTH_ {500};
     static const unsigned TOP_MARGIN_ {200};

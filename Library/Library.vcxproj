@@ -152,6 +152,7 @@
     <ClCompile Include="BitmapLoadingException.cpp" />
     <ClCompile Include="FontFormat.cpp" />
     <ClCompile Include="GameMenu.cpp" />
+    <ClCompile Include="GameMenuBar.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="DefaultAllegroEventAdapter.cpp" />
     <ClCompile Include="DefaultContextualMenu.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="BitmapLoadingException.h" />
     <ClInclude Include="FontFormat.h" />
     <ClInclude Include="GameMenu.h" />
+    <ClInclude Include="GameMenuBar.h" />
     <ClInclude Include="I_InteractiveBitmap.h" />
     <ClInclude Include="I_LocatedInteractiveBitmap.h" />
     <ClInclude Include="MenuButton.h" />
