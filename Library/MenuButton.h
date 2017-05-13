@@ -8,11 +8,13 @@ namespace it
 {
   class MenuButton : public I_LocatedInteractiveBitmap
   {
-    ALLEGRO_BITMAP *    bitmap_;
-    FontFormat          fontFormat_;
-    DefaultObservableId observableId_;
-    PlanarPosition      position_;
-    std::string         text_;
+    static unsigned short const TEXT_PADDING_ {20};
+    ALLEGRO_BITMAP *            bitmap_;
+    PlanarDimensions            dimensions_;
+    FontFormat                  fontFormat_;
+    DefaultObservableId         observableId_;
+    PlanarPosition              position_;
+    std::string                 text_;
 
   public:
     MenuButton (PlanarPosition const &, std::string const &);

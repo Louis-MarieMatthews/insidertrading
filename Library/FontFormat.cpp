@@ -7,12 +7,25 @@
 namespace it
 {
   FontFormat::FontFormat (unsigned short const & fontSize, short const & paddingX, short const & paddingY) :
-    fontFormat_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", fontSize, 0)),
+    font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", fontSize, 0)),
     fontSize_ (fontSize),
     paddingX_ (paddingX),
     paddingY_ (paddingY)
   {
-    if (!fontFormat_) {
+    if (!font_) {
+      throw AllegroInitializationException ("Could not initialise the font");
+    }
+  }
+
+
+
+  FontFormat::FontFormat (PlanarDimensions const & dimensions, unsigned short const & padding) :
+    font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", dimensions.getHeight() - 2 * padding, 0)),
+    fontSize_ (dimensions.getHeight() - 2 * padding),
+    paddingX_ (padding),
+    paddingY_ (padding)
+  {
+    if (!font_) {
       throw AllegroInitializationException ("Could not initialise the font");
     }
   }
@@ -21,14 +34,14 @@ namespace it
 
   FontFormat::~FontFormat()
   {
-    al_destroy_font (fontFormat_);
+    al_destroy_font (font_);
   }
 
 
 
   ALLEGRO_FONT * FontFormat::getFont() const
   {
-    return fontFormat_;
+    return font_;
   }
 
 
