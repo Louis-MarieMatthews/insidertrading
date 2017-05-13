@@ -16,6 +16,9 @@ namespace it
     PlanarPosition              position_;
     std::string                 text_;
 
+    static unsigned const       WIDTH_ {300}; // TODO: this and HEIGHT_ should be merged into a PlanarDimensions object
+    static unsigned const       HEIGHT_ {70};
+
   public:
     MenuButton (PlanarPosition const &, std::string const &);
     ~MenuButton();

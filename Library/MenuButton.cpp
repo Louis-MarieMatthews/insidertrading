@@ -6,7 +6,7 @@ namespace it
 {
   MenuButton::MenuButton (PlanarPosition const & position, std::string const & text) :
     bitmap_ (nullptr),
-    dimensions_ (500, 200),
+    dimensions_ (WIDTH_, HEIGHT_),
     fontFormat_ (dimensions_, TEXT_PADDING_),
     position_ (position),
     text_ (text)

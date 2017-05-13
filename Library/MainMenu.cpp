@@ -2,11 +2,19 @@
 
 namespace it
 {
+  PlanarPosition MainMenu::getButtonPosition (PlanarDimensions const & menuDimensions, unsigned short const & buttonNo)
+  {
+    PlanarPosition position ((menuDimensions.getWidth() - BUTTON_WIDTH_) / 2, TOP_MARGIN_ + (buttonNo * BUTTON_BOTTOM_MARGIN_));
+    return position;
+  }
+
+
+
   MainMenu::MainMenu (PlanarDimensions const & dimensions) :
     bitmap_ (nullptr),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
-    menuButton_ (PlanarPosition (1, 1), "Quit")
+    menuButton_ (getButtonPosition (dimensions, 0), "Quit")
   {
   }
 

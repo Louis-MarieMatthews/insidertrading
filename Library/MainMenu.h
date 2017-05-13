@@ -14,6 +14,11 @@ namespace it
     MenuButton          menuButton_;
     DefaultObservableId observableId_;
 
+    static const unsigned BUTTON_WIDTH_ {500};
+    static const unsigned TOP_MARGIN_ {200};
+    static const unsigned BUTTON_BOTTOM_MARGIN_ {100};
+
+    static PlanarPosition getButtonPosition (PlanarDimensions const &, unsigned short const &);
 
   public:
     MainMenu (PlanarDimensions const &);
