@@ -19,7 +19,7 @@ namespace it
     ALLEGRO_BITMAP*         cachedBitmap_;
     ALLEGRO_COLOR           backgroundColor_;
     ALLEGRO_COLOR           textColor_;
-    const ALLEGRO_FONT*     font_;
+    const ALLEGRO_FONT*     fontFormat_;
     DefaultLocatedRectangle rectangle_;
     I_ObservableId          observableId_;
 

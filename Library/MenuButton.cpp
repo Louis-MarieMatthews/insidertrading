@@ -1,10 +1,13 @@
 #include "MenuButton.h"
+#include "allegro5\allegro_ttf.h"
 
 namespace it
 {
-  MenuButton::MenuButton (PlanarPosition const & position) :
+  MenuButton::MenuButton (PlanarPosition const & position, std::string const & text) :
     bitmap_ (nullptr),
-    position_ (position)
+    fontFormat_ (50, 10, 10),
+    position_ (position),
+    text_ (text)
   {
   }
 
@@ -53,6 +56,7 @@ namespace it
       bitmap_ = al_create_bitmap (500, 100); // TODO: hard-coded values
       al_set_target_bitmap (bitmap_);
       al_clear_to_color (al_map_rgb (255, 255, 255));
+      al_draw_text (fontFormat_.getFont(), al_map_rgb (0, 0, 0), fontFormat_.getXPadding(),  fontFormat_.getYPadding(), ALLEGRO_ALIGN_LEFT, text_.c_str());
       al_set_target_bitmap (targetBitmap);
     }
     return bitmap_;

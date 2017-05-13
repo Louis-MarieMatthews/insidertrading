@@ -10,13 +10,13 @@ namespace it
   MenuBar::MenuBar (const PlanarPosition& position, const PlanarDimensions& dimensions, const ALLEGRO_FONT* font) :
     backgroundColor_ (al_map_rgb (0, 0, 0)),
     cachedBitmap_ (nullptr),
-    font_ (font),
+    fontFormat_ (font),
     rectangle_ (position, dimensions),
     textColor_ (al_map_rgb (255, 255, 255)),
     undrawnChanges_ (true),
     observableId_ (DefaultObservableId())
   {
-    if (!font_)
+    if (!fontFormat_)
       throw AllegroInitializationException ("The font could not be initialised.");
 
     // TODO: ObserverListSingleton::getInstance().addObserver (world_.getPlayer().getBankAccount()->getObservableId(), *this);

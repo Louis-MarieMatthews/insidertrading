@@ -1,6 +1,7 @@
 #pragma once
 
 #include "DefaultObservableId.h"
+#include "FontFormat.h"
 #include "I_LocatedInteractiveBitmap.h"
 
 namespace it
@@ -8,11 +9,13 @@ namespace it
   class MenuButton : public I_LocatedInteractiveBitmap
   {
     ALLEGRO_BITMAP *    bitmap_;
-    PlanarPosition      position_;
+    FontFormat          fontFormat_;
     DefaultObservableId observableId_;
+    PlanarPosition      position_;
+    std::string         text_;
 
   public:
-    MenuButton (PlanarPosition const &);
+    MenuButton (PlanarPosition const &, std::string const &);
     ~MenuButton();
 
     virtual bool const & isLastFetchedBitmapUpToDate() const override;

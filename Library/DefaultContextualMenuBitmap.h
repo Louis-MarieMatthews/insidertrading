@@ -20,7 +20,7 @@ namespace it
     short int                       hoveredChoiceNo_;
     bool                            beingClicked_;
     ALLEGRO_BITMAP *                cachedBitmap_;
-    ALLEGRO_FONT *                  font_;
+    ALLEGRO_FONT *                  fontFormat_;
     I_ContextualMenu *              menu_;
     DefaultLocatedRectangle *       rectangle_;
 

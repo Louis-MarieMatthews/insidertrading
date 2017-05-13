@@ -51,14 +51,14 @@ namespace it
   DefaultContextualMenuBitmap::DefaultContextualMenuBitmap (I_ContextualMenu * menu, PlanarPosition const & position) :
     beingClicked_ (false),
     cachedBitmap_ (nullptr),
-    font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", 20, 0)), // TODO: should be initialised from outside
+    fontFormat_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", 20, 0)), // TODO: should be initialised from outside
     hoveredChoiceNo_ (-1),
     isCachedBitmapUpToDate_ (false),
     menu_ (menu),
     rectangle_ (nullptr),
     observableId_ (DefaultObservableId())
   {
-    if (!font_)
+    if (!fontFormat_)
       throw AllegroInitializationException ("Could not initialise the font of the contextual menu.");
 
     const PlanarDimensions dimensions (getDimensions (menu_));
@@ -157,7 +157,7 @@ namespace it
           al_draw_bitmap (choiceBackground, 0, padding_ + lineHeight_ * i, 0);
           al_destroy_bitmap (choiceBackground);
         }
-        al_draw_text (font_, *textColor, padding_, padding_ + lineHeight_ * i, ALLEGRO_ALIGN_LEFT, choices[i]->getText().c_str() );
+        al_draw_text (fontFormat_, *textColor, padding_, padding_ + lineHeight_ * i, ALLEGRO_ALIGN_LEFT, choices[i]->getText().c_str() );
       }
 
       al_set_target_bitmap (previousTargetBitmap);

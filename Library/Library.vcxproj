@@ -150,6 +150,7 @@
     <ClCompile Include="AllegroInitializationException.cpp" />
     <ClCompile Include="BitmapCreationException.cpp" />
     <ClCompile Include="BitmapLoadingException.cpp" />
+    <ClCompile Include="FontFormat.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="DefaultAllegroEventAdapter.cpp" />
     <ClCompile Include="DefaultContextualMenu.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="AllegroInitializationException.h" />
     <ClInclude Include="BitmapCreationException.h" />
     <ClInclude Include="BitmapLoadingException.h" />
+    <ClInclude Include="FontFormat.h" />
     <ClInclude Include="I_InteractiveBitmap.h" />
     <ClInclude Include="I_LocatedInteractiveBitmap.h" />
     <ClInclude Include="MenuButton.h" />

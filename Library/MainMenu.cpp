@@ -6,7 +6,7 @@ namespace it
     bitmap_ (nullptr),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
-    menuButton_ (PlanarPosition (1, 1))
+    menuButton_ (PlanarPosition (1, 1), "Quit")
   {
   }
 
