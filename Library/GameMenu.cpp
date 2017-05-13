@@ -68,9 +68,6 @@ namespace it
     else {
       for (auto ci : companyIcons_) {
         ci->processEvent (e);
-        if (!ci->isLastFetchedBitmapUpToDate()) {
-          isLastFetchedBitmapUpToDate_ = false;
-        }
       }
     }
   }

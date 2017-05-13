@@ -8,8 +8,8 @@ namespace it
   {
     if (isHovered_ != isHovered) {
       isHovered_ = isHovered;
-      currentBitmap_ = isHovered_ ? bitmapHovered_ : bitmapNotHovered_;
       isLastFetchedBitmapUpToDate_ = false;
+      ObserverListSingleton::getInstance().notifyObservers (observableId_);
     }
   }
 
@@ -18,12 +18,10 @@ namespace it
   CompanyIcon::CompanyIcon (PlanarPosition const & position) :
     bitmapHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/hovered/company.bmp")),
     bitmapNotHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/nothovered/company.bmp")),
-    currentBitmap_ (nullptr),
     isLastFetchedBitmapUpToDate_ (false),
     position_ (position),
     rectangle_ (position, PlanarDimensions (200, 200)) // TODO: hard-coded values!
   {
-    currentBitmap_ = bitmapNotHovered_;
   }
 
 
@@ -46,21 +44,12 @@ namespace it
 
   void CompanyIcon::reset()
   {
-    currentBitmap_ == nullptr;
   }
 
 
 
   void CompanyIcon::processEvent (I_AllegroEventAdapter const & e)
   {
-    if (currentBitmap_ == nullptr) {
-      if (e.isMouseWithin (*this)) {
-        isHovered_ = true;
-      }
-      else {
-        isHovered_ = false;
-      }
-    }
     if (e.didTheMouseEnter (*this)) {
       setHovered (true);
     }
@@ -80,7 +69,13 @@ namespace it
 
   ALLEGRO_BITMAP * CompanyIcon::fetchBitmap()
   {
-    return currentBitmap_;
+    isLastFetchedBitmapUpToDate_ = true;
+    if (isHovered_) {
+      return bitmapHovered_;
+    }
+    else {
+      return bitmapNotHovered_;
+    }
   }
 
 

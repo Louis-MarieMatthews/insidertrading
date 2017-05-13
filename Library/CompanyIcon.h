@@ -8,7 +8,6 @@ namespace it
 {
   class CompanyIcon : public I_LocatedInteractiveBitmap
   {
-    ALLEGRO_BITMAP *        currentBitmap_;
     ALLEGRO_BITMAP *        bitmapHovered_;
     ALLEGRO_BITMAP *        bitmapNotHovered_;
     bool                    isLastFetchedBitmapUpToDate_;
