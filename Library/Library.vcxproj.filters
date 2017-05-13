@@ -111,9 +111,6 @@
     <ClCompile Include="GameData.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="PlayersMoney.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -121,13 +118,16 @@
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
     <ClCompile Include="Company.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="Sec.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="SecIcon.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="Duration.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,9 +233,6 @@
     <ClInclude Include="GameData.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="PlayersMoney.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
@@ -243,13 +240,16 @@
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
     <ClInclude Include="Company.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="Sec.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="SecIcon.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="Duration.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,8 @@
 
 namespace it
 {
-  DefaultAllegroEventAdapter::DefaultAllegroEventAdapter (ALLEGRO_TIMER const * fpsTimer, ALLEGRO_TIMER const * secondsTimer) :
+  DefaultAllegroEventAdapter::DefaultAllegroEventAdapter (ALLEGRO_TIMER const * fpsTimer, ALLEGRO_TIMER const * secondsTimer, ALLEGRO_TIMER const * centisecondsTimer) :
+    centisecondsTimer_ (centisecondsTimer),
     currentEvent_ (nullptr),
     currentLeftClickReleased_ (false),
     currentEscapeKeyPressed_ (false),
@@ -37,6 +38,13 @@ namespace it
     }
     else {
       isNewSecond_ = false;
+    }
+
+    if (currentEvent_->type == ALLEGRO_EVENT_TIMER && currentEvent_->timer.source == centisecondsTimer_) {
+      isNewCentisecond_ = true;
+    }
+    else {
+      isNewCentisecond_ = false;
     }
 
     if (isCausedByAMouseMove()) {
@@ -214,5 +222,12 @@ namespace it
   bool const & DefaultAllegroEventAdapter::isNewSecond() const
   {
     return isNewSecond_;
+  }
+
+
+
+  bool const & DefaultAllegroEventAdapter::isNewCentisecond() const
+  {
+    return isNewCentisecond_;
   }
 }

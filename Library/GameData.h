@@ -3,7 +3,7 @@
 #include "Company.h"
 #include "PlayersMoney.h"
 #include "Sec.h"
-#include "Time.h"
+#include "Duration.h"
 
 namespace it
 {
@@ -11,12 +11,12 @@ namespace it
   {
     std::set<Company> companies_;
     PlayersMoney      playersMoney_;
-    Time              time_;
+    Duration              time_;
     Sec               sec_;
 
   public:
     GameData();
-    Time & getTime();
+    Duration & getTime();
     PlayersMoney & getPlayersMoney();
     std::set<Company> const & getCompanies();
     Sec & getSec();

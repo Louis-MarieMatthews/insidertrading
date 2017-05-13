@@ -12,7 +12,7 @@ namespace it
 
 
 
-  Time & GameData::getTime()
+  Duration & GameData::getTime()
   {
     return time_;
   }

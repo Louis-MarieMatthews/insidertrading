@@ -7,27 +7,23 @@
 
 namespace it
 {
-  class Time : public I_ConstantObservable
+  class Duration : public I_ConstantObservable
   {
-    unsigned short int second_;
+    unsigned short int centisecond_;
+    unsigned short     second_;
     unsigned short int minute_;
     unsigned short int hour_;
-    unsigned short int day_;
-    unsigned short int month_;
-    unsigned short int year_;
 
     I_ObservableId     observableId_;
 
   public:
-    Time();
-    ~Time();
+    Duration();
+    ~Duration();
     void tick();
+    unsigned short int const & getCentisecond() const;
     unsigned short int const & getSecond() const;
     unsigned short int const & getMinute() const;
     unsigned short int const & getHour() const;
-    unsigned short int const & getDay() const;
-    unsigned short int const & getMonth() const;
-    unsigned short int const & getYear() const;
     std::string getString() const;
 
     // Inherited via I_ConstantObservable

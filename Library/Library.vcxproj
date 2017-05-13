@@ -170,7 +170,7 @@
     <ClCompile Include="PlayersMoney.cpp" />
     <ClCompile Include="Sec.cpp" />
     <ClCompile Include="SecIcon.cpp" />
-    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Duration.cpp" />
     <ClCompile Include="ViewData.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -212,7 +212,7 @@
     <ClInclude Include="PlayersMoney.h" />
     <ClInclude Include="Sec.h" />
     <ClInclude Include="SecIcon.h" />
-    <ClInclude Include="Time.h" />
+    <ClInclude Include="Duration.h" />
     <ClInclude Include="ViewData.h" />
   </ItemGroup>
   <ItemGroup>

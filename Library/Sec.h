@@ -7,7 +7,7 @@
 #include "I_ConstantObservable.h"
 #include "I_ConstantObserver.h"
 #include "PlanarPosition.h"
-#include "Time.h"
+#include "Duration.h"
 
 namespace it
 {
@@ -16,16 +16,15 @@ namespace it
   class Sec : public I_ConstantObservable, public I_ConstantObserver
   {
     PlanarPosition      position_;
-    Time &              time_;
+    Duration &          time_;
     DefaultObservableId observableId_;
     Company const *     currentTarget_;
     std::set<Company> const & companies_;
-    static int const speed_{70};
 
     Company const & getRandomCompany();
 
   public:
-    Sec (PlanarPosition const &, std::set<Company> const &, Time &);
+    Sec (PlanarPosition const &, std::set<Company> const &, Duration &);
 
     PlanarPosition const & getPosition() const;
 

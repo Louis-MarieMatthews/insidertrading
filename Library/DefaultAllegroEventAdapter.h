@@ -18,11 +18,13 @@ namespace it
     PlanarPosition* previousPosition_;
     bool isFpsFrame_;
     bool isNewSecond_;
+    bool isNewCentisecond_;
     ALLEGRO_TIMER const * fpsTimer_;
     ALLEGRO_TIMER const * secondsTimer_;
+    ALLEGRO_TIMER const * centisecondsTimer_;
 
   public:
-    DefaultAllegroEventAdapter (ALLEGRO_TIMER const *, ALLEGRO_TIMER const *);
+    DefaultAllegroEventAdapter (ALLEGRO_TIMER const *, ALLEGRO_TIMER const *, ALLEGRO_TIMER const *);
     virtual void update (ALLEGRO_EVENT const & event) override;
     virtual bool isCausedByAMouseMove() const override;
     virtual bool didTheMouseEnter (I_LocatedRectangle const &) const override;
@@ -33,8 +35,7 @@ namespace it
     virtual PlanarPosition const & getMousePosition() const override;
     virtual bool wasEscapeKeyPressed() const override;
     virtual bool const & isFpsFrame() const override;
-
-    // Inherited via I_AllegroEventAdapter
     virtual bool const & isNewSecond() const override;
+    virtual bool const & isNewCentisecond() const override;
   };
 }

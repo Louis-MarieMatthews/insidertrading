@@ -20,5 +20,6 @@ namespace it
     virtual bool wasEscapeKeyPressed() const = 0;
     virtual bool const & isFpsFrame() const = 0;
     virtual bool const & isNewSecond() const = 0;
+    virtual bool const & isNewCentisecond() const = 0;
   };
 }
