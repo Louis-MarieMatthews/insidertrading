@@ -13,9 +13,172 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Exception">
+      <UniqueIdentifier>{ccddf207-43b6-4d1b-9f21-78b313fc39b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Observer">
+      <UniqueIdentifier>{992f77d7-4bef-42bf-a43b-a738839e05ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Visual View">
+      <UniqueIdentifier>{20b6a552-1619-4e6a-837d-98e9d4716812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Semantic View">
+      <UniqueIdentifier>{e87d2cd0-d932-4561-ba61-02171ed95760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{d9936756-d458-4bac-974b-5ea441445ba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exception">
+      <UniqueIdentifier>{16230e85-9c05-495a-b61d-455ddfd590df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{c0775ee5-5ba1-4fa6-9aa3-4266ec6f9dc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Observer">
+      <UniqueIdentifier>{e1f212c4-779f-44c2-a0c9-4be5cc3f662e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Visual View">
+      <UniqueIdentifier>{ef41c0e0-98c5-49f2-beb3-e4d2b974c1e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Semantic View">
+      <UniqueIdentifier>{f14eb884-2732-49be-9051-0f247fcdf494}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AllegroInitializationException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapCreationException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapLoadingException.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultAllegroEventAdapter.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultContextualMenu.cpp">
+      <Filter>Source Files\Semantic View</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultContextualMenuBitmap.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultLocatedRectangle.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanarPosition.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanarDimensions.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="ObserverListSingleton.cpp">
+      <Filter>Source Files\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="NullContextualMenuChoice.cpp">
+      <Filter>Source Files\Semantic View</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuLink.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuBar.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultObservableId.cpp">
+      <Filter>Source Files\Observer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AllegroInitializationException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapCreationException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapLoadingException.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="I_ConstantObservable.h">
+      <Filter>Header Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="I_ConstantObserver.h">
+      <Filter>Header Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="I_ObservableId.h">
+      <Filter>Header Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="ObserverListSingleton.h">
+      <Filter>Header Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextualMenuBitmapSingleton.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultAllegroEventAdapter.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultContextualMenu.h">
+      <Filter>Header Files\Semantic View</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultContextualMenuBitmap.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultLocatedRectangle.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultObservableId.h">
+      <Filter>Header Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="I_AllegroEventAdapter.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="I_ContextualMenu.h">
+      <Filter>Header Files\Semantic View</Filter>
+    </ClInclude>
+    <ClInclude Include="I_ContextualMenuChoice.h">
+      <Filter>Header Files\Semantic View</Filter>
+    </ClInclude>
+    <ClInclude Include="I_EventSensitiveLocatedBitmap.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="I_LocatedBitmap.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="I_LocatedRectangle.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="I_Menu.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="I_Rectangle.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuBar.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuLink.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="NullContextualMenuChoice.h">
+      <Filter>Header Files\Semantic View</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanarDimensions.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanarPosition.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

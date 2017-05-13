@@ -2,12 +2,15 @@
 //
 
 #include "stdafx.h"
-
+#include "../Library/Controller.h"
 
 // TODO: divide the Library into 3 libraries (Model, View, Controller?)
 // TODO: update Git's email address
+
+using namespace it;
+
 int main()
 {
-    return 0;
+  startProgram();
+  return 0;
 }
-

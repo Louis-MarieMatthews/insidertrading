@@ -72,10 +72,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Allegro_AddonImage>true</Allegro_AddonImage>
     <Allegro_AddonPrimitives>true</Allegro_AddonPrimitives>
+    <Allegro_AddonTTF>true</Allegro_AddonTTF>
+    <Allegro_AddonFont>true</Allegro_AddonFont>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Allegro_AddonImage>true</Allegro_AddonImage>
     <Allegro_AddonPrimitives>true</Allegro_AddonPrimitives>
+    <Allegro_AddonTTF>true</Allegro_AddonTTF>
+    <Allegro_AddonFont>true</Allegro_AddonFont>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -139,6 +145,53 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AllegroInitializationException.cpp" />
+    <ClCompile Include="BitmapCreationException.cpp" />
+    <ClCompile Include="BitmapLoadingException.cpp" />
+    <ClCompile Include="DefaultAllegroEventAdapter.cpp" />
+    <ClCompile Include="DefaultContextualMenu.cpp" />
+    <ClCompile Include="DefaultContextualMenuBitmap.cpp" />
+    <ClCompile Include="DefaultLocatedRectangle.cpp" />
+    <ClCompile Include="DefaultObservableId.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="MenuBar.cpp" />
+    <ClCompile Include="MenuLink.cpp" />
+    <ClCompile Include="NullContextualMenuChoice.cpp" />
+    <ClCompile Include="ObserverListSingleton.cpp" />
+    <ClCompile Include="PlanarDimensions.cpp" />
+    <ClCompile Include="PlanarPosition.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AllegroInitializationException.h" />
+    <ClInclude Include="BitmapCreationException.h" />
+    <ClInclude Include="BitmapLoadingException.h" />
+    <ClInclude Include="ContextualMenuBitmapSingleton.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="DefaultAllegroEventAdapter.h" />
+    <ClInclude Include="DefaultContextualMenu.h" />
+    <ClInclude Include="DefaultContextualMenuBitmap.h" />
+    <ClInclude Include="DefaultLocatedRectangle.h" />
+    <ClInclude Include="DefaultObservableId.h" />
+    <ClInclude Include="I_AllegroEventAdapter.h" />
+    <ClInclude Include="I_ConstantObservable.h" />
+    <ClInclude Include="I_ConstantObserver.h" />
+    <ClInclude Include="I_ContextualMenu.h" />
+    <ClInclude Include="I_ContextualMenuChoice.h" />
+    <ClInclude Include="I_EventSensitiveLocatedBitmap.h" />
+    <ClInclude Include="I_LocatedBitmap.h" />
+    <ClInclude Include="I_LocatedRectangle.h" />
+    <ClInclude Include="I_Menu.h" />
+    <ClInclude Include="I_ObservableId.h" />
+    <ClInclude Include="I_Rectangle.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MenuBar.h" />
+    <ClInclude Include="MenuLink.h" />
+    <ClInclude Include="NullContextualMenuChoice.h" />
+    <ClInclude Include="ObserverListSingleton.h" />
+    <ClInclude Include="PlanarDimensions.h" />
+    <ClInclude Include="PlanarPosition.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
