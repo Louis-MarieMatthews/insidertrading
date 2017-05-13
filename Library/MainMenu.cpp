@@ -14,11 +14,13 @@ namespace it
 
   MainMenu::MainMenu (PlanarDimensions const & dimensions) :
     bitmap_ (nullptr),
+    buttonPlay_ (getButtonPosition (dimensions, 0), "Play"),
+    buttonQuit_ (getButtonPosition (dimensions, 1), "Quit"),
     dimensions_ (dimensions),
-    isLastFetchedBitmapUpToDate_ (false),
-    menuButton_ (getButtonPosition (dimensions, 0), "Quit")
+    isLastFetchedBitmapUpToDate_ (false)
   {
-    ObserverListSingleton::getInstance().addObserver (menuButton_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (buttonPlay_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (buttonQuit_.getObservableId(), *this);
   }
 
 
@@ -28,7 +30,8 @@ namespace it
     if (bitmap_ != nullptr) {
       al_destroy_bitmap (bitmap_);
     }
-    ObserverListSingleton::getInstance().removeObserver (menuButton_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (buttonPlay_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (buttonQuit_.getObservableId(), *this);
   }
 
 
@@ -49,7 +52,8 @@ namespace it
 
   void MainMenu::processEvent (I_AllegroEventAdapter const & e)
   {
-    menuButton_.processEvent (e);
+    buttonQuit_.processEvent (e);
+    buttonPlay_.processEvent (e);
   }
 
 
@@ -71,7 +75,8 @@ namespace it
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
       al_set_target_bitmap (bitmap_);
       al_clear_to_color (al_map_rgb (0, 0, 0));
-      al_draw_bitmap (menuButton_.fetchBitmap(), menuButton_.getPosition().getX(), menuButton_.getPosition().getY(), 0);
+      al_draw_bitmap (buttonPlay_.fetchBitmap(), buttonPlay_.getPosition().getX(), buttonPlay_.getPosition().getY(), 0);
+      al_draw_bitmap (buttonQuit_.fetchBitmap(), buttonQuit_.getPosition().getX(), buttonQuit_.getPosition().getY(), 0);
       al_set_target_bitmap (targetBitmap);
     }
     return bitmap_;
@@ -88,7 +93,7 @@ namespace it
 
   void MainMenu::notifyObserver (I_ObservableId const & observableId_)
   {
-    if (!menuButton_.isLastFetchedBitmapUpToDate()) {
+    if (!buttonQuit_.isLastFetchedBitmapUpToDate() || !buttonPlay_.isLastFetchedBitmapUpToDate()) {
       isLastFetchedBitmapUpToDate_ = false;
     }
   }

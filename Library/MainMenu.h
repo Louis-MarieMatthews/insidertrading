@@ -12,7 +12,8 @@ namespace it
     ALLEGRO_BITMAP *    bitmap_;
     PlanarDimensions    dimensions_;
     bool                isLastFetchedBitmapUpToDate_;
-    MenuButton          menuButton_;
+    MenuButton          buttonQuit_;
+    MenuButton          buttonPlay_;
     DefaultObservableId observableId_;
 
     static const unsigned BUTTON_WIDTH_ {500};
