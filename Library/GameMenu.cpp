@@ -7,7 +7,8 @@ namespace it
   GameMenu::GameMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
-    menuBar_ (PlanarDimensions (dimensions.getWidth(), 40), PlanarPosition (0, 0)),
+    gameData_ (viewData.getGameData()),
+    menuBar_ (viewData.getGameData(), PlanarDimensions (dimensions.getWidth(), 40), PlanarPosition (0, 0)),
     next_ (this),
     viewData_ (viewData)
   {
@@ -80,7 +81,11 @@ namespace it
 
 
 
-  void GameMenu::notifyObserver (I_ObservableId const & observerId)
+  void GameMenu::notifyObserver (I_ObservableId const & observableId)
   {
+    if (&menuBar_.getObservableId() == &observableId) {
+      puts ("notifyObserver of GameMenu called");
+      isLastFetchedBitmapUpToDate_ = false;
+    }
   }
 }

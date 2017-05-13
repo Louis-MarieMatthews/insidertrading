@@ -32,6 +32,16 @@ namespace it
 
 
 
+  FontFormat::FontFormat (PlanarDimensions const & dimensions) :
+    font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", dimensions.getHeight() * 0.90, 0)),
+    fontSize_ (dimensions.getHeight() * 0.90),
+    paddingX_ (dimensions.getWidth() * 0.05),
+    paddingY_ (dimensions.getHeight() * 0.05)
+  {
+  }
+
+
+
   FontFormat::~FontFormat()
   {
     al_destroy_font (font_);

@@ -5,8 +5,9 @@
 
 namespace it
 {
-  ViewData::ViewData (PlanarDimensions const & dimensions) :
+  ViewData::ViewData (GameData & gameData, PlanarDimensions const & dimensions) :
     exit_ (nullptr),
+    gameData_ (gameData),
     gameMenu_ (new GameMenu (*this, dimensions)),
     mainMenu_ (new MainMenu (*this, dimensions))
   {
@@ -18,6 +19,13 @@ namespace it
   {
     delete gameMenu_;
     delete mainMenu_;
+  }
+
+
+
+  GameData & ViewData::getGameData()
+  {
+    return gameData_;
   }
 
 

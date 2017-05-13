@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Semantic View">
       <UniqueIdentifier>{f14eb884-2732-49be-9051-0f247fcdf494}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{882ab2c3-8714-488a-bb5c-8ce8157f7438}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{9c5e3374-8c6b-4e67-8a0f-6f13a1d43ce2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -84,29 +90,32 @@
     <ClCompile Include="MenuLink.cpp">
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
-    <ClCompile Include="MenuBar.cpp">
-      <Filter>Source Files\Visual View</Filter>
-    </ClCompile>
     <ClCompile Include="DefaultObservableId.cpp">
       <Filter>Source Files\Observer</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuButton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FontFormat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewData.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Visual View</Filter>
     </ClCompile>
     <ClCompile Include="GameMenu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Visual View</Filter>
     </ClCompile>
     <ClCompile Include="GameMenuBar.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuButton.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewData.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="GameData.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,9 +182,6 @@
     <ClInclude Include="I_Rectangle.h">
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
-    <ClInclude Include="MenuBar.h">
-      <Filter>Header Files\Visual View</Filter>
-    </ClInclude>
     <ClInclude Include="MenuLink.h">
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
@@ -216,7 +222,13 @@
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
     <ClInclude Include="GameMenuBar.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="GameData.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

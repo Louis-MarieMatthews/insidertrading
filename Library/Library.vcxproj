@@ -151,6 +151,7 @@
     <ClCompile Include="BitmapCreationException.cpp" />
     <ClCompile Include="BitmapLoadingException.cpp" />
     <ClCompile Include="FontFormat.cpp" />
+    <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GameMenuBar.cpp" />
     <ClCompile Include="MenuButton.cpp" />
@@ -160,12 +161,12 @@
     <ClCompile Include="DefaultLocatedRectangle.cpp" />
     <ClCompile Include="DefaultObservableId.cpp" />
     <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="MenuBar.cpp" />
     <ClCompile Include="MenuLink.cpp" />
     <ClCompile Include="NullContextualMenuChoice.cpp" />
     <ClCompile Include="ObserverListSingleton.cpp" />
     <ClCompile Include="PlanarDimensions.cpp" />
     <ClCompile Include="PlanarPosition.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="ViewData.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +174,7 @@
     <ClInclude Include="BitmapCreationException.h" />
     <ClInclude Include="BitmapLoadingException.h" />
     <ClInclude Include="FontFormat.h" />
+    <ClInclude Include="GameData.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GameMenuBar.h" />
     <ClInclude Include="I_InteractiveBitmap.h" />
@@ -198,12 +200,12 @@
     <ClInclude Include="I_ObservableId.h" />
     <ClInclude Include="I_Rectangle.h" />
     <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="MenuBar.h" />
     <ClInclude Include="MenuLink.h" />
     <ClInclude Include="NullContextualMenuChoice.h" />
     <ClInclude Include="ObserverListSingleton.h" />
     <ClInclude Include="PlanarDimensions.h" />
     <ClInclude Include="PlanarPosition.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="ViewData.h" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@
 #include "ViewData.h"
 #include "GameMenuBar.h"
 #include "I_ConstantObserver.h"
+#include "GameData.h"
 
 namespace it
 {
@@ -17,6 +18,7 @@ namespace it
     GameMenuBar         menuBar_;
     I_BitmapView *      next_; // TODO: needs to be const!!
     ViewData &          viewData_;
+    GameData &          gameData_;
 
   public:
     GameMenu (ViewData &, PlanarDimensions const &);

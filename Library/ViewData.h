@@ -1,19 +1,22 @@
 #pragma once
 
 #include "I_BitmapView.h"
+#include "GameData.h"
 
 namespace it
 {
   class ViewData
   {
     I_BitmapView * exit_;
+    GameData &     gameData_;
     I_BitmapView * gameMenu_;
     I_BitmapView * mainMenu_;
 
   public:
-    ViewData (PlanarDimensions const &);
+    ViewData (GameData &, PlanarDimensions const &);
     ~ViewData();
 
+    GameData & getGameData();
     I_BitmapView * & getGameView(); // TODO: const!
     I_BitmapView * & getMainMenu();
     I_BitmapView * & getExit();

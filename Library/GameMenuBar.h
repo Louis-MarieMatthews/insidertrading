@@ -3,20 +3,25 @@
 #include "I_LocatedInteractiveBitmap.h"
 #include "DefaultObservableId.h"
 #include "DefaultLocatedRectangle.h"
+#include "GameData.h"
+#include "I_ConstantObserver.h"
+#include "FontFormat.h"
 
 // TODO: make it inherit an abstract that implement getX(), getY() , getWidth(), getHeight() and getPosition()
 namespace it
 {
-  class GameMenuBar : public I_LocatedInteractiveBitmap
+  class GameMenuBar : public I_LocatedInteractiveBitmap, public I_ConstantObserver
   {
     ALLEGRO_BITMAP *        bitmap_;
+    FontFormat              fontFormat_;
+    GameData &              gameData_;
     bool                    isLastFetchedBitmapUpToDate_;
     DefaultObservableId     observableId_;
     PlanarPosition          position_;
     DefaultLocatedRectangle rectangle_;
 
   public:
-    GameMenuBar (PlanarDimensions const & dimensions, PlanarPosition const & position);
+    GameMenuBar (GameData &, PlanarDimensions const & dimensions, PlanarPosition const & position);
     ~GameMenuBar();
 
     // Inherited via I_LocatedInteractiveBitmap
@@ -31,5 +36,8 @@ namespace it
     virtual int const & getX() const override;
     virtual int const & getY() const override;
     virtual PlanarPosition const & getPosition() const override;
+
+    // Inherited via I_ConstantObserver
+    virtual void notifyObserver (I_ObservableId const &) override;
   };
 }

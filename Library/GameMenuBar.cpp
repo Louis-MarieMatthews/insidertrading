@@ -1,12 +1,18 @@
 #include "GameMenuBar.h"
 
+#include "ObserverListSingleton.h"
+#include "allegro5\allegro_ttf.h"
+
 namespace it
 {
-  GameMenuBar::GameMenuBar (PlanarDimensions const & dimensions, PlanarPosition const & position) :
+  GameMenuBar::GameMenuBar (GameData & gameData, PlanarDimensions const & dimensions, PlanarPosition const & position) :
+    fontFormat_ (dimensions),
+    gameData_ (gameData),
     isLastFetchedBitmapUpToDate_ (false),
     position_ (position),
     rectangle_ (position, dimensions)
   {
+    ObserverListSingleton::getInstance().addObserver (gameData_.getTime().getObservableId(), *this);
   }
 
 
@@ -16,6 +22,7 @@ namespace it
     if (bitmap_ != nullptr) {
       al_destroy_bitmap (bitmap_);
     }
+    ObserverListSingleton::getInstance().removeObserver (gameData_.getTime().getObservableId(), *this);
   }
 
 
@@ -57,6 +64,10 @@ namespace it
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
       al_set_target_bitmap (bitmap_);
       al_clear_to_color (al_map_rgb (0, 0, 0));
+      al_draw_text (fontFormat_.getFont(), al_map_rgb (255, 255, 255), fontFormat_.getXPadding(), fontFormat_.getYPadding(), ALLEGRO_ALIGN_LEFT, gameData_.getTime().getString().c_str());
+      //ALLEGRO_FONT * font (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", 20, 0));
+      //al_draw_text (font, al_map_rgb (255, 255, 255), 5, 5, ALLEGRO_ALIGN_CENTER, "prout");
+      //al_destroy_font (font);
       al_set_target_bitmap (targetBitmap);
       isLastFetchedBitmapUpToDate_ = true;
     }
@@ -103,5 +114,16 @@ namespace it
   PlanarPosition const & GameMenuBar::getPosition() const
   {
     return position_;
+  }
+
+
+
+  void GameMenuBar::notifyObserver (I_ObservableId const & observableId)
+  {
+    if (&gameData_.getTime().getObservableId() == &observableId) {
+      isLastFetchedBitmapUpToDate_ = false;
+      ObserverListSingleton::getInstance().notifyObservers (observableId_);
+      puts ("new second!");
+    }
   }
 }

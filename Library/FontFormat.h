@@ -17,6 +17,7 @@ namespace it
   public:
     FontFormat (unsigned short const &, short const &, short const &);
     FontFormat (PlanarDimensions const &, unsigned short const &);
+    FontFormat (PlanarDimensions const &);
     ~FontFormat();
 
     ALLEGRO_FONT * getFont() const; // TODO: return const font

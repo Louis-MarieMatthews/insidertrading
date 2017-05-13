@@ -90,13 +90,17 @@ namespace it
     al_register_event_source (eventQueue, al_get_keyboard_event_source());
     al_register_event_source (eventQueue, al_get_timer_event_source(secondsTimer));
 
-    ViewData viewData (winDimensions);
+    GameData gameData;
+    ViewData viewData (gameData, winDimensions);
     I_BitmapView * currentView (viewData.getMainMenu());
     I_AllegroEventAdapter * eventAdapter (new DefaultAllegroEventAdapter (fpsTimer, secondsTimer));
     while (currentView != nullptr) {
       ALLEGRO_EVENT e;
       al_wait_for_event (eventQueue, &e);
       eventAdapter->update (e);
+      if (eventAdapter->isNewSecond()) {
+        gameData.getTime().tick();
+      }
       currentView->processEvent (*eventAdapter);
       if (al_is_event_queue_empty (eventQueue) && e.timer.source == fpsTimer) {
         al_set_target_backbuffer (display);
