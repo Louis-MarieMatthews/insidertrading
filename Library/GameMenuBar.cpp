@@ -13,6 +13,7 @@ namespace it
     rectangle_ (position, dimensions)
   {
     ObserverListSingleton::getInstance().addObserver (gameData_.getTime().getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (gameData.getPlayersMoney().getObservableId(), *this);
   }
 
 
@@ -23,6 +24,7 @@ namespace it
       al_destroy_bitmap (bitmap_);
     }
     ObserverListSingleton::getInstance().removeObserver (gameData_.getTime().getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (gameData_.getPlayersMoney().getObservableId(), *this);
   }
 
 
@@ -65,6 +67,7 @@ namespace it
       al_set_target_bitmap (bitmap_);
       al_clear_to_color (al_map_rgb (0, 0, 0));
       al_draw_text (fontFormat_.getFont(), al_map_rgb (255, 255, 255), fontFormat_.getXPadding(), fontFormat_.getYPadding(), ALLEGRO_ALIGN_LEFT, gameData_.getTime().getString().c_str());
+      al_draw_text (fontFormat_.getFont(), al_map_rgb (255, 255, 255), rectangle_.getWidth() - fontFormat_.getXPadding(), fontFormat_.getYPadding(), ALLEGRO_ALIGN_RIGHT, gameData_.getPlayersMoney().getString().c_str());
       //ALLEGRO_FONT * font (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", 20, 0));
       //al_draw_text (font, al_map_rgb (255, 255, 255), 5, 5, ALLEGRO_ALIGN_CENTER, "prout");
       //al_destroy_font (font);
@@ -120,10 +123,10 @@ namespace it
 
   void GameMenuBar::notifyObserver (I_ObservableId const & observableId)
   {
-    if (&gameData_.getTime().getObservableId() == &observableId) {
+    if (&gameData_.getTime().getObservableId() == &observableId ||
+        &gameData_.getPlayersMoney().getObservableId() == &observableId) {
       isLastFetchedBitmapUpToDate_ = false;
       ObserverListSingleton::getInstance().notifyObservers (observableId_);
-      puts ("new second!");
     }
   }
 }

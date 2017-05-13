@@ -166,6 +166,7 @@
     <ClCompile Include="ObserverListSingleton.cpp" />
     <ClCompile Include="PlanarDimensions.cpp" />
     <ClCompile Include="PlanarPosition.cpp" />
+    <ClCompile Include="PlayersMoney.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="ViewData.cpp" />
   </ItemGroup>
@@ -205,6 +206,7 @@
     <ClInclude Include="ObserverListSingleton.h" />
     <ClInclude Include="PlanarDimensions.h" />
     <ClInclude Include="PlanarPosition.h" />
+    <ClInclude Include="PlayersMoney.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="ViewData.h" />
   </ItemGroup>

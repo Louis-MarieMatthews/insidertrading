@@ -12,4 +12,11 @@ namespace it
   {
     return time_;
   }
+
+
+
+  PlayersMoney & GameData::getPlayersMoney()
+  {
+    return playersMoney_;
+  }
 }
