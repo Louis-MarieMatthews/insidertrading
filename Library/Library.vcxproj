@@ -175,6 +175,7 @@
     <ClInclude Include="DefaultLocatedRectangle.h" />
     <ClInclude Include="DefaultObservableId.h" />
     <ClInclude Include="I_AllegroEventAdapter.h" />
+    <ClInclude Include="I_BitmapView.h" />
     <ClInclude Include="I_ConstantObservable.h" />
     <ClInclude Include="I_ConstantObserver.h" />
     <ClInclude Include="I_ContextualMenu.h" />

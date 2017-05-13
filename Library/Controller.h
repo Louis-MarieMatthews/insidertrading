@@ -14,106 +14,104 @@
 
 // TODO: refactor in singleton?
 // TODO: use dependency injection pattern?
+// TODO: refactor: variables initialisation could be moved in subfunctions
 namespace it
 {
   void startProgram()
   {
-    ALLEGRO_DISPLAY*   display (nullptr);
-    ALLEGRO_TIMER*     timer (nullptr);
-    ALLEGRO_TIMER*     seconds (nullptr);
-    const unsigned int FPS (60);
+    ALLEGRO_DISPLAY*       display (nullptr);
+    ALLEGRO_TIMER*         fpsTimer (nullptr);
+    ALLEGRO_TIMER*         secondsTimer (nullptr);
+    const unsigned int     FPS (60);
+    const PlanarDimensions winDimensions (1800, 900);
 
     if (!al_init()) {
       throw AllegroInitializationException ("Could not initialise Allegro.");
     }
     
     if (!al_init_image_addon()) {
-      fprintf(stderr, "Could not initialise image addon.");
-      throw std::exception(); // TODO: custom ex
+      throw AllegroInitializationException ("Could not initialise Allegro Image Addon.");
     }
 
     if (!al_init_primitives_addon()) {
-      fprintf(stderr, "Could not initialise primitives addon.");
-      throw std::exception(); // TODO: custom ex
+      throw AllegroInitializationException ("Could not initialise Allegro Primitives Addon.");
     }
 
     if (!al_install_mouse()) {
-      fprintf(stderr, "Could not initialise mouse.");
-      throw std::exception(); // TODO: custom ex
+      throw AllegroInitializationException ("Could not initialise Allegro Mouse Addon.");
     }
 
     if (!al_install_keyboard()) {
-      fprintf(stderr, "Could not initialise keyboard.");
-      throw std::exception(); // TODO: custom ex
+      throw AllegroInitializationException ("Could not initialise Allegro Keyboard Addon.");
     }
 
     if (!al_init_font_addon()) {
-      fprintf(stderr, "Could not initialise fonts addon.");
-      throw std::exception(); // TODO: custom ex
+      throw AllegroInitializationException ("Could not initialise Allegro Font Addon.");
     }
 
     if (!al_init_ttf_addon()) {
-      fprintf(stderr, "Could not initialise ttf addon.");
-      throw std::exception(); // TODO: custom ex
+      throw AllegroInitializationException ("Could not initialise Allegro TTF Addon.");
     }
     
 
     //al_get_display_mode (al_get_num_display_modes() -1, &displayMode); // TODO: check function does not return NULL
     //al_set_new_display_flags (ALLEGRO_FULLSCREEN);
     //display = al_create_display (displayMode.width, displayMode.height); // TODO: check function does not return NULL
-    display = al_create_display(1800, 900);
+    display = al_create_display (winDimensions.getWidth(), winDimensions.getHeight()); // TEMP.
     if (!display) {
-      fprintf(stderr, "Could not create display.");
-      throw std::exception(); // TODO: custom ex
+      throw AllegroInitializationException ("Could not initialise display."); // TODO: custom ex
     }
 
-    timer = al_create_timer(1.0 / FPS);
-    if (!timer) {
-      fprintf(stderr, "Could not create timer.");
-      al_destroy_display(display);
-      throw std::exception(); // TODO: custom ex
+    fpsTimer = al_create_timer (1.0 / FPS);
+    if (!fpsTimer) {
+      al_destroy_display (display);
+      throw AllegroInitializationException ("Could not initialise Allegro.");
     }
-    al_start_timer(timer);
+    al_start_timer (fpsTimer);
 
-    seconds = al_create_timer(1.0);
-    if (!seconds) {
-      fprintf(stderr, "Could not create timer.");
-      al_destroy_display(display);
-      al_destroy_timer(timer);
-      throw std::exception(); // TODO: custom ex
+    secondsTimer = al_create_timer (1.0);
+    if (!secondsTimer) {
+      al_destroy_display (display);
+      al_destroy_timer (fpsTimer);
+      throw AllegroInitializationException ("Could not initialise seconds timer.");
     }
-    al_start_timer(seconds);
+    al_start_timer(secondsTimer);
 
     ALLEGRO_EVENT_QUEUE* eventQueue = al_create_event_queue();
-    if (!eventQueue)
-      throw std::exception(); // TODO: custom ex
-    al_register_event_source(eventQueue, al_get_mouse_event_source());
-    al_register_event_source(eventQueue, al_get_timer_event_source(timer));
-    al_register_event_source(eventQueue, al_get_keyboard_event_source());
-    al_register_event_source(eventQueue, al_get_timer_event_source(seconds));
+    if (!eventQueue) {
+      al_destroy_display (display);
+      al_destroy_timer (fpsTimer);
+      al_destroy_timer (secondsTimer);
+      throw AllegroInitializationException ("Could not initialise event queue.");
+    }
+    al_register_event_source (eventQueue, al_get_mouse_event_source());
+    al_register_event_source (eventQueue, al_get_timer_event_source(fpsTimer));
+    al_register_event_source (eventQueue, al_get_keyboard_event_source());
+    al_register_event_source (eventQueue, al_get_timer_event_source(secondsTimer));
 
-    I_Menu * menu = new MainMenu(); //TODO: use factory pattern?
-    I_AllegroEventAdapter * eventAdapter(new DefaultAllegroEventAdapter(timer, seconds));
-    while (menu != nullptr) {
-      while (!al_is_event_queue_empty(eventQueue)) {
-        ALLEGRO_EVENT e;
-        al_wait_for_event(eventQueue, &e);
-        eventAdapter->update(e);
-        menu->processFrame(eventAdapter);
-        if (al_is_event_queue_empty(eventQueue)) {
-          menu->draw();
-        }
+    I_BitmapView * currentView (new MainMenu (winDimensions));
+    I_AllegroEventAdapter * eventAdapter (new DefaultAllegroEventAdapter (fpsTimer, secondsTimer));
+    while (currentView != nullptr) {
+      ALLEGRO_EVENT e;
+      al_wait_for_event (eventQueue, &e);
+      eventAdapter->update (e);
+      currentView->processEvent (*eventAdapter);
+      if (al_is_event_queue_empty (eventQueue) && e.timer.source == fpsTimer) {
+        al_set_target_backbuffer (display);
+        al_draw_bitmap (currentView->fetchBitmap(), 0, 0, 0);
+        al_flip_display();
       }
-      if (menu->getNext() != menu) {
-        I_Menu* oldMenu = menu;
-        menu = menu->getNext(); // TODO: do this delete the value previously pointed by menu?
-        oldMenu->resetNext();
+      if (currentView->getNext() != currentView) {
+        I_BitmapView * oldView = currentView;
+        currentView = currentView->getNext(); // TODO: do this delete the value previously pointed by menu?
+        oldView->reset();
       }
     }
     delete eventAdapter;
-    al_destroy_display(display);
-    al_destroy_timer(timer);
-    al_destroy_timer(seconds);
-    delete menu;
+    delete currentView;
+    al_destroy_event_queue (eventQueue);
+    al_destroy_timer (secondsTimer);
+    al_destroy_timer (fpsTimer);
+    al_destroy_display (display);
   }
 }
