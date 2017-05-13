@@ -168,6 +168,8 @@
     <ClCompile Include="PlanarDimensions.cpp" />
     <ClCompile Include="PlanarPosition.cpp" />
     <ClCompile Include="PlayersMoney.cpp" />
+    <ClCompile Include="Sec.cpp" />
+    <ClCompile Include="SecIcon.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="ViewData.cpp" />
   </ItemGroup>
@@ -208,6 +210,8 @@
     <ClInclude Include="PlanarDimensions.h" />
     <ClInclude Include="PlanarPosition.h" />
     <ClInclude Include="PlayersMoney.h" />
+    <ClInclude Include="Sec.h" />
+    <ClInclude Include="SecIcon.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="ViewData.h" />
   </ItemGroup>

@@ -7,6 +7,7 @@
 #include "I_ConstantObserver.h"
 #include "GameData.h"
 #include "CompanyIcon.h"
+#include "SecIcon.h"
 
 namespace it
 {
@@ -15,13 +16,13 @@ namespace it
     ALLEGRO_BITMAP *        bitmap_;
     std::set<CompanyIcon *> companyIcons_;
     PlanarDimensions        dimensions_;
+    GameData &              gameData_;
     bool                    isLastFetchedBitmapUpToDate_;
     DefaultObservableId     observableId_;
     GameMenuBar             menuBar_;
     I_BitmapView *          next_; // TODO: needs to be const!!
+    SecIcon                 secIcon_;
     ViewData &              viewData_;
-    GameData &              gameData_;
-
     static std::set<CompanyIcon *> getCompanyIcons (GameData &);
 
   public:

@@ -123,6 +123,12 @@
     <ClCompile Include="Company.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SecIcon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -237,6 +243,12 @@
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
     <ClInclude Include="Company.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SecIcon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

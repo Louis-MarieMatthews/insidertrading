@@ -23,6 +23,7 @@ namespace it
     gameData_ (viewData.getGameData()),
     menuBar_ (viewData.getGameData(), PlanarDimensions (dimensions.getWidth(), 40), PlanarPosition (0, 0)),
     next_ (this),
+    secIcon_ (viewData.getGameData().getSec()),
     viewData_ (viewData)
   {
     ObserverListSingleton::getInstance().addObserver (menuBar_.getObservableId(), *this);
@@ -30,6 +31,8 @@ namespace it
     for (auto ci : companyIcons_) {
       ObserverListSingleton::getInstance().addObserver (ci->getObservableId(), *this);
     }
+
+    ObserverListSingleton::getInstance().addObserver (secIcon_.getObservableId(), *this);
   }
 
 
@@ -41,6 +44,8 @@ namespace it
     for (auto ci : companyIcons_) {
       ObserverListSingleton::getInstance().removeObserver (ci->getObservableId(), *this);
     }
+
+    ObserverListSingleton::getInstance().removeObserver (secIcon_.getObservableId(), *this);
   }
 
 
@@ -56,6 +61,7 @@ namespace it
   {
     next_ = this;
     menuBar_.reset();
+    secIcon_.reset();
   }
 
 
@@ -92,6 +98,8 @@ namespace it
       al_set_target_bitmap (bitmap_);
 
       al_clear_to_color (al_map_rgb (33, 55, 170));
+
+      al_draw_bitmap (secIcon_.fetchBitmap(), secIcon_.getX(), secIcon_.getY(), 0);
 
       for (auto ci : companyIcons_) {
         al_draw_bitmap (ci->fetchBitmap(), ci->getX(), ci->getY(), 0);

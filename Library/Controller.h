@@ -25,6 +25,8 @@ namespace it
     const unsigned int     FPS (60);
     const PlanarDimensions winDimensions (1800, 900);
 
+    srand (time (nullptr));
+
     if (!al_init()) {
       throw AllegroInitializationException ("Could not initialise Allegro.");
     }

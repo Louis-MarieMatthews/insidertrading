@@ -2,7 +2,8 @@
 
 namespace it
 {
-  GameData::GameData()
+  GameData::GameData() :
+    sec_ (PlanarPosition (0, 0), companies_, time_)
   {
     companies_.insert (Company ("Lockheed Martin", PlanarPosition (100, 100)));
     companies_.insert (Company ("Sarif Industries", PlanarPosition (300, 500)));
@@ -28,5 +29,12 @@ namespace it
   std::set<Company> const & GameData::getCompanies()
   {
     return companies_;
+  }
+
+
+
+  Sec & GameData::getSec()
+  {
+    return sec_;
   }
 }
