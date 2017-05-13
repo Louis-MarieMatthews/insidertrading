@@ -4,7 +4,7 @@
 
 namespace it
 {
-  std::set<CompanyIcon *> GameMenu::getCompanyIcons (GameData & gameData)
+  std::set<CompanyIcon *> GameMenu::getCompanyIcons (GameData & gameData, DefaultContextualMenuBitmap * & parentContextualMenu)
   {
     std::set<CompanyIcon *> icons;
     std::set<Company> companies (gameData.getCompanies());
@@ -17,7 +17,7 @@ namespace it
 
 
   GameMenu::GameMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
-    companyIcons_ (getCompanyIcons (viewData.getGameData())),
+    companyIcons_ (getCompanyIcons (viewData.getGameData(), contextualMenu_)),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
     gameData_ (viewData.getGameData()),
@@ -72,6 +72,11 @@ namespace it
       next_ = viewData_.getMainMenu();
     }
     else {
+      I_EventSensitiveLocatedBitmap * menu (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap());
+      if (menu != nullptr) {
+        menu->processEvent (&e);
+      }
+
       for (auto ci : companyIcons_) {
         ci->processEvent (e);
       }
@@ -97,7 +102,7 @@ namespace it
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
       al_set_target_bitmap (bitmap_);
 
-      al_clear_to_color (al_map_rgb (33, 55, 170));
+      al_clear_to_color (al_map_rgb (100, 100, 100));
 
       al_draw_bitmap (secIcon_.fetchBitmap(), secIcon_.getX(), secIcon_.getY(), 0);
 
@@ -106,6 +111,11 @@ namespace it
       }
 
       al_draw_bitmap (menuBar_.fetchBitmap(), menuBar_.getX(), menuBar_.getY(), 0);
+
+      if (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap() != nullptr) {
+        I_EventSensitiveLocatedBitmap * menu (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap());
+        al_draw_bitmap (menu->fetchBitmap(), menu->getX(), menu->getY(), 0);
+      }
 
       isLastFetchedBitmapUpToDate_ = true;
       al_set_target_bitmap (targetBitmap);

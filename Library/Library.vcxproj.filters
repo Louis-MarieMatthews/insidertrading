@@ -129,6 +129,12 @@
     <ClCompile Include="Duration.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="CompanyContextualMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextualMenuBitmapSingleton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -151,9 +157,6 @@
     </ClInclude>
     <ClInclude Include="ObserverListSingleton.h">
       <Filter>Header Files\Observer</Filter>
-    </ClInclude>
-    <ClInclude Include="ContextualMenuBitmapSingleton.h">
-      <Filter>Header Files\Visual View</Filter>
     </ClInclude>
     <ClInclude Include="DefaultAllegroEventAdapter.h">
       <Filter>Header Files\Controller</Filter>
@@ -250,6 +253,12 @@
     </ClInclude>
     <ClInclude Include="Duration.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="CompanyContextualMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextualMenuBitmapSingleton.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

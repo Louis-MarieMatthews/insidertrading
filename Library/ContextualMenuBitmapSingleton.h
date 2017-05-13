@@ -7,7 +7,6 @@
 #include "I_EventSensitiveLocatedBitmap.h"
 #include "I_ConstantObservable.h"
 
-// TODO: not the way a singleton should be made in C++. Fix that.
 namespace it
 {
   class ContextualMenuBitmapSingleton : public I_ConstantObservable
@@ -25,7 +24,7 @@ namespace it
     ContextualMenuBitmapSingleton & operator= (const ContextualMenuBitmapSingleton &) = delete;
 
   public:
-    static ContextualMenuBitmapSingleton& getInstance();
+    static ContextualMenuBitmapSingleton & getInstance();
 
     void setContextualMenuBitmap (I_EventSensitiveLocatedBitmap*);
     void setContextualMenu (I_ContextualMenu *, PlanarPosition const &);

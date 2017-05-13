@@ -1,6 +1,7 @@
 #include "CompanyIcon.h"
 
 #include "ObserverListSingleton.h"
+#include "ContextualMenuBitmapSingleton.h"
 
 namespace it
 {
@@ -50,11 +51,16 @@ namespace it
 
   void CompanyIcon::processEvent (I_AllegroEventAdapter const & e)
   {
-    if (e.didTheMouseEnter (*this)) {
-      setHovered (true);
+    if (e.isCausedByAMouseMove()) {
+      if (e.didTheMouseEnter (*this)) {
+        setHovered (true);
+      }
+      else if (e.didTheMouseLeave (*this)) {
+        setHovered (false);
+      }
     }
-    else if (e.didTheMouseLeave (*this)) {
-      setHovered (false);
+    else if (e.wasTheMouseLeftClickReleased() && e.isMouseWithin(*this)) {
+      ContextualMenuBitmapSingleton::getInstance().setContextualMenu (&contextualMenu_, position_);
     }
   }
 

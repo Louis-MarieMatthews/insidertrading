@@ -1,20 +1,24 @@
 #pragma once
 
 #include "I_LocatedInteractiveBitmap.h"
-#include "DefaultObservableId.h"
+#include "DefaultContextualMenuBitmap.h"
 #include "DefaultLocatedRectangle.h"
+#include "DefaultObservableId.h"
+#include "DefaultContextualMenu.h"
+#include "CompanyContextualMenu.h"
 
 namespace it
 {
   class CompanyIcon : public I_LocatedInteractiveBitmap
   {
-    ALLEGRO_BITMAP *        bitmapHovered_;
-    ALLEGRO_BITMAP *        bitmapNotHovered_;
-    bool                    isLastFetchedBitmapUpToDate_;
-    DefaultObservableId     observableId_;
-    PlanarPosition          position_;
-    DefaultLocatedRectangle rectangle_;
-    bool                    isHovered_;
+    ALLEGRO_BITMAP *                bitmapHovered_;
+    ALLEGRO_BITMAP *                bitmapNotHovered_;
+    bool                            isLastFetchedBitmapUpToDate_;
+    DefaultObservableId             observableId_;
+    PlanarPosition                  position_;
+    DefaultLocatedRectangle         rectangle_;
+    bool                            isHovered_;
+    CompanyContextualMenu           contextualMenu_;
 
     void setHovered (bool const &);
 

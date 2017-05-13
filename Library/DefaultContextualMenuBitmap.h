@@ -7,6 +7,7 @@
 #include "I_EventSensitiveLocatedBitmap.h"
 #include "I_ConstantObserver.h"
 #include "allegro5\allegro_font.h"
+#include "ContextualMenuBitmapSingleton.h"
 
 namespace it
 {

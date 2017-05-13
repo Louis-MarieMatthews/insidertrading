@@ -8,22 +8,24 @@
 #include "GameData.h"
 #include "CompanyIcon.h"
 #include "SecIcon.h"
+#include "DefaultContextualMenuBitmap.h"
 
 namespace it
 {
   class GameMenu : public I_BitmapView, public I_ConstantObserver
   {
-    ALLEGRO_BITMAP *        bitmap_;
-    std::set<CompanyIcon *> companyIcons_;
-    PlanarDimensions        dimensions_;
-    GameData &              gameData_;
-    bool                    isLastFetchedBitmapUpToDate_;
-    DefaultObservableId     observableId_;
-    GameMenuBar             menuBar_;
-    I_BitmapView *          next_; // TODO: needs to be const!!
-    SecIcon                 secIcon_;
-    ViewData &              viewData_;
-    static std::set<CompanyIcon *> getCompanyIcons (GameData &);
+    ALLEGRO_BITMAP *               bitmap_;
+    std::set<CompanyIcon *>        companyIcons_;
+    PlanarDimensions               dimensions_;
+    GameData &                     gameData_;
+    bool                           isLastFetchedBitmapUpToDate_;
+    DefaultObservableId            observableId_;
+    GameMenuBar                    menuBar_;
+    I_BitmapView *                 next_; // TODO: needs to be const!!
+    SecIcon                        secIcon_;
+    ViewData &                     viewData_;
+    static std::set<CompanyIcon *> getCompanyIcons (GameData &, DefaultContextualMenuBitmap * &);
+    DefaultContextualMenuBitmap *  contextualMenu_;
 
   public:
     GameMenu (ViewData &, PlanarDimensions const &);

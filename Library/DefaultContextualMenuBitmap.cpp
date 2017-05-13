@@ -1,10 +1,10 @@
+#include "DefaultContextualMenuBitmap.h"
+
 #include "allegro5\allegro_font.h"
 #include "allegro5\allegro_ttf.h"
 
 #include "AllegroInitializationException.h"
 #include "BitmapCreationException.h"
-#include "ContextualMenuBitmapSingleton.h"
-#include "DefaultContextualMenuBitmap.h"
 #include "ObserverListSingleton.h"
 #include "DefaultObservableId.h"
 

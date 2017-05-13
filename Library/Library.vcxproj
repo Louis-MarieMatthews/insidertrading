@@ -151,7 +151,9 @@
     <ClCompile Include="BitmapCreationException.cpp" />
     <ClCompile Include="BitmapLoadingException.cpp" />
     <ClCompile Include="Company.cpp" />
+    <ClCompile Include="CompanyContextualMenu.cpp" />
     <ClCompile Include="CompanyIcon.cpp" />
+    <ClCompile Include="ContextualMenuBitmapSingleton.cpp" />
     <ClCompile Include="FontFormat.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GameMenu.cpp" />
@@ -178,7 +180,9 @@
     <ClInclude Include="BitmapCreationException.h" />
     <ClInclude Include="BitmapLoadingException.h" />
     <ClInclude Include="Company.h" />
+    <ClInclude Include="CompanyContextualMenu.h" />
     <ClInclude Include="CompanyIcon.h" />
+    <ClInclude Include="ContextualMenuBitmapSingleton.h" />
     <ClInclude Include="FontFormat.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GameMenu.h" />
@@ -186,7 +190,6 @@
     <ClInclude Include="I_InteractiveBitmap.h" />
     <ClInclude Include="I_LocatedInteractiveBitmap.h" />
     <ClInclude Include="MenuButton.h" />
-    <ClInclude Include="ContextualMenuBitmapSingleton.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DefaultAllegroEventAdapter.h" />
     <ClInclude Include="DefaultContextualMenu.h" />
