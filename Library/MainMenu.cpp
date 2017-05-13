@@ -5,7 +5,8 @@ namespace it
   MainMenu::MainMenu (PlanarDimensions const & dimensions) :
     bitmap_ (nullptr),
     dimensions_ (dimensions),
-    isLastFetchedBitmapUpToDate_ (false)
+    isLastFetchedBitmapUpToDate_ (false),
+    menuButton_ (PlanarPosition (1, 1))
   {
   }
 
@@ -51,9 +52,19 @@ namespace it
   {
     if (bitmap_ == nullptr) {
       bitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getHeight());
+      ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
       al_set_target_bitmap (bitmap_);
       al_clear_to_color (al_map_rgb (0, 0, 255));
+      al_draw_bitmap (menuButton_.fetchBitmap(), menuButton_.getPosition().getX(), menuButton_.getPosition().getY(), 0);
+      al_set_target_bitmap (targetBitmap);
     }
     return bitmap_;
+  }
+
+
+
+  I_ObservableId const & MainMenu::getObservableId() const
+  {
+    return observableId_;
   }
 }
