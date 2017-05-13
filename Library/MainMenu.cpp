@@ -1,5 +1,7 @@
 #include "MainMenu.h"
 
+#include "ObserverListSingleton.h"
+
 namespace it
 {
   PlanarPosition MainMenu::getButtonPosition (PlanarDimensions const & menuDimensions, unsigned short const & buttonNo)
@@ -16,6 +18,7 @@ namespace it
     isLastFetchedBitmapUpToDate_ (false),
     menuButton_ (getButtonPosition (dimensions, 0), "Quit")
   {
+    ObserverListSingleton::getInstance().addObserver (menuButton_.getObservableId(), *this);
   }
 
 
@@ -25,6 +28,7 @@ namespace it
     if (bitmap_ != nullptr) {
       al_destroy_bitmap (bitmap_);
     }
+    ObserverListSingleton::getInstance().removeObserver (menuButton_.getObservableId(), *this);
   }
 
 
@@ -43,8 +47,9 @@ namespace it
 
 
 
-  void MainMenu::processEvent (I_AllegroEventAdapter const &)
+  void MainMenu::processEvent (I_AllegroEventAdapter const & e)
   {
+    menuButton_.processEvent (e);
   }
 
 
@@ -58,11 +63,14 @@ namespace it
 
   ALLEGRO_BITMAP * MainMenu::fetchBitmap()
   {
-    if (bitmap_ == nullptr) {
+    if (!isLastFetchedBitmapUpToDate_) {
+      if (bitmap_ != nullptr) {
+        al_destroy_bitmap (bitmap_);
+      }
       bitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getHeight());
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
       al_set_target_bitmap (bitmap_);
-      al_clear_to_color (al_map_rgb (0, 0, 255));
+      al_clear_to_color (al_map_rgb (0, 0, 0));
       al_draw_bitmap (menuButton_.fetchBitmap(), menuButton_.getPosition().getX(), menuButton_.getPosition().getY(), 0);
       al_set_target_bitmap (targetBitmap);
     }
@@ -74,5 +82,14 @@ namespace it
   I_ObservableId const & MainMenu::getObservableId() const
   {
     return observableId_;
+  }
+
+
+
+  void MainMenu::notifyObserver (I_ObservableId const & observableId_)
+  {
+    if (!menuButton_.isLastFetchedBitmapUpToDate()) {
+      isLastFetchedBitmapUpToDate_ = false;
+    }
   }
 }

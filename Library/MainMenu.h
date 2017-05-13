@@ -1,12 +1,13 @@
 #pragma once
 
-#include "I_BitmapView.h"
-#include "MenuButton.h"
 #include "DefaultObservableId.h"
+#include "I_BitmapView.h"
+#include "I_ConstantObserver.h"
+#include "MenuButton.h"
 
 namespace it
 {
-  class MainMenu : public I_BitmapView
+  class MainMenu : public I_BitmapView, public I_ConstantObserver
   {
     ALLEGRO_BITMAP *    bitmap_;
     PlanarDimensions    dimensions_;
@@ -33,5 +34,8 @@ namespace it
 
     // Inherited via I_BitmapView
     virtual I_ObservableId const & getObservableId() const override;
+
+    // Inherited via I_ConstantObserver
+    virtual void notifyObserver(I_ObservableId const &) override;
   };
 }
