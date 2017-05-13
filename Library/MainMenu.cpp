@@ -14,10 +14,11 @@ namespace it
 
   MainMenu::MainMenu (PlanarDimensions const & dimensions) :
     bitmap_ (nullptr),
-    buttonPlay_ (getButtonPosition (dimensions, 0), "Play"),
-    buttonQuit_ (getButtonPosition (dimensions, 1), "Quit"),
+    buttonPlay_ (getButtonPosition (dimensions, 0), "Play", next_, nullptr),
+    buttonQuit_ (getButtonPosition (dimensions, 1), "Quit", next_, nullptr),
     dimensions_ (dimensions),
-    isLastFetchedBitmapUpToDate_ (false)
+    isLastFetchedBitmapUpToDate_ (false),
+    next_ (this)
   {
     ObserverListSingleton::getInstance().addObserver (buttonPlay_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (buttonQuit_.getObservableId(), *this);
@@ -38,7 +39,7 @@ namespace it
 
   I_BitmapView * MainMenu::getNext()
   {
-    return this;
+    return next_;
   }
 
 

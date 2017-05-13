@@ -17,14 +17,16 @@ namespace it
 
 
 
-  MenuButton::MenuButton (PlanarPosition const & position, std::string const & text) :
+  MenuButton::MenuButton (PlanarPosition const & position, std::string const & text, I_BitmapView * & next, I_BitmapView * target) :
     bitmap_ (nullptr),
     dimensions_ (WIDTH_, HEIGHT_),
     fontFormat_ (dimensions_, TEXT_PADDING_),
     isLastFetchedBitmapUpToDate_ (false),
     position_ (position),
     rectangle_ (position, dimensions_),
-    text_ (text)
+    target_ (target),
+    text_ (text),
+    next_ (next)
   {
   }
 
@@ -49,11 +51,18 @@ namespace it
   void MenuButton::processEvent (I_AllegroEventAdapter const & e)
   {
     // TODO: add if firstDraw && e.isTheMouseWithin
-    if (e.didTheMouseEnter (*this)) {
-      setHovered (true);
+    if (e.isCausedByAMouseMove()) {
+      if (e.didTheMouseEnter (*this)) {
+        setHovered (true);
+      }
+      else if (e.didTheMouseLeave (*this)) {
+        setHovered (false);
+      }
     }
-    else if (e.didTheMouseLeave (*this)) {
-      setHovered (false);
+    else if (e.wasTheMouseLeftClickReleased()) {
+      if (e.isMouseWithin (*this)) {
+        next_ = target_;
+      }
     }
   }
 

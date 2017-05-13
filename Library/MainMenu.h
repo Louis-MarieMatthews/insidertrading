@@ -15,6 +15,7 @@ namespace it
     MenuButton          buttonQuit_;
     MenuButton          buttonPlay_;
     DefaultObservableId observableId_;
+    I_BitmapView *      next_;
 
     static const unsigned BUTTON_WIDTH_ {500};
     static const unsigned TOP_MARGIN_ {200};

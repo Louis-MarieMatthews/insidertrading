@@ -4,6 +4,7 @@
 #include "DefaultLocatedRectangle.h"
 #include "FontFormat.h"
 #include "I_LocatedInteractiveBitmap.h"
+#include "I_BitmapView.h"
 
 namespace it
 {
@@ -18,7 +19,9 @@ namespace it
     DefaultObservableId         observableId_;
     PlanarPosition              position_;
     DefaultLocatedRectangle     rectangle_;
+    I_BitmapView *              target_;
     std::string                 text_;
+    I_BitmapView * &            next_;
 
     static unsigned const       WIDTH_ {300}; // TODO: this and HEIGHT_ should be merged into a PlanarDimensions object
     static unsigned const       HEIGHT_ {70};
@@ -26,7 +29,7 @@ namespace it
     void setHovered (const bool &);
 
   public:
-    MenuButton (PlanarPosition const &, std::string const &);
+    MenuButton (PlanarPosition const &, std::string const &, I_BitmapView * &, I_BitmapView *);
     ~MenuButton();
 
     virtual bool const & isLastFetchedBitmapUpToDate() const override;
