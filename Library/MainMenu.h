@@ -4,6 +4,7 @@
 #include "I_BitmapView.h"
 #include "I_ConstantObserver.h"
 #include "MenuButton.h"
+#include "ViewData.h"
 
 namespace it
 {
@@ -24,7 +25,7 @@ namespace it
     static PlanarPosition getButtonPosition (PlanarDimensions const &, unsigned short const &);
 
   public:
-    MainMenu (PlanarDimensions const &);
+    MainMenu (ViewData &, PlanarDimensions const &);
     ~MainMenu();
 
     // Inherited via I_BitmapView

@@ -17,7 +17,7 @@ namespace it
 
 
 
-  MenuButton::MenuButton (PlanarPosition const & position, std::string const & text, I_BitmapView * & next, I_BitmapView * target) :
+  MenuButton::MenuButton (PlanarPosition const & position, std::string const & text, I_BitmapView * & next, I_BitmapView * & target) :
     bitmap_ (nullptr),
     dimensions_ (WIDTH_, HEIGHT_),
     fontFormat_ (dimensions_, TEXT_PADDING_),

@@ -11,6 +11,7 @@
 #include "I_AllegroEventAdapter.h"
 #include "I_Menu.h"
 #include "MainMenu.h"
+#include "ViewData.h"
 
 // TODO: refactor in singleton?
 // TODO: use dependency injection pattern?
@@ -89,7 +90,8 @@ namespace it
     al_register_event_source (eventQueue, al_get_keyboard_event_source());
     al_register_event_source (eventQueue, al_get_timer_event_source(secondsTimer));
 
-    I_BitmapView * currentView (new MainMenu (winDimensions));
+    ViewData viewData (winDimensions);
+    I_BitmapView * currentView (viewData.getMainMenu());
     I_AllegroEventAdapter * eventAdapter (new DefaultAllegroEventAdapter (fpsTimer, secondsTimer));
     while (currentView != nullptr) {
       ALLEGRO_EVENT e;

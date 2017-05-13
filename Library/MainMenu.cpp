@@ -12,10 +12,10 @@ namespace it
 
 
 
-  MainMenu::MainMenu (PlanarDimensions const & dimensions) :
+  MainMenu::MainMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
     bitmap_ (nullptr),
-    buttonPlay_ (getButtonPosition (dimensions, 0), "Play", next_, nullptr),
-    buttonQuit_ (getButtonPosition (dimensions, 1), "Quit", next_, nullptr),
+    buttonPlay_ (getButtonPosition (dimensions, 0), "Play", next_, viewData.getGameView()),
+    buttonQuit_ (getButtonPosition (dimensions, 1), "Quit", next_, viewData.getExit()),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
     next_ (this)
@@ -46,7 +46,7 @@ namespace it
 
   void MainMenu::reset()
   {
-    
+    next_ = this;
   }
 
 

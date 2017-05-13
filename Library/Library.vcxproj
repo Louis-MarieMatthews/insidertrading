@@ -151,6 +151,7 @@
     <ClCompile Include="BitmapCreationException.cpp" />
     <ClCompile Include="BitmapLoadingException.cpp" />
     <ClCompile Include="FontFormat.cpp" />
+    <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="DefaultAllegroEventAdapter.cpp" />
     <ClCompile Include="DefaultContextualMenu.cpp" />
@@ -164,12 +165,14 @@
     <ClCompile Include="ObserverListSingleton.cpp" />
     <ClCompile Include="PlanarDimensions.cpp" />
     <ClCompile Include="PlanarPosition.cpp" />
+    <ClCompile Include="ViewData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h" />
     <ClInclude Include="BitmapCreationException.h" />
     <ClInclude Include="BitmapLoadingException.h" />
     <ClInclude Include="FontFormat.h" />
+    <ClInclude Include="GameMenu.h" />
     <ClInclude Include="I_InteractiveBitmap.h" />
     <ClInclude Include="I_LocatedInteractiveBitmap.h" />
     <ClInclude Include="MenuButton.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="ObserverListSingleton.h" />
     <ClInclude Include="PlanarDimensions.h" />
     <ClInclude Include="PlanarPosition.h" />
+    <ClInclude Include="ViewData.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

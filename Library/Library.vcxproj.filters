@@ -99,6 +99,12 @@
     <ClCompile Include="FontFormat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ViewData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -182,23 +188,29 @@
     <ClInclude Include="Controller.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
-    <ClInclude Include="I_BitmapView.h">
-      <Filter>Source Files\Visual View</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuButton.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="FontFormat.h">
+      <Filter>Header Files\Visual View</Filter>
     </ClInclude>
     <ClInclude Include="I_InteractiveBitmap.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Visual View</Filter>
     </ClInclude>
     <ClInclude Include="I_LocatedInteractiveBitmap.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Visual View</Filter>
     </ClInclude>
-    <ClInclude Include="FontFormat.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MenuButton.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="I_BitmapView.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewData.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMenu.h">
+      <Filter>Header Files\Visual View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -29,7 +29,7 @@ namespace it
     void setHovered (const bool &);
 
   public:
-    MenuButton (PlanarPosition const &, std::string const &, I_BitmapView * &, I_BitmapView *);
+    MenuButton (PlanarPosition const &, std::string const &, I_BitmapView * &, I_BitmapView * &); // TODO: would it not be better for the menu to listen to its buttons which would notify their parent menu when they're triggered
     ~MenuButton();
 
     virtual bool const & isLastFetchedBitmapUpToDate() const override;
