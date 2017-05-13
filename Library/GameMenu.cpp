@@ -4,8 +4,20 @@
 
 namespace it
 {
+  std::set<CompanyIcon *> GameMenu::getCompanyIcons (GameData & gameData)
+  {
+    std::set<CompanyIcon *> icons;
+    std::set<Company> companies (gameData.getCompanies());
+    for (auto c : companies) {
+      icons.insert (new CompanyIcon (c.getPosition()));
+    }
+    return icons;
+  }
+
+
+
   GameMenu::GameMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
-    companyIcon_ (PlanarPosition (200, 200)),
+    companyIcons_ (getCompanyIcons (viewData.getGameData())),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
     gameData_ (viewData.getGameData()),
@@ -14,7 +26,10 @@ namespace it
     viewData_ (viewData)
   {
     ObserverListSingleton::getInstance().addObserver (menuBar_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().addObserver (companyIcon_.getObservableId(), *this);
+
+    for (auto ci : companyIcons_) {
+      ObserverListSingleton::getInstance().addObserver (ci->getObservableId(), *this);
+    }
   }
 
 
@@ -22,7 +37,10 @@ namespace it
   GameMenu::~GameMenu()
   {
     ObserverListSingleton::getInstance().removeObserver (menuBar_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().removeObserver (companyIcon_.getObservableId(), *this);
+    
+    for (auto ci : companyIcons_) {
+      ObserverListSingleton::getInstance().removeObserver (ci->getObservableId(), *this);
+    }
   }
 
 
@@ -48,7 +66,12 @@ namespace it
       next_ = viewData_.getMainMenu();
     }
     else {
-      companyIcon_.processEvent (e);
+      for (auto ci : companyIcons_) {
+        ci->processEvent (e);
+        if (!ci->isLastFetchedBitmapUpToDate()) {
+          isLastFetchedBitmapUpToDate_ = false;
+        }
+      }
     }
   }
 
@@ -73,7 +96,9 @@ namespace it
 
       al_clear_to_color (al_map_rgb (33, 55, 170));
 
-      al_draw_bitmap (companyIcon_.fetchBitmap(), companyIcon_.getX(), companyIcon_.getY(), 0);
+      for (auto ci : companyIcons_) {
+        al_draw_bitmap (ci->fetchBitmap(), ci->getX(), ci->getY(), 0);
+      }
 
       al_draw_bitmap (menuBar_.fetchBitmap(), menuBar_.getX(), menuBar_.getY(), 0);
 
@@ -94,9 +119,6 @@ namespace it
 
   void GameMenu::notifyObserver (I_ObservableId const & observableId)
   {
-    if (&menuBar_.getObservableId() == &observableId ||
-        &companyIcon_.getObservableId() == &observableId) {
-      isLastFetchedBitmapUpToDate_ = false;
-    }
+    isLastFetchedBitmapUpToDate_ = false;
   }
 }

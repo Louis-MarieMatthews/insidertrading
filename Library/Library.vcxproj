@@ -150,6 +150,7 @@
     <ClCompile Include="AllegroInitializationException.cpp" />
     <ClCompile Include="BitmapCreationException.cpp" />
     <ClCompile Include="BitmapLoadingException.cpp" />
+    <ClCompile Include="Company.cpp" />
     <ClCompile Include="CompanyIcon.cpp" />
     <ClCompile Include="FontFormat.cpp" />
     <ClCompile Include="GameData.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="AllegroInitializationException.h" />
     <ClInclude Include="BitmapCreationException.h" />
     <ClInclude Include="BitmapLoadingException.h" />
+    <ClInclude Include="Company.h" />
     <ClInclude Include="CompanyIcon.h" />
     <ClInclude Include="FontFormat.h" />
     <ClInclude Include="GameData.h" />

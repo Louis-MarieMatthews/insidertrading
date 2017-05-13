@@ -8,7 +8,8 @@ namespace it
   {
     if (isHovered_ != isHovered) {
       isHovered_ = isHovered;
-      ObserverListSingleton::getInstance().notifyObservers (observableId_);
+      currentBitmap_ = isHovered_ ? bitmapHovered_ : bitmapNotHovered_;
+      isLastFetchedBitmapUpToDate_ = false;
     }
   }
 
@@ -17,19 +18,21 @@ namespace it
   CompanyIcon::CompanyIcon (PlanarPosition const & position) :
     bitmapHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/hovered/company.bmp")),
     bitmapNotHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/nothovered/company.bmp")),
+    currentBitmap_ (nullptr),
     isLastFetchedBitmapUpToDate_ (false),
     position_ (position),
     rectangle_ (position, PlanarDimensions (200, 200)) // TODO: hard-coded values!
   {
+    currentBitmap_ = bitmapNotHovered_;
   }
 
 
 
   CompanyIcon::~CompanyIcon()
   {
-    if (bitmapHovered_ != nullptr) {
-      al_destroy_bitmap (bitmapHovered_);
-    }
+    // TODO: why does this not work?
+    //al_destroy_bitmap (bitmapHovered_);
+    //al_destroy_bitmap (bitmapNotHovered_);
   }
 
 
@@ -43,16 +46,25 @@ namespace it
 
   void CompanyIcon::reset()
   {
+    currentBitmap_ == nullptr;
   }
 
 
 
   void CompanyIcon::processEvent (I_AllegroEventAdapter const & e)
   {
+    if (currentBitmap_ == nullptr) {
+      if (e.isMouseWithin (*this)) {
+        isHovered_ = true;
+      }
+      else {
+        isHovered_ = false;
+      }
+    }
     if (e.didTheMouseEnter (*this)) {
       setHovered (true);
     }
-    else if (e.didTheMouseLeave(*this)) {
+    else if (e.didTheMouseLeave (*this)) {
       setHovered (false);
     }
   }
@@ -68,12 +80,7 @@ namespace it
 
   ALLEGRO_BITMAP * CompanyIcon::fetchBitmap()
   {
-    if (isHovered_) {
-      return bitmapHovered_;
-    }
-    else {
-      return bitmapNotHovered_;
-    }
+    return currentBitmap_;
   }
 
 
@@ -116,5 +123,12 @@ namespace it
   PlanarPosition const & CompanyIcon::getPosition() const
   {
     return position_;
+  }
+
+
+
+  bool operator< (CompanyIcon const & c0, CompanyIcon const & c1)
+  {
+    return &c0 < &c1;
   }
 }

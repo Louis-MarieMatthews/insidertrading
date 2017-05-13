@@ -8,6 +8,7 @@ namespace it
 {
   class CompanyIcon : public I_LocatedInteractiveBitmap
   {
+    ALLEGRO_BITMAP *        currentBitmap_;
     ALLEGRO_BITMAP *        bitmapHovered_;
     ALLEGRO_BITMAP *        bitmapNotHovered_;
     bool                    isLastFetchedBitmapUpToDate_;
@@ -35,4 +36,6 @@ namespace it
     virtual int const & getY() const override;
     virtual PlanarPosition const & getPosition() const override;
   };
+
+  bool operator< (CompanyIcon const &, CompanyIcon const &);
 }

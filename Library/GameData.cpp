@@ -4,6 +4,9 @@ namespace it
 {
   GameData::GameData()
   {
+    companies_.insert (Company ("Lockheed Martin", PlanarPosition (100, 100)));
+    companies_.insert (Company ("Sarif Industries", PlanarPosition (300, 500)));
+    companies_.insert (Company ("Versalife", PlanarPosition (600, 500)));
   }
 
 
@@ -18,5 +21,12 @@ namespace it
   PlayersMoney & GameData::getPlayersMoney()
   {
     return playersMoney_;
+  }
+
+
+
+  std::set<Company> const & GameData::getCompanies()
+  {
+    return companies_;
   }
 }

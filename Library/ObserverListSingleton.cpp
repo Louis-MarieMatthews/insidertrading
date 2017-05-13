@@ -1,5 +1,4 @@
 #include "ObserverListSingleton.h"
-#include "ObserverListSingleton.h"
 
 namespace it
 {

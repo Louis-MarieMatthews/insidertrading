@@ -12,15 +12,17 @@ namespace it
 {
   class GameMenu : public I_BitmapView, public I_ConstantObserver
   {
-    ALLEGRO_BITMAP *    bitmap_;
-    CompanyIcon         companyIcon_;
-    PlanarDimensions    dimensions_;
-    bool                isLastFetchedBitmapUpToDate_;
-    DefaultObservableId observableId_;
-    GameMenuBar         menuBar_;
-    I_BitmapView *      next_; // TODO: needs to be const!!
-    ViewData &          viewData_;
-    GameData &          gameData_;
+    ALLEGRO_BITMAP *        bitmap_;
+    std::set<CompanyIcon *> companyIcons_;
+    PlanarDimensions        dimensions_;
+    bool                    isLastFetchedBitmapUpToDate_;
+    DefaultObservableId     observableId_;
+    GameMenuBar             menuBar_;
+    I_BitmapView *          next_; // TODO: needs to be const!!
+    ViewData &              viewData_;
+    GameData &              gameData_;
+
+    static std::set<CompanyIcon *> getCompanyIcons (GameData &);
 
   public:
     GameMenu (ViewData &, PlanarDimensions const &);
