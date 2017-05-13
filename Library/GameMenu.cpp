@@ -5,6 +5,7 @@
 namespace it
 {
   GameMenu::GameMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
+    companyIcon_ (PlanarPosition (200, 200)),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
     gameData_ (viewData.getGameData()),
@@ -13,6 +14,7 @@ namespace it
     viewData_ (viewData)
   {
     ObserverListSingleton::getInstance().addObserver (menuBar_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (companyIcon_.getObservableId(), *this);
   }
 
 
@@ -20,6 +22,7 @@ namespace it
   GameMenu::~GameMenu()
   {
     ObserverListSingleton::getInstance().removeObserver (menuBar_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (companyIcon_.getObservableId(), *this);
   }
 
 
@@ -44,6 +47,9 @@ namespace it
     if (e.wasEscapeKeyPressed()) {
       next_ = viewData_.getMainMenu();
     }
+    else {
+      companyIcon_.processEvent (e);
+    }
   }
 
 
@@ -64,8 +70,13 @@ namespace it
       bitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getWidth());
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
       al_set_target_bitmap (bitmap_);
+
       al_clear_to_color (al_map_rgb (33, 55, 170));
+
+      al_draw_bitmap (companyIcon_.fetchBitmap(), companyIcon_.getX(), companyIcon_.getY(), 0);
+
       al_draw_bitmap (menuBar_.fetchBitmap(), menuBar_.getX(), menuBar_.getY(), 0);
+
       isLastFetchedBitmapUpToDate_ = true;
       al_set_target_bitmap (targetBitmap);
     }
@@ -83,8 +94,8 @@ namespace it
 
   void GameMenu::notifyObserver (I_ObservableId const & observableId)
   {
-    if (&menuBar_.getObservableId() == &observableId) {
-      puts ("notifyObserver of GameMenu called");
+    if (&menuBar_.getObservableId() == &observableId ||
+        &companyIcon_.getObservableId() == &observableId) {
       isLastFetchedBitmapUpToDate_ = false;
     }
   }

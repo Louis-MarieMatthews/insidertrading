@@ -9,7 +9,6 @@
 #include "AllegroInitializationException.h"
 #include "DefaultAllegroEventAdapter.h"
 #include "I_AllegroEventAdapter.h"
-#include "I_Menu.h"
 #include "MainMenu.h"
 #include "ViewData.h"
 

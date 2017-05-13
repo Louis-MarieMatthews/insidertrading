@@ -1,0 +1,120 @@
+#include "CompanyIcon.h"
+
+#include "ObserverListSingleton.h"
+
+namespace it
+{
+  void CompanyIcon::setHovered (bool const & isHovered)
+  {
+    if (isHovered_ != isHovered) {
+      isHovered_ = isHovered;
+      ObserverListSingleton::getInstance().notifyObservers (observableId_);
+    }
+  }
+
+
+
+  CompanyIcon::CompanyIcon (PlanarPosition const & position) :
+    bitmapHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/hovered/company.bmp")),
+    bitmapNotHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/nothovered/company.bmp")),
+    isLastFetchedBitmapUpToDate_ (false),
+    position_ (position),
+    rectangle_ (position, PlanarDimensions (200, 200)) // TODO: hard-coded values!
+  {
+  }
+
+
+
+  CompanyIcon::~CompanyIcon()
+  {
+    if (bitmapHovered_ != nullptr) {
+      al_destroy_bitmap (bitmapHovered_);
+    }
+  }
+
+
+
+  I_ObservableId const & CompanyIcon::getObservableId() const
+  {
+    return observableId_;
+  }
+
+
+
+  void CompanyIcon::reset()
+  {
+  }
+
+
+
+  void CompanyIcon::processEvent (I_AllegroEventAdapter const & e)
+  {
+    if (e.didTheMouseEnter (*this)) {
+      setHovered (true);
+    }
+    else if (e.didTheMouseLeave(*this)) {
+      setHovered (false);
+    }
+  }
+
+
+
+  bool const & CompanyIcon::isLastFetchedBitmapUpToDate() const
+  {
+    return isLastFetchedBitmapUpToDate_;
+  }
+
+
+
+  ALLEGRO_BITMAP * CompanyIcon::fetchBitmap()
+  {
+    if (isHovered_) {
+      return bitmapHovered_;
+    }
+    else {
+      return bitmapNotHovered_;
+    }
+  }
+
+
+
+  unsigned int const & CompanyIcon::getWidth() const
+  {
+    return rectangle_.getWidth();
+  }
+
+
+
+  unsigned int const & CompanyIcon::getHeight() const
+  {
+    return rectangle_.getHeight();
+  }
+
+
+
+  bool CompanyIcon::contains (PlanarPosition const & position) const
+  {
+    return rectangle_.contains (position);
+  }
+
+
+
+  int const & CompanyIcon::getX() const
+  {
+    return position_.getX();
+  }
+
+
+
+  int const & CompanyIcon::getY() const
+  {
+    return position_.getY();
+  }
+
+
+
+  PlanarPosition const & CompanyIcon::getPosition() const
+  {
+    return position_;
+  }
+}

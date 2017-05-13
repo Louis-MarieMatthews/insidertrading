@@ -87,9 +87,6 @@
     <ClCompile Include="NullContextualMenuChoice.cpp">
       <Filter>Source Files\Semantic View</Filter>
     </ClCompile>
-    <ClCompile Include="MenuLink.cpp">
-      <Filter>Source Files\Visual View</Filter>
-    </ClCompile>
     <ClCompile Include="DefaultObservableId.cpp">
       <Filter>Source Files\Observer</Filter>
     </ClCompile>
@@ -119,6 +116,9 @@
     </ClCompile>
     <ClCompile Include="PlayersMoney.cpp">
       <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="CompanyIcon.cpp">
+      <Filter>Source Files\Visual View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,13 +179,7 @@
     <ClInclude Include="I_LocatedRectangle.h">
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
-    <ClInclude Include="I_Menu.h">
-      <Filter>Header Files\Visual View</Filter>
-    </ClInclude>
     <ClInclude Include="I_Rectangle.h">
-      <Filter>Header Files\Visual View</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuLink.h">
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
     <ClInclude Include="NullContextualMenuChoice.h">
@@ -235,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="PlayersMoney.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="CompanyIcon.h">
+      <Filter>Header Files\Visual View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

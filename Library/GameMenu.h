@@ -6,12 +6,14 @@
 #include "GameMenuBar.h"
 #include "I_ConstantObserver.h"
 #include "GameData.h"
+#include "CompanyIcon.h"
 
 namespace it
 {
   class GameMenu : public I_BitmapView, public I_ConstantObserver
   {
     ALLEGRO_BITMAP *    bitmap_;
+    CompanyIcon         companyIcon_;
     PlanarDimensions    dimensions_;
     bool                isLastFetchedBitmapUpToDate_;
     DefaultObservableId observableId_;
@@ -35,6 +37,4 @@ namespace it
     // Inherited via I_ConstantObserver
     virtual void notifyObserver (I_ObservableId const &) override;
   };
-
-
 }
