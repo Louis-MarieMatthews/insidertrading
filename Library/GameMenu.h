@@ -17,6 +17,7 @@ namespace it
     ALLEGRO_BITMAP *               bitmap_;
     ObservablePointer<Company> &   companyBeingCleaned_;
     std::set<CompanyIcon *>        companyIcons_;
+    I_ObservableId const *         contextualMenuObservableId_;
     PlanarDimensions               dimensions_;
     GameData &                     gameData_;
     bool                           isLastFetchedBitmapUpToDate_;

@@ -34,6 +34,7 @@ namespace it
   GameMenu::GameMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
     companyBeingCleaned_ (viewData.getGameData().getCompanyBeingCleaned()),
     companyIcons_ (getCompanyIcons (viewData.getGameData(), contextualMenu_)),
+    contextualMenuObservableId_ (nullptr),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
     gameData_ (viewData.getGameData()),
@@ -48,6 +49,7 @@ namespace it
       ObserverListSingleton::getInstance().addObserver (ci->getObservableId(), *this);
     }
 
+    ObserverListSingleton::getInstance().addObserver (ContextualMenuBitmapSingleton::getInstance().getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (secIcon_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (gameData_.getSec().getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (companyBeingCleaned_.getObservableId(), *this);
@@ -57,6 +59,7 @@ namespace it
 
   GameMenu::~GameMenu()
   {
+    ObserverListSingleton::getInstance().removeObserver (ContextualMenuBitmapSingleton::getInstance().getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (menuBar_.getObservableId(), *this);
     
     for (auto ci : companyIcons_) {
@@ -169,6 +172,19 @@ namespace it
     else if (&companyBeingCleaned_.getObservableId() == &observableId) {
       if (companyBeingCleaned_.getPointer() != nullptr) {
         next_ = viewData_.getCompanyMenu (*companyBeingCleaned_.getPointer());
+      }
+    }
+    else if (&ContextualMenuBitmapSingleton::getInstance().getObservableId() == &observableId) {
+      if (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap() != nullptr) {
+        if (contextualMenuObservableId_ != nullptr) {
+          ObserverListSingleton::getInstance().removeObserver (*contextualMenuObservableId_, *this);
+        }
+        ObserverListSingleton::getInstance().addObserver (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap()->getObservableId(), *this);
+        contextualMenuObservableId_ = &ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap()->getObservableId();
+      }
+      else {
+        ObserverListSingleton::getInstance().removeObserver (*contextualMenuObservableId_, *this);
+        contextualMenuObservableId_ = &ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap()->getObservableId();
       }
     }
   }
