@@ -23,7 +23,7 @@ namespace it
     virtual void notifyObserver (I_ObservableId const &) override;
 
     // Inherited via I_ContextualMenu
-    virtual void addChoice(I_ContextualMenuChoice &) override;
+    virtual void addChoice (I_ContextualMenuChoice &) override;
 
     // Inherited via I_ContextualMenu
     virtual I_ObservableId const & getObservableId() const override;

@@ -8,6 +8,5 @@ namespace it
   {
   public:
     DefaultObservableId();
-    // TODO: is it advised to always define a destructor, even if empty?
   };
 }

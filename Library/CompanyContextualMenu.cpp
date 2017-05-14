@@ -1,6 +1,6 @@
 #include "CompanyContextualMenu.h"
 
-#include "NullContextualMenuChoice.h"
+#include "RemoveInsiderMenuChoice.h"
 #include "AddInsiderMenuChoice.h"
 
 namespace it
@@ -8,7 +8,7 @@ namespace it
   CompanyContextualMenu::CompanyContextualMenu (Company & company, GameData & gameData) :
     gameData_ (gameData)
   {
-    choices_.push_back (new NullContextualMenuChoice ("Null Prout", true));
+    choices_.push_back (new RemoveInsiderMenuChoice (company));
     choices_.push_back (new AddInsiderMenuChoice (company, gameData.getPlayersMoney()));
   }
 

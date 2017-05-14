@@ -173,6 +173,7 @@
     <ClCompile Include="PlanarDimensions.cpp" />
     <ClCompile Include="PlanarPosition.cpp" />
     <ClCompile Include="PlayerBalance.cpp" />
+    <ClCompile Include="RemoveInsiderMenuChoice.cpp" />
     <ClCompile Include="Sec.cpp" />
     <ClCompile Include="SecIcon.cpp" />
     <ClCompile Include="Duration.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="PlanarDimensions.h" />
     <ClInclude Include="PlanarPosition.h" />
     <ClInclude Include="PlayerBalance.h" />
+    <ClInclude Include="RemoveInsiderMenuChoice.h" />
     <ClInclude Include="Sec.h" />
     <ClInclude Include="SecIcon.h" />
     <ClInclude Include="Duration.h" />

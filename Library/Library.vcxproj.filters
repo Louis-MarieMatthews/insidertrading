@@ -144,6 +144,9 @@
     <ClCompile Include="InsufficientPlayerBalanceException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RemoveInsiderMenuChoice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -276,6 +279,9 @@
       <Filter>Header Files\Semantic View</Filter>
     </ClInclude>
     <ClInclude Include="InsufficientPlayerBalanceException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RemoveInsiderMenuChoice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

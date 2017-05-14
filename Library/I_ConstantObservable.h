@@ -2,7 +2,6 @@
 
 #include "I_ObservableId.h"
 
-// TODO: make destructor virtual in all interfaces
 namespace it
 {
   class I_ConstantObservable

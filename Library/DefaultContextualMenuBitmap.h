@@ -43,7 +43,7 @@ namespace it
     virtual const int& getX() const override;
     virtual const int& getY() const override;
     virtual PlanarPosition const & getCenter() const override;
-    virtual ALLEGRO_BITMAP* fetchBitmap() override; // TODO: space before *
+    virtual ALLEGRO_BITMAP * fetchBitmap() override;
     virtual void processEvent (I_AllegroEventAdapter const *) override;
 
     // Inherited via I_Observer

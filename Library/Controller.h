@@ -62,7 +62,7 @@ namespace it
     //display = al_create_display (displayMode.width, displayMode.height); // TODO: check function does not return NULL
     display = al_create_display (winDimensions.getWidth(), winDimensions.getHeight()); // TEMP.
     if (!display) {
-      throw AllegroInitializationException ("Could not initialise display."); // TODO: custom ex
+      throw AllegroInitializationException ("Could not initialise display.");
     }
 
     fpsTimer = al_create_timer (1.0 / FPS);
@@ -124,7 +124,7 @@ namespace it
       }
       if (currentView->getNext() != currentView) {
         I_BitmapView * oldView = currentView;
-        currentView = currentView->getNext(); // TODO: do this delete the value previously pointed by menu?
+        currentView = currentView->getNext();
         oldView->reset();
       }
     }

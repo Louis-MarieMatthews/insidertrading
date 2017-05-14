@@ -31,9 +31,8 @@ namespace it
 
   CompanyIcon::~CompanyIcon()
   {
-    // TODO: why does this not work?
-    //al_destroy_bitmap (bitmapHovered_);
-    //al_destroy_bitmap (bitmapNotHovered_);
+    al_destroy_bitmap (bitmapHovered_);
+    al_destroy_bitmap (bitmapNotHovered_);
   }
 
 
