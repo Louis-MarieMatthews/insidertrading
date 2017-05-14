@@ -31,6 +31,7 @@ namespace it
 
 
   GameMenu::GameMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
+    companyBeingCleaned_ (viewData.getGameData().getCompanyBeingCleaned()),
     companyIcons_ (getCompanyIcons (viewData.getGameData(), contextualMenu_)),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
@@ -48,6 +49,7 @@ namespace it
 
     ObserverListSingleton::getInstance().addObserver (secIcon_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (gameData_.getSec().getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (companyBeingCleaned_.getObservableId(), *this);
   }
 
 
@@ -62,6 +64,7 @@ namespace it
 
     ObserverListSingleton::getInstance().removeObserver (secIcon_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (gameData_.getSec().getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (companyBeingCleaned_.getObservableId(), *this);
   }
 
 
@@ -161,6 +164,8 @@ namespace it
       if (secTarget_ != gameData_.getSec().getTarget()) {
         isLastFetchedBitmapUpToDate_ = false;
       }
+    }
+    else if (&companyBeingCleaned_.getObservableId() == &observableId) {
     }
   }
 }

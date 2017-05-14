@@ -132,20 +132,20 @@
     <ClCompile Include="ContextualMenuBitmapSingleton.cpp">
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
-    <ClCompile Include="CompanyView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerBalance.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="AddInsiderMenuChoice.cpp">
       <Filter>Source Files\Semantic View</Filter>
     </ClCompile>
+    <ClCompile Include="CompanyView.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
     <ClCompile Include="InsufficientPlayerBalanceException.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Exception</Filter>
     </ClCompile>
     <ClCompile Include="RemoveInsiderMenuChoice.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Semantic View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,20 +269,23 @@
     <ClInclude Include="ContextualMenuBitmapSingleton.h">
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
-    <ClInclude Include="CompanyView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerBalance.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="AddInsiderMenuChoice.h">
       <Filter>Header Files\Semantic View</Filter>
     </ClInclude>
+    <ClInclude Include="CompanyView.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
     <ClInclude Include="InsufficientPlayerBalanceException.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Exception</Filter>
     </ClInclude>
     <ClInclude Include="RemoveInsiderMenuChoice.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Semantic View</Filter>
+    </ClInclude>
+    <ClInclude Include="ObservablePointer.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

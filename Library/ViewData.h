@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "I_BitmapView.h"
 #include "GameData.h"
 

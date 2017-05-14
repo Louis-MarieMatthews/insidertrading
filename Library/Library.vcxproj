@@ -216,6 +216,7 @@
     <ClInclude Include="I_Rectangle.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NullContextualMenuChoice.h" />
+    <ClInclude Include="ObservablePointer.h" />
     <ClInclude Include="ObserverListSingleton.h" />
     <ClInclude Include="PlanarDimensions.h" />
     <ClInclude Include="PlanarPosition.h" />

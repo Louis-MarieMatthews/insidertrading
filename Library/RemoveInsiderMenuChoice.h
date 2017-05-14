@@ -1,23 +1,26 @@
 #pragma once
 
-#include "I_ContextualMenuChoice.h"
-#include "DefaultObservableId.h"
-#include "PlayerBalance.h"
 #include "Company.h"
+#include "DefaultObservableId.h"
+#include "GameData.h"
+#include "I_ContextualMenuChoice.h"
+#include "PlayerBalance.h"
 
 namespace it
 {
+  // TODO: rename to RemoveInsiderContextualMenuChoice?
   class RemoveInsiderMenuChoice : public I_ContextualMenuChoice, public I_ConstantObserver
   {
     DefaultObservableId   observableId_;
     std::string           text_;
     bool                  isDisabled_;
     Company &             company_;
+    GameData &            gameData_;
 
     void setDisabled (bool const &);
 
   public:
-    RemoveInsiderMenuChoice (Company &);
+    RemoveInsiderMenuChoice (Company &, GameData &);
     ~RemoveInsiderMenuChoice();
 
     // Inherited via I_ContextualMenuChoice

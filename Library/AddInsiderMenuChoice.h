@@ -7,6 +7,7 @@
 
 namespace it
 {
+  // TODO: rename to AddInsiderContextualMenuChoice
   class AddInsiderMenuChoice : public I_ContextualMenuChoice, public I_ConstantObserver
   {
     Company &           company_;

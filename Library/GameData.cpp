@@ -3,6 +3,7 @@
 namespace it
 {
   GameData::GameData() :
+    companyBeingCleaned_ (nullptr),
     sec_ (PlanarPosition (500, 50), companies_, time_)
   {
     companies_.insert (new Company ("Lockheed Martin", playersMoney_, PlanarPosition (100, 100)));
@@ -42,8 +43,22 @@ namespace it
 
 
 
+  ObservablePointer<Company> & GameData::getCompanyBeingCleaned()
+  {
+    return companyBeingCleaned_;
+  }
+
+
+
   Sec & GameData::getSec()
   {
     return sec_;
+  }
+
+
+
+  void GameData::setCompanyBeingCleaned (Company * company)
+  {
+    companyBeingCleaned_.setPointer (company);
   }
 }

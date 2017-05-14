@@ -8,7 +8,7 @@ namespace it
   CompanyContextualMenu::CompanyContextualMenu (Company & company, GameData & gameData) :
     gameData_ (gameData)
   {
-    choices_.push_back (new RemoveInsiderMenuChoice (company));
+    choices_.push_back (new RemoveInsiderMenuChoice (company, gameData));
     choices_.push_back (new AddInsiderMenuChoice (company, gameData.getPlayersMoney()));
   }
 

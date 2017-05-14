@@ -14,8 +14,9 @@ namespace it
 
 
 
-  RemoveInsiderMenuChoice::RemoveInsiderMenuChoice (Company & company) :
+  RemoveInsiderMenuChoice::RemoveInsiderMenuChoice (Company & company, GameData & gameData) :
     company_ (company),
+    gameData_ (gameData),
     isDisabled_ (!company.hasInsiders()),
     text_ ("Remove insiders")
   {
@@ -55,7 +56,7 @@ namespace it
   void RemoveInsiderMenuChoice::select()
   {
     if (!isDisabled_) {
-      company_.removeInsiders();
+      gameData_.setCompanyBeingCleaned (&company_);
     }
   }
 
