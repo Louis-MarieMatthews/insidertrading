@@ -154,8 +154,10 @@
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="CompanyContextualMenu.cpp" />
     <ClCompile Include="CompanyIcon.cpp" />
+    <ClCompile Include="CompanyMap.cpp" />
     <ClCompile Include="CompanyView.cpp" />
     <ClCompile Include="ContextualMenuBitmapSingleton.cpp" />
+    <ClCompile Include="FloorCompanyMapItem.cpp" />
     <ClCompile Include="FontFormat.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GameMenu.cpp" />
@@ -178,6 +180,7 @@
     <ClCompile Include="SecIcon.cpp" />
     <ClCompile Include="Duration.cpp" />
     <ClCompile Include="ViewData.cpp" />
+    <ClCompile Include="WallCompanyMapItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddInsiderMenuChoice.h" />
@@ -187,13 +190,16 @@
     <ClInclude Include="Company.h" />
     <ClInclude Include="CompanyContextualMenu.h" />
     <ClInclude Include="CompanyIcon.h" />
+    <ClInclude Include="CompanyMap.h" />
     <ClInclude Include="CompanyView.h" />
     <ClInclude Include="ContextualMenuBitmapSingleton.h" />
+    <ClInclude Include="FloorCompanyMapItem.h" />
     <ClInclude Include="FontFormat.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GameMenuBar.h" />
     <ClInclude Include="InsufficientPlayerBalanceException.h" />
+    <ClInclude Include="I_CompanyMapItem.h" />
     <ClInclude Include="I_InteractiveBitmap.h" />
     <ClInclude Include="I_LocatedInteractiveBitmap.h" />
     <ClInclude Include="MenuButton.h" />
@@ -226,6 +232,7 @@
     <ClInclude Include="SecIcon.h" />
     <ClInclude Include="Duration.h" />
     <ClInclude Include="ViewData.h" />
+    <ClInclude Include="WallCompanyMapItem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

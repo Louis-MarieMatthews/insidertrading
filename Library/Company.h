@@ -7,17 +7,19 @@
 #include "PlayerBalance.h"
 #include "I_ConstantObservable.h"
 #include "I_ConstantObserver.h"
+#include "CompanyMap.h"
 
 namespace it
 {
   class Company : public I_ConstantObservable
   {
     bool                            hasInsiders_;
+    static unsigned long long const insiderCost_ {100};
+    CompanyMap                      map_;
     std::string                     name_;
-    PlanarPosition                  position_;
     DefaultObservableId             observableId_;
     PlayerBalance &                 playerBalance_;
-    static unsigned long long const insiderCost_ {100};
+    PlanarPosition                  position_;
 
   public:
     Company (std::string const &, PlayerBalance &, PlanarPosition const &);

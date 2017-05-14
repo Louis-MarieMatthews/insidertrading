@@ -147,6 +147,15 @@
     <ClCompile Include="RemoveInsiderMenuChoice.cpp">
       <Filter>Source Files\Semantic View</Filter>
     </ClCompile>
+    <ClCompile Include="CompanyMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WallCompanyMapItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorCompanyMapItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -286,6 +295,18 @@
     </ClInclude>
     <ClInclude Include="ObservablePointer.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="CompanyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="I_CompanyMapItem.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="WallCompanyMapItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorCompanyMapItem.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
