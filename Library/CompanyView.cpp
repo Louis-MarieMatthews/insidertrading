@@ -30,6 +30,7 @@ namespace it
 
   void CompanyView::reset()
   {
+    next_ = this;
   }
 
 

@@ -2,6 +2,7 @@
 
 #include "allegro5\allegro_primitives.h"
 
+#include "CompanyView.h"
 #include "ObserverListSingleton.h"
 
 namespace it
@@ -166,6 +167,9 @@ namespace it
       }
     }
     else if (&companyBeingCleaned_.getObservableId() == &observableId) {
+      if (companyBeingCleaned_.getPointer() != nullptr) {
+        next_ = viewData_.getCompanyMenu (*companyBeingCleaned_.getPointer());
+      }
     }
   }
 }

@@ -1,11 +1,13 @@
 #include "ViewData.h"
 
+#include "CompanyView.h"
 #include "GameMenu.h"
 #include "MainMenu.h"
 
 namespace it
 {
   ViewData::ViewData (GameData & gameData, PlanarDimensions const & dimensions) :
+    dimensions_ (dimensions),
     exit_ (nullptr),
     gameData_ (gameData),
     gameMenu_ (new GameMenu (*this, dimensions)),
@@ -17,6 +19,9 @@ namespace it
 
   ViewData::~ViewData()
   {
+    for (auto cm : companyMenus_) {
+      delete cm.second;
+    }
     delete gameMenu_;
     delete mainMenu_;
   }
@@ -47,5 +52,15 @@ namespace it
   I_BitmapView *& ViewData::getExit()
   {
     return exit_;
+  }
+
+
+
+  I_BitmapView * ViewData::getCompanyMenu (Company & company)
+  {
+    if (companyMenus_.find (&company) == companyMenus_.end()) {
+      companyMenus_[&company] = new CompanyView (*this, dimensions_);
+    }
+    return companyMenus_.at (&company);
   }
 }
