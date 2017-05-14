@@ -14,5 +14,8 @@ namespace it
   public:
     CompanyMap();
     ~CompanyMap();
+    I_CompanyMapItem const & getItem (unsigned short const &, unsigned short const &) const;
+    unsigned short const & getNumberOfRows() const;
+    unsigned short const & getNumberOfColums() const;
   };
 }

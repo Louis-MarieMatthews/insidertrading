@@ -18,7 +18,7 @@ namespace it
 
     std::string line;
     unsigned short currentRow (0);
-    for (unsigned short currentRow (0); currentRow < 1; currentRow++)
+    for (unsigned short currentRow (0); currentRow < N_ROWS_; currentRow++)
     {
       getline (file, line);
       
@@ -38,5 +38,26 @@ namespace it
 
   CompanyMap::~CompanyMap()
   {
+  }
+
+
+
+  I_CompanyMapItem const & CompanyMap::getItem (unsigned short const & row, unsigned short const & column) const
+  {
+    return *items_[row][column];
+  }
+
+
+
+  unsigned short const & CompanyMap::getNumberOfRows() const
+  {
+    return N_ROWS_;
+  }
+
+
+
+  unsigned short const & CompanyMap::getNumberOfColums() const
+  {
+    return N_COLUMNS_;
   }
 }

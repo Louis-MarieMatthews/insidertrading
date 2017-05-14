@@ -24,6 +24,7 @@ namespace it
   public:
     Company (std::string const &, PlayerBalance &, PlanarPosition const &);
     ~Company();
+    CompanyMap & getMap();
     std::string const & getName() const;
     PlanarPosition const & getPosition() const;
     unsigned long long const & getInsiderCost() const;

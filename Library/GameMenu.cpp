@@ -184,7 +184,7 @@ namespace it
       }
       else {
         ObserverListSingleton::getInstance().removeObserver (*contextualMenuObservableId_, *this);
-        contextualMenuObservableId_ = &ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap()->getObservableId();
+        contextualMenuObservableId_ = nullptr;
       }
     }
   }

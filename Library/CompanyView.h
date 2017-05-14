@@ -9,14 +9,18 @@ namespace it
   class CompanyView : public I_BitmapView
   {
     ALLEGRO_BITMAP *         bitmap_;
+    Company &                company_;
+    CompanyMap &             companyMap_;
     PlanarDimensions const & dimensions_;
     bool                     isLastFetchedBitmapUpToDate_;
     I_BitmapView *           next_;
     DefaultObservableId      observableId_;
-    ViewData &         viewData_;
+    ViewData &               viewData_;
+
+    void displayMap() const;
 
   public:
-    CompanyView (ViewData &, PlanarDimensions const &);
+    CompanyView (Company & company, ViewData &, PlanarDimensions const &);
     ~CompanyView();
 
     // Inherited via I_BitmapView

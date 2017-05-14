@@ -21,6 +21,13 @@ namespace it
 
 
 
+  CompanyMap & Company::getMap()
+  {
+    return map_;
+  }
+
+
+
   std::string const & Company::getName() const
   {
     return name_;

@@ -59,7 +59,7 @@ namespace it
   I_BitmapView * ViewData::getCompanyMenu (Company & company)
   {
     if (companyMenus_.find (&company) == companyMenus_.end()) {
-      companyMenus_[&company] = new CompanyView (*this, dimensions_);
+      companyMenus_[&company] = new CompanyView (company, *this, dimensions_);
     }
     return companyMenus_.at (&company);
   }
