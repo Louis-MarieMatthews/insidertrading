@@ -16,9 +16,10 @@ namespace it
 
 
 
-  CompanyIcon::CompanyIcon (PlanarPosition const & position) :
+  CompanyIcon::CompanyIcon (Company const & company, PlanarPosition const & position) :
     bitmapHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/hovered/company.bmp")),
     bitmapNotHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/nothovered/company.bmp")),
+    company_ (company),
     isLastFetchedBitmapUpToDate_ (false),
     position_ (position),
     rectangle_ (position, PlanarDimensions (200, 200)) // TODO: hard-coded values!
@@ -32,6 +33,13 @@ namespace it
     // TODO: why does this not work?
     //al_destroy_bitmap (bitmapHovered_);
     //al_destroy_bitmap (bitmapNotHovered_);
+  }
+
+
+
+  Company const & CompanyIcon::getCompany()
+  {
+    return company_;
   }
 
 
@@ -117,6 +125,13 @@ namespace it
   int const & CompanyIcon::getY() const
   {
     return position_.getY();
+  }
+
+
+
+  PlanarPosition const & CompanyIcon::getCenter() const
+  {
+    return rectangle_.getCenter();
   }
 
 

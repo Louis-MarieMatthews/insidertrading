@@ -1,11 +1,12 @@
 #pragma once
 
-#include "I_LocatedInteractiveBitmap.h"
+#include "Company.h"
+#include "CompanyContextualMenu.h"
 #include "DefaultContextualMenuBitmap.h"
 #include "DefaultLocatedRectangle.h"
 #include "DefaultObservableId.h"
 #include "DefaultContextualMenu.h"
-#include "CompanyContextualMenu.h"
+#include "I_LocatedInteractiveBitmap.h"
 
 namespace it
 {
@@ -19,12 +20,14 @@ namespace it
     DefaultLocatedRectangle         rectangle_;
     bool                            isHovered_;
     CompanyContextualMenu           contextualMenu_;
+    Company const &                 company_;
 
     void setHovered (bool const &);
 
   public:
-    CompanyIcon (PlanarPosition const &);
+    CompanyIcon (Company const &, PlanarPosition const &);
     ~CompanyIcon();
+    Company const & getCompany();
 
     // Inherited via I_LocatedInteractiveBitmap
     virtual I_ObservableId const & getObservableId() const override;
@@ -37,6 +40,7 @@ namespace it
     virtual bool contains (PlanarPosition const &) const override;
     virtual int const & getX() const override;
     virtual int const & getY() const override;
+    virtual PlanarPosition const & getCenter() const override;
     virtual PlanarPosition const & getPosition() const override;
   };
 

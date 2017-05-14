@@ -30,7 +30,7 @@ namespace it
     Sec (PlanarPosition const &, std::set<Company> const &, Duration &);
 
     PlanarPosition const & getPosition() const;
-    PlanarPosition const * getTarget();
+    Company const * getTarget();
 
     // Inherited via I_ConstantObservable
     virtual I_ObservableId const & getObservableId() const override;

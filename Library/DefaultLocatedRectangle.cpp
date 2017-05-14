@@ -4,9 +4,19 @@
 namespace it
 {
   DefaultLocatedRectangle::DefaultLocatedRectangle (const PlanarPosition& position, const PlanarDimensions& dimensions) :
+    center_ (calculateCenter (dimensions, position)),
     position_ (position),
     dimensions_ (dimensions)
   {
+  }
+
+
+
+  PlanarPosition DefaultLocatedRectangle::calculateCenter (PlanarDimensions const & dimensions, PlanarPosition const & position)
+  {
+    int x (position.getX() + dimensions.getWidth() / 2);
+    int y (position.getY() + dimensions.getHeight() / 2);
+    return PlanarPosition (x, y);
   }
 
 
@@ -44,5 +54,12 @@ namespace it
   const int& DefaultLocatedRectangle::getY() const
   {
     return position_.getY();
+  }
+
+
+
+  PlanarPosition const & DefaultLocatedRectangle::getCenter() const
+  {
+    return center_;
   }
 }

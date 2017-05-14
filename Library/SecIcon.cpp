@@ -93,6 +93,13 @@ namespace it
 
 
 
+  PlanarPosition const & SecIcon::getCenter() const
+  {
+    return rectangle_.getCenter();
+  }
+
+
+
   PlanarPosition const & SecIcon::getPosition() const
   {
     return position_;

@@ -145,4 +145,11 @@ namespace it
   {
     return rectangle_.getY();
   }
+
+
+
+  PlanarPosition const & MenuButton::getCenter() const
+  {
+    return rectangle_.getCenter();
+  }
 }

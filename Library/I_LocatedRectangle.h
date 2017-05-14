@@ -14,5 +14,6 @@ namespace it
     virtual bool contains (PlanarPosition const &) const = 0;
     virtual int const & getX() const = 0;
     virtual int const & getY() const = 0;
+    virtual PlanarPosition const & getCenter() const = 0;
   };
 }

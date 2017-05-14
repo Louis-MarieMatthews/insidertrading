@@ -114,6 +114,13 @@ namespace it
 
 
 
+  PlanarPosition const & GameMenuBar::getCenter() const
+  {
+    return rectangle_.getCenter();
+  }
+
+
+
   PlanarPosition const & GameMenuBar::getPosition() const
   {
     return position_;

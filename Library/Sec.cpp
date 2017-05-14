@@ -45,13 +45,13 @@ namespace it
 
 
 
-  PlanarPosition const * Sec::getTarget()
+  Company const * Sec::getTarget()
   {
     if (currentTarget_ == nullptr) {
       return nullptr;
     }
     else {
-      return &currentTarget_->getPosition();
+      return currentTarget_;
     }
   }
 

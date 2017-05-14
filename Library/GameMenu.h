@@ -26,7 +26,9 @@ namespace it
     ViewData &                     viewData_;
     static std::set<CompanyIcon *> getCompanyIcons (GameData &, DefaultContextualMenuBitmap * &);
     DefaultContextualMenuBitmap *  contextualMenu_;
-    PlanarPosition const *         secTarget_;
+    Company const *                secTarget_;
+
+    CompanyIcon const * getIcon (Company const &) const;
 
   public:
     GameMenu (ViewData &, PlanarDimensions const &);

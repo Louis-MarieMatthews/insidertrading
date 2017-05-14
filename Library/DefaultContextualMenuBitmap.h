@@ -42,6 +42,7 @@ namespace it
     virtual bool contains (PlanarPosition const &) const override;
     virtual const int& getX() const override;
     virtual const int& getY() const override;
+    virtual PlanarPosition const & getCenter() const override;
     virtual ALLEGRO_BITMAP* fetchBitmap() override; // TODO: space before *
     virtual void processEvent (I_AllegroEventAdapter const *) override;
 

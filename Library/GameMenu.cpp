@@ -9,11 +9,23 @@ namespace it
   std::set<CompanyIcon *> GameMenu::getCompanyIcons (GameData & gameData, DefaultContextualMenuBitmap * & parentContextualMenu)
   {
     std::set<CompanyIcon *> icons;
-    std::set<Company> companies (gameData.getCompanies());
-    for (auto c : companies) {
-      icons.insert (new CompanyIcon (c.getPosition()));
+    std::set<Company> const & companies (gameData.getCompanies());
+    for (auto & c: companies) {
+      icons.insert (new CompanyIcon (c, c.getPosition()));
     }
     return icons;
+  }
+
+
+
+  CompanyIcon const * GameMenu::getIcon (Company const & company) const
+  {
+    for (auto & ci : companyIcons_) {
+      if (&ci->getCompany() == &company) {
+        return ci;
+      }
+    }
+    return nullptr;
   }
 
 
@@ -110,7 +122,8 @@ namespace it
 
       Sec & sec (gameData_.getSec());
       if (sec.getTarget() != nullptr) {
-        al_draw_line (sec.getPosition().getX(), sec.getPosition().getY(), sec.getTarget()->getX(), sec.getTarget()->getY(), al_map_rgb (255, 0, 0), 10);
+        CompanyIcon const * company (getIcon (*sec.getTarget()));
+        al_draw_line (secIcon_.getCenter().getX(), secIcon_.getCenter().getY(), company->getCenter().getX(), company->getCenter().getY(), al_map_rgb (255, 0, 0), 10);
       }
 
       al_draw_bitmap (secIcon_.fetchBitmap(), secIcon_.getX(), secIcon_.getY(), 0);

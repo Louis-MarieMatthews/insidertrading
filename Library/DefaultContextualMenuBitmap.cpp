@@ -113,6 +113,13 @@ namespace it
 
 
 
+  PlanarPosition const & DefaultContextualMenuBitmap::getCenter() const
+  {
+    return rectangle_->getCenter();
+  }
+
+
+
   ALLEGRO_BITMAP * DefaultContextualMenuBitmap::fetchBitmap()
   {
     if (!isCachedBitmapUpToDate_) {
