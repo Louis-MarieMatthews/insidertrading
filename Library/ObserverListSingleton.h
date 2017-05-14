@@ -6,6 +6,7 @@
 #include "I_ObservableId.h"
 #include "I_ConstantObserver.h"
 
+// TODO: needs a method to remove observables
 namespace it
 {
   class ObserverListSingleton

@@ -15,7 +15,7 @@ namespace it
 
   class Sec : public I_ConstantObservable, public I_ConstantObserver
   {
-    std::set<Company> const & companies_;
+    std::set<Company *> const & companies_;
     Company const *           currentTarget_;
     PlanarPosition            initialPosition_;
     bool                      inspecting_;
@@ -27,7 +27,7 @@ namespace it
     Company const & getRandomCompany();
 
   public:
-    Sec (PlanarPosition const &, std::set<Company> const &, Duration &);
+    Sec (PlanarPosition const &, std::set<Company *> const &, Duration &);
 
     PlanarPosition const & getPosition() const;
     Company const * getTarget();

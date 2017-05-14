@@ -13,7 +13,7 @@ namespace it
     unsigned short i (0);
     for (auto & c : companies_) {
       if (i == randomIndex) {
-        return c;
+        return *c;
       }
       else {
         i++;
@@ -24,7 +24,7 @@ namespace it
 
 
 
-  Sec::Sec (PlanarPosition const & position, std::set<Company> const & companies, Duration & time) :
+  Sec::Sec (PlanarPosition const & position, std::set<Company *> const & companies, Duration & time) :
     companies_ (companies),
     currentTarget_ (nullptr),
     initialPosition_ (position),

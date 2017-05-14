@@ -4,17 +4,18 @@
 
 #include "I_ContextualMenu.h"
 #include "DefaultObservableId.h"
+#include "Company.h"
 
 namespace it
 {
 
   class CompanyContextualMenu : public I_ContextualMenu
   {
-    DefaultObservableId observableId_;
+    DefaultObservableId                   observableId_;
     std::vector<I_ContextualMenuChoice *> choices_;
 
   public:
-    CompanyContextualMenu();
+    CompanyContextualMenu (Company &);
     ~CompanyContextualMenu();
 
     // Inherited via I_ContextualMenu

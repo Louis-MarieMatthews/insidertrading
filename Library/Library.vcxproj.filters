@@ -135,6 +135,12 @@
     <ClCompile Include="ContextualMenuBitmapSingleton.cpp">
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
+    <ClCompile Include="CompanyView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AddInsiderMenuChoice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -259,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="ContextualMenuBitmapSingleton.h">
       <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="CompanyView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddInsiderMenuChoice.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

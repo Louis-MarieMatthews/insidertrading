@@ -1,13 +1,14 @@
 #include "CompanyContextualMenu.h"
 
 #include "NullContextualMenuChoice.h"
+#include "AddInsiderMenuChoice.h"
 
 namespace it
 {
-  CompanyContextualMenu::CompanyContextualMenu()
+  CompanyContextualMenu::CompanyContextualMenu (Company & company)
   {
     choices_.push_back (new NullContextualMenuChoice ("Null Prout", true));
-    choices_.push_back (new NullContextualMenuChoice ("Prout Prout", true));
+    choices_.push_back (new AddInsiderMenuChoice (company));
   }
 
 

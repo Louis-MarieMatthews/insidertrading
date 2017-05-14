@@ -9,16 +9,17 @@ namespace it
 {
   class GameData
   {
-    std::set<Company> companies_;
-    PlayersMoney      playersMoney_;
-    Duration              time_;
-    Sec               sec_;
+    std::set<Company *> companies_;
+    PlayersMoney        playersMoney_;
+    Duration            time_;
+    Sec                 sec_;
 
   public:
     GameData();
+    ~GameData();
     Duration & getTime();
     PlayersMoney & getPlayersMoney();
-    std::set<Company> const & getCompanies();
+    std::set<Company *> const & getCompanies();
     Sec & getSec();
   };
 }

@@ -14,18 +14,18 @@ namespace it
   {
     ALLEGRO_BITMAP *                bitmapHovered_;
     ALLEGRO_BITMAP *                bitmapNotHovered_;
+    Company const &                 company_;
+    CompanyContextualMenu           contextualMenu_;
     bool                            isLastFetchedBitmapUpToDate_;
     DefaultObservableId             observableId_;
     PlanarPosition                  position_;
     DefaultLocatedRectangle         rectangle_;
     bool                            isHovered_;
-    CompanyContextualMenu           contextualMenu_;
-    Company const &                 company_;
 
     void setHovered (bool const &);
 
   public:
-    CompanyIcon (Company const &, PlanarPosition const &);
+    CompanyIcon (Company &, PlanarPosition const &);
     ~CompanyIcon();
     Company const & getCompany();
 

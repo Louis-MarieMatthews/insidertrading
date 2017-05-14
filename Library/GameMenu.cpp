@@ -9,9 +9,9 @@ namespace it
   std::set<CompanyIcon *> GameMenu::getCompanyIcons (GameData & gameData, DefaultContextualMenuBitmap * & parentContextualMenu)
   {
     std::set<CompanyIcon *> icons;
-    std::set<Company> const & companies (gameData.getCompanies());
-    for (auto & c: companies) {
-      icons.insert (new CompanyIcon (c, c.getPosition()));
+    std::set<Company *> const companies (gameData.getCompanies());
+    for (auto c: companies) {
+      icons.insert (new CompanyIcon (*c, c->getPosition()));
     }
     return icons;
   }

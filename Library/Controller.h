@@ -108,6 +108,7 @@ namespace it
     ViewData viewData (gameData, winDimensions);
     I_BitmapView * currentView (viewData.getMainMenu());
     I_AllegroEventAdapter * eventAdapter (new DefaultAllegroEventAdapter (fpsTimer, secondsTimer, centisecondsTimer));
+
     while (currentView != nullptr) {
       ALLEGRO_EVENT e;
       al_wait_for_event (eventQueue, &e);

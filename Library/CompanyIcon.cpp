@@ -16,10 +16,11 @@ namespace it
 
 
 
-  CompanyIcon::CompanyIcon (Company const & company, PlanarPosition const & position) :
+  CompanyIcon::CompanyIcon (Company & company, PlanarPosition const & position) :
     bitmapHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/hovered/company.bmp")),
     bitmapNotHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/nothovered/company.bmp")),
     company_ (company),
+    contextualMenu_ (company),
     isLastFetchedBitmapUpToDate_ (false),
     position_ (position),
     rectangle_ (position, PlanarDimensions (200, 200)) // TODO: hard-coded values!
