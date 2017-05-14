@@ -22,6 +22,6 @@ namespace it
     virtual std::vector<I_ContextualMenuChoice*> getChoices() const override;
     virtual unsigned int getLongestChoiceCharacterCount() const override;
     virtual unsigned int getNumberOfChoices() const override;
-    virtual void addChoice(I_ContextualMenuChoice &) override;
+    virtual void addChoice (I_ContextualMenuChoice &) override;
   };
 }

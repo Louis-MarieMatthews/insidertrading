@@ -15,11 +15,14 @@ namespace it
 
   class Sec : public I_ConstantObservable, public I_ConstantObserver
   {
-    PlanarPosition      position_;
-    Duration &          time_;
-    DefaultObservableId observableId_;
-    Company const *     currentTarget_;
     std::set<Company> const & companies_;
+    Company const *           currentTarget_;
+    PlanarPosition            initialPosition_;
+    bool                      inspecting_;
+    DefaultObservableId       observableId_;
+    PlanarPosition            position_;
+    int                       radius_;
+    Duration &                time_;
 
     Company const & getRandomCompany();
 
@@ -27,6 +30,7 @@ namespace it
     Sec (PlanarPosition const &, std::set<Company> const &, Duration &);
 
     PlanarPosition const & getPosition() const;
+    PlanarPosition const * getTarget();
 
     // Inherited via I_ConstantObservable
     virtual I_ObservableId const & getObservableId() const override;

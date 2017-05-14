@@ -9,6 +9,7 @@
 #include "allegro5\allegro_font.h"
 #include "ContextualMenuBitmapSingleton.h"
 
+// TODO: classes used are inconsistent with the rest of the system. The system should be made more consistent.
 namespace it
 {
   class DefaultContextualMenuBitmap : public I_EventSensitiveLocatedBitmap, public I_ConstantObserver

@@ -130,10 +130,10 @@
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="CompanyContextualMenu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Semantic View</Filter>
     </ClCompile>
     <ClCompile Include="ContextualMenuBitmapSingleton.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Visual View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -255,10 +255,10 @@
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="CompanyContextualMenu.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Semantic View</Filter>
     </ClInclude>
     <ClInclude Include="ContextualMenuBitmapSingleton.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Visual View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,15 +15,12 @@ namespace it
     if (bitmap_ == nullptr) {
       throw BitmapLoadingException();
     }
-
-    ObserverListSingleton::getInstance().addObserver (sec_.getObservableId(), *this);
   }
 
 
 
   SecIcon::~SecIcon()
   {
-    ObserverListSingleton::getInstance().removeObserver (sec_.getObservableId(), *this);
   }
 
 
@@ -105,10 +102,5 @@ namespace it
 
   void SecIcon::notifyObserver (I_ObservableId const & observableId)
   {
-    if (&sec_.getObservableId() == &observableId) {
-      position_ = sec_.getPosition();
-      isLastFetchedBitmapUpToDate_ = false;
-      ObserverListSingleton::getInstance().notifyObservers (observableId_);
-    }
   }
 }
