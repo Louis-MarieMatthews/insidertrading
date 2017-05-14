@@ -36,6 +36,7 @@ namespace it
 
   void Company::addInsiders()
   {
+
     hasInsiders_ = true;
     ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }

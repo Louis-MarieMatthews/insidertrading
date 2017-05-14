@@ -7,14 +7,13 @@
 
 namespace it
 {
-  // TODO: rename to BankAccountBalance?
-  class PlayersMoney : public I_ConstantObservable
+  class PlayerBalance : public I_ConstantObservable
   {
     DefaultObservableId observableId_;
     unsigned long long  money_;
 
   public:
-    PlayersMoney();
+    PlayerBalance();
 
     unsigned long long const & getMoney() const;
     std::string getString() const;

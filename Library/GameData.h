@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Company.h"
-#include "PlayersMoney.h"
+#include "PlayerBalance.h"
 #include "Sec.h"
 #include "Duration.h"
 
@@ -10,7 +10,7 @@ namespace it
   class GameData
   {
     std::set<Company *> companies_;
-    PlayersMoney        playersMoney_;
+    PlayerBalance        playersMoney_;
     Duration            time_;
     Sec                 sec_;
 
@@ -18,7 +18,7 @@ namespace it
     GameData();
     ~GameData();
     Duration & getTime();
-    PlayersMoney & getPlayersMoney();
+    PlayerBalance & getPlayersMoney();
     std::set<Company *> const & getCompanies();
     Sec & getSec();
   };

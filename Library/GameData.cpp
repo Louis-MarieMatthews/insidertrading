@@ -28,7 +28,7 @@ namespace it
 
 
 
-  PlayersMoney & GameData::getPlayersMoney()
+  PlayerBalance & GameData::getPlayersMoney()
   {
     return playersMoney_;
   }

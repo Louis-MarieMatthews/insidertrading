@@ -111,9 +111,6 @@
     <ClCompile Include="GameData.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="PlayersMoney.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="CompanyIcon.cpp">
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
@@ -140,6 +137,9 @@
     </ClCompile>
     <ClCompile Include="AddInsiderMenuChoice.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBalance.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -242,9 +242,6 @@
     <ClInclude Include="GameData.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="PlayersMoney.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="CompanyIcon.h">
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
@@ -271,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="AddInsiderMenuChoice.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBalance.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
