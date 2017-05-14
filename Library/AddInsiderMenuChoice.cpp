@@ -14,13 +14,15 @@ namespace it
 
 
 
-  AddInsiderMenuChoice::AddInsiderMenuChoice (Company & company) :
+  AddInsiderMenuChoice::AddInsiderMenuChoice (Company & company, PlayerBalance & playerBalance) :
     company_ (company),
     isDisabled_ (false),
+    playerBalance_ (playerBalance),
     text_ ("Add insider")
   {
-    setDisabled (company_.hasInsiders());
+    setDisabled (company_.hasInsiders() || playerBalance_ < company.getInsiderCost());
     ObserverListSingleton::getInstance().addObserver (company_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (playerBalance_.getObservableId(), *this);
   }
 
 
@@ -28,6 +30,7 @@ namespace it
   AddInsiderMenuChoice::~AddInsiderMenuChoice()
   {
     ObserverListSingleton::getInstance().removeObserver (company_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (playerBalance_.getObservableId(), *this);
   }
 
 
@@ -66,6 +69,9 @@ namespace it
   {
     if (&company_.getObservableId() == &observableId) {
       setDisabled (company_.hasInsiders());
+    }
+    else if (&playerBalance_.getObservableId() == &observableId) {
+      setDisabled (playerBalance_ < company_.getInsiderCost());
     }
   }
 }

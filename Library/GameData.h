@@ -10,7 +10,7 @@ namespace it
   class GameData
   {
     std::set<Company *> companies_;
-    PlayerBalance        playersMoney_;
+    PlayerBalance       playersMoney_;
     Duration            time_;
     Sec                 sec_;
 

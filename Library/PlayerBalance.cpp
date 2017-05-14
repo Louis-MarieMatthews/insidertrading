@@ -1,9 +1,11 @@
 #include "PlayerBalance.h"
 
+#include "ObserverListSingleton.h"
+
 namespace it
 {
   PlayerBalance::PlayerBalance() :
-    money_ (0)
+    money_ (100)
   {
   }
 
@@ -23,8 +25,30 @@ namespace it
 
 
 
+  void PlayerBalance::operator-= (unsigned long long const & sum)
+  {
+    money_ -= sum;
+    ObserverListSingleton::getInstance().notifyObservers (observableId_);
+  }
+
+
+
   I_ObservableId const & PlayerBalance::getObservableId() const
   {
     return observableId_;
+  }
+
+
+
+  bool operator>= (PlayerBalance const & balance, unsigned long long const & sum)
+  {
+    return balance.getMoney() >= sum;
+  }
+
+
+
+  bool operator< (PlayerBalance const & balance, unsigned long long const & sum)
+  {
+    return balance.getMoney() < sum;
   }
 }

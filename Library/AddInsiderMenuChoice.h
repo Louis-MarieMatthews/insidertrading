@@ -9,14 +9,15 @@ namespace it
 {
   class AddInsiderMenuChoice : public I_ContextualMenuChoice, public I_ConstantObserver
   {
+    Company &           company_;
     bool                isDisabled_;
     DefaultObservableId observableId_;
+    PlayerBalance &     playerBalance_;
     std::string         text_;
-    Company &           company_;
 
     void setDisabled (bool const &);
   public:
-    AddInsiderMenuChoice (Company &);
+    AddInsiderMenuChoice (Company &, PlayerBalance &);
     ~AddInsiderMenuChoice();
 
     // Inherited via I_ContextualMenuChoice

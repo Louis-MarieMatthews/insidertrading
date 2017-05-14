@@ -11,7 +11,7 @@ namespace it
     std::set<CompanyIcon *> icons;
     std::set<Company *> const companies (gameData.getCompanies());
     for (auto c: companies) {
-      icons.insert (new CompanyIcon (*c, c->getPosition()));
+      icons.insert (new CompanyIcon (*c, gameData, c->getPosition()));
     }
     return icons;
   }

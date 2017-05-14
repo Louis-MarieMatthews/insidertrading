@@ -5,10 +5,11 @@
 
 namespace it
 {
-  CompanyContextualMenu::CompanyContextualMenu (Company & company)
+  CompanyContextualMenu::CompanyContextualMenu (Company & company, GameData & gameData) :
+    gameData_ (gameData)
   {
     choices_.push_back (new NullContextualMenuChoice ("Null Prout", true));
-    choices_.push_back (new AddInsiderMenuChoice (company));
+    choices_.push_back (new AddInsiderMenuChoice (company, gameData.getPlayersMoney()));
   }
 
 

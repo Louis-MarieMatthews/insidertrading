@@ -5,9 +5,9 @@ namespace it
   GameData::GameData() :
     sec_ (PlanarPosition (500, 50), companies_, time_)
   {
-    companies_.insert (new Company ("Lockheed Martin", PlanarPosition (100, 100)));
-    companies_.insert (new Company ("Sarif Industries", PlanarPosition (300, 500)));
-    companies_.insert (new Company ("Versalife", PlanarPosition (600, 500)));
+    companies_.insert (new Company ("Lockheed Martin", playersMoney_, PlanarPosition (100, 100)));
+    companies_.insert (new Company ("Sarif Industries", playersMoney_, PlanarPosition (300, 500)));
+    companies_.insert (new Company ("Versalife", playersMoney_, PlanarPosition (600, 500)));
   }
 
 

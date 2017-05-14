@@ -1,13 +1,21 @@
 #include "Company.h"
 
 #include "ObserverListSingleton.h"
+#include "InsufficientPlayerBalanceException.h"
 
 namespace it
 {
-  Company::Company (std::string const & name, PlanarPosition const & position) :
+  Company::Company (std::string const & name, PlayerBalance & playerBalance, PlanarPosition const & position) :
     hasInsiders_ (false),
     name_ (name),
+    playerBalance_ (playerBalance),
     position_ (position)
+  {
+  }
+
+
+
+  Company::~Company()
   {
   }
 
@@ -27,6 +35,13 @@ namespace it
 
 
 
+  unsigned long long const & Company::getInsiderCost() const
+  {
+    return insiderCost_;
+  }
+
+
+
   bool const & Company::hasInsiders() const
   {
     return hasInsiders_;
@@ -36,9 +51,14 @@ namespace it
 
   void Company::addInsiders()
   {
-
-    hasInsiders_ = true;
-    ObserverListSingleton::getInstance().notifyObservers (observableId_);
+    if (playerBalance_ >= insiderCost_) {
+      playerBalance_ -= insiderCost_;
+      hasInsiders_ = true;
+      ObserverListSingleton::getInstance().notifyObservers (observableId_);
+    }
+    else {
+      throw InsufficientPlayerBalanceException();
+    }
   }
 
 

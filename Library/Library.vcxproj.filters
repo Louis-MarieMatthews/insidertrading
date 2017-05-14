@@ -135,11 +135,14 @@
     <ClCompile Include="CompanyView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AddInsiderMenuChoice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerBalance.cpp">
       <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="AddInsiderMenuChoice.cpp">
+      <Filter>Source Files\Semantic View</Filter>
+    </ClCompile>
+    <ClCompile Include="InsufficientPlayerBalanceException.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -266,11 +269,14 @@
     <ClInclude Include="CompanyView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AddInsiderMenuChoice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerBalance.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AddInsiderMenuChoice.h">
+      <Filter>Header Files\Semantic View</Filter>
+    </ClInclude>
+    <ClInclude Include="InsufficientPlayerBalanceException.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
