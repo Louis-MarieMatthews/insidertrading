@@ -38,6 +38,7 @@ namespace it
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
     gameData_ (viewData.getGameData()),
+    gameOverBitmap_ (dimensions),
     menuBar_ (viewData.getGameData(), PlanarDimensions (dimensions.getWidth(), 40), PlanarPosition (0, 0)),
     next_ (this),
     secIcon_ (viewData.getGameData().getSec()),
@@ -53,6 +54,7 @@ namespace it
     ObserverListSingleton::getInstance().addObserver (secIcon_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (gameData_.getSec().getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (companyBeingCleaned_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (gameData_.isPlayerInTheGame().getObservableId(), *this);
   }
 
 
@@ -69,6 +71,7 @@ namespace it
     ObserverListSingleton::getInstance().removeObserver (secIcon_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (gameData_.getSec().getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (companyBeingCleaned_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (gameData_.isPlayerInTheGame().getObservableId(), *this);
   }
 
 
@@ -146,6 +149,12 @@ namespace it
         al_draw_bitmap (menu->fetchBitmap(), menu->getX(), menu->getY(), 0);
       }
 
+      if (!gameData_.isPlayerInTheGame().getValue()) {
+        al_draw_bitmap (gameOverBitmap_.fetchBitmap(), gameOverBitmap_.getX(), gameOverBitmap_.getY(), 0);
+      }
+
+
+
       isLastFetchedBitmapUpToDate_ = true;
       al_set_target_bitmap (targetBitmap);
     }
@@ -185,6 +194,11 @@ namespace it
       else {
         ObserverListSingleton::getInstance().removeObserver (*contextualMenuObservableId_, *this);
         contextualMenuObservableId_ = nullptr;
+      }
+    }
+    else if (&gameData_.isPlayerInTheGame().getObservableId() == &observableId) {
+      if (!gameData_.isPlayerInTheGame().getValue()) {
+        isLastFetchedBitmapUpToDate_ = false;
       }
     }
   }

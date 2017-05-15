@@ -168,6 +168,12 @@
     <ClCompile Include="MapBitmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Boolean.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverBitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -336,6 +342,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MapBitmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Boolean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverBitmap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,6 +9,7 @@
 #include "CompanyIcon.h"
 #include "SecIcon.h"
 #include "DefaultContextualMenuBitmap.h"
+#include "GameOverBitmap.h"
 
 namespace it
 {
@@ -29,6 +30,7 @@ namespace it
     static std::set<CompanyIcon *> getCompanyIcons (GameData &, DefaultContextualMenuBitmap * &);
     DefaultContextualMenuBitmap *  contextualMenu_;
     Company const *                secTarget_;
+    GameOverBitmap                 gameOverBitmap_;
 
     CompanyIcon const * getIcon (Company const &) const;
 

@@ -24,9 +24,10 @@ namespace it
 
 
 
-  Sec::Sec (PlanarPosition const & position, std::set<Company *> const & companies, Duration & time) :
+  Sec::Sec (GameData & gameData, PlanarPosition const & position, std::set<Company *> const & companies, Duration & time) :
     companies_ (companies),
     currentTarget_ (nullptr),
+    gameData_ (gameData),
     initialPosition_ (position),
     inspecting_ (false),
     position_ (position),
@@ -47,11 +48,11 @@ namespace it
 
   Company const * Sec::getTarget()
   {
-    if (currentTarget_ == nullptr) {
+    if (currentTarget_.getPointer() == nullptr) {
       return nullptr;
     }
     else {
-      return currentTarget_;
+      return currentTarget_.getPointer();
     }
   }
 
@@ -75,17 +76,20 @@ namespace it
       }
       lastSecond_ = time_.getSecond();
 
-      if (currentTarget_ == nullptr) {
+      if (currentTarget_.getPointer() == nullptr) {
         if (secondCount_ == 5) {
           secondCount_ = 0;
-          currentTarget_ = &getRandomCompany();
+          currentTarget_.setPointer (&getRandomCompany());
           ObserverListSingleton::getInstance().notifyObservers (observableId_);
         }
       }
       else {
         if (secondCount_ == 5) {
+          if (currentTarget_.getPointer()->hasInsiders()) {
+            gameData_.isPlayerInTheGame().setValue (false);
+          }
           secondCount_ = 0;
-          currentTarget_ = nullptr;
+          currentTarget_.setPointer (nullptr);
           ObserverListSingleton::getInstance().notifyObservers (observableId_);
         }
       }

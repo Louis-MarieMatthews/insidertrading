@@ -151,6 +151,7 @@
     <ClCompile Include="AllegroInitializationException.cpp" />
     <ClCompile Include="BitmapCreationException.cpp" />
     <ClCompile Include="BitmapLoadingException.cpp" />
+    <ClCompile Include="Boolean.cpp" />
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="CompanyContextualMenu.cpp" />
     <ClCompile Include="CompanyIcon.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="ContextualMenuBitmapSingleton.cpp" />
     <ClCompile Include="DefaultGameData.cpp" />
     <ClCompile Include="DocumentMapItem.cpp" />
+    <ClCompile Include="GameOverBitmap.cpp" />
     <ClCompile Include="MapBitmap.cpp" />
     <ClCompile Include="FloorCompanyMapItem.cpp" />
     <ClCompile Include="FontFormat.cpp" />
@@ -191,6 +193,7 @@
     <ClInclude Include="AllegroInitializationException.h" />
     <ClInclude Include="BitmapCreationException.h" />
     <ClInclude Include="BitmapLoadingException.h" />
+    <ClInclude Include="Boolean.h" />
     <ClInclude Include="Company.h" />
     <ClInclude Include="CompanyContextualMenu.h" />
     <ClInclude Include="CompanyIcon.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="ContextualMenuBitmapSingleton.h" />
     <ClInclude Include="DefaultGameData.h" />
     <ClInclude Include="DocumentMapItem.h" />
+    <ClInclude Include="GameOverBitmap.h" />
     <ClInclude Include="MapBitmap.h" />
     <ClInclude Include="FloorCompanyMapItem.h" />
     <ClInclude Include="FontFormat.h" />

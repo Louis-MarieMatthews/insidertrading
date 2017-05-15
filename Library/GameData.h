@@ -4,7 +4,9 @@
 #include "Duration.h"
 #include "ObservablePointer.h"
 #include "PlayerPosition.h"
+#include "Boolean.h"
 
+// TODO: rename to I_GameData
 namespace it
 {
   class Company;
@@ -21,5 +23,6 @@ namespace it
     virtual PlanarPosition & getPlayerPosition() = 0;
     virtual Sec & getSec() = 0;
     virtual void setCompanyBeingCleaned (Company *) = 0;
+    virtual Boolean & isPlayerInTheGame() = 0;
   };
 }

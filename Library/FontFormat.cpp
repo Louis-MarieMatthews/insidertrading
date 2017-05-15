@@ -6,6 +6,30 @@
 
 namespace it
 {
+  unsigned short FontFormat::getFontSize (PlanarDimensions const & dimensions)
+  {
+    if (dimensions.getWidth() > dimensions.getHeight() * 10) {
+      return dimensions.getHeight() * 0.90;
+    }
+    else {
+      return dimensions.getHeight() * 0.40;
+    }
+  }
+
+
+
+  unsigned short FontFormat::getYPadding (PlanarDimensions const & dimensions)
+  {
+    if (dimensions.getWidth() > dimensions.getHeight() * 10) {
+      return dimensions.getHeight() * 0.05;
+    }
+    else {
+      return dimensions.getHeight() * 0.30;
+    }
+  }
+
+
+
   FontFormat::FontFormat (unsigned short const & fontSize, short const & paddingX, short const & paddingY) :
     font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", fontSize, 0)),
     fontSize_ (fontSize),
@@ -33,10 +57,10 @@ namespace it
 
 
   FontFormat::FontFormat (PlanarDimensions const & dimensions) :
-    font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", dimensions.getHeight() * 0.90, 0)),
-    fontSize_ (dimensions.getHeight() * 0.90),
+    font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", getFontSize (dimensions), 0)),
+    fontSize_ (getFontSize (dimensions)),
     paddingX_ (dimensions.getWidth() * 0.05),
-    paddingY_ (dimensions.getHeight() * 0.05)
+    paddingY_ (getYPadding (dimensions))
   {
   }
 

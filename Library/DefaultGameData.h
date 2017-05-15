@@ -10,6 +10,7 @@ namespace it
   {
     std::set<Company *>        companies_;
     ObservablePointer<Company> companyBeingCleaned_;
+    Boolean                    isPlayerInTheGame_;
     PlayerBalance              playersMoney_;
     Duration                   time_;
     Sec                        sec_;
@@ -25,5 +26,6 @@ namespace it
     virtual PlanarPosition & getPlayerPosition() override;
     virtual Sec & getSec() override;
     virtual void setCompanyBeingCleaned (Company *) override;
+    virtual Boolean & isPlayerInTheGame() override;
   };
 }

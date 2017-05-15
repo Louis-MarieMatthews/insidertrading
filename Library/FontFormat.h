@@ -14,6 +14,9 @@ namespace it
     short          paddingX_;
     short          paddingY_;
 
+    static unsigned short getFontSize (PlanarDimensions const &);
+    static unsigned short getYPadding (PlanarDimensions const &);
+
   public:
     FontFormat (unsigned short const &, short const &, short const &);
     FontFormat (PlanarDimensions const &, unsigned short const &);

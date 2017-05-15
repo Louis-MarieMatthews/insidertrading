@@ -4,8 +4,9 @@ namespace it
 {
   DefaultGameData::DefaultGameData() :
     companyBeingCleaned_ (nullptr),
+    isPlayerInTheGame_ (true),
     playerPosition_ (0, 0),
-    sec_ (PlanarPosition (500, 50), companies_, time_)
+    sec_ (*this, PlanarPosition (500, 50), companies_, time_)
   {
     companies_.insert (new Company (*this, "Lockheed Martin", playersMoney_, PlanarPosition (100, 100)));
     companies_.insert (new Company (*this, "Sarif Industries", playersMoney_, PlanarPosition (300, 500)));
@@ -68,5 +69,12 @@ namespace it
   void DefaultGameData::setCompanyBeingCleaned (Company * company)
   {
     companyBeingCleaned_.setPointer (company);
+  }
+
+
+
+  Boolean & DefaultGameData::isPlayerInTheGame()
+  {
+    return isPlayerInTheGame_;
   }
 }
