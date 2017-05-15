@@ -17,6 +17,7 @@ namespace it
     viewData_ (viewData)
   {
     ObserverListSingleton::getInstance().addObserver (bitmap_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (company_.getObservableId(), *this);
   }
 
 
@@ -24,6 +25,7 @@ namespace it
   CompanyView::~CompanyView()
   {
     ObserverListSingleton::getInstance().removeObserver (bitmap_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (company_.getObservableId(), *this);
   }
 
 
@@ -96,6 +98,9 @@ namespace it
   {
     if (&bitmap_.getObservableId() == &observableId) {
       isLastFetchedBitmapUpToDate_ = false;
+    }
+    else if (&company_.getObservableId() == &observableId) {
+      next_ = viewData_.getGameView();
     }
   }
 }
