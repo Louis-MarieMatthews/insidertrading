@@ -64,6 +64,13 @@ namespace it
 
 
 
+  ObservablePointer<Company const> & Sec::getObservableTarget()
+  {
+    return currentTarget_;
+  }
+
+
+
   Duration const & Sec::getInspectingDuration()
   {
     return inspectingDuration_;

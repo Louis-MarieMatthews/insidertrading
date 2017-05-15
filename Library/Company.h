@@ -13,7 +13,7 @@ namespace it
 {
   class Company : public I_ConstantObservable, public I_ConstantObserver
   {
-    bool                            hasInsiders_;
+    Boolean                         hasInsiders_;
     static unsigned long long const insiderCost_ {100};
     CompanyMap                      map_;
     std::string                     name_;
@@ -32,7 +32,7 @@ namespace it
     PlanarPosition const & getPosition() const;
     unsigned long long const & getInsiderCost() const;
 
-    bool const & hasInsiders() const;
+    Boolean const & hasInsiders() const;
     void addInsiders();
     void removeInsiders();
 

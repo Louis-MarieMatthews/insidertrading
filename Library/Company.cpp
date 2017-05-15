@@ -54,7 +54,7 @@ namespace it
 
 
 
-  bool const & Company::hasInsiders() const
+  Boolean const & Company::hasInsiders() const
   {
     return hasInsiders_;
   }

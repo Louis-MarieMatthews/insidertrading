@@ -11,11 +11,12 @@ namespace it
   // TODO: rename to RemoveInsiderContextualMenuChoice?
   class RemoveInsiderMenuChoice : public I_ContextualMenuChoice, public I_ConstantObserver
   {
-    DefaultObservableId   observableId_;
-    std::string           text_;
-    bool                  isDisabled_;
-    Company &             company_;
-    GameData &            gameData_;
+    Company &                          company_;
+    GameData &                         gameData_;
+    bool                               isDisabled_;
+    DefaultObservableId                observableId_;
+    ObservablePointer<Company const> & secTarget_;
+    std::string                        text_;
 
     void setDisabled (bool const &);
 

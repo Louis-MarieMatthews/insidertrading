@@ -15,6 +15,7 @@ namespace it
     bool const & getValue() const;
     void setValue (bool const &);
     void operator= (bool const &);
+    explicit operator bool() const;
 
     // Inherited via I_ConstantObservable
     virtual I_ObservableId const & getObservableId() const override;

@@ -20,11 +20,11 @@ namespace it
     GameData &                       gameData_;
     PlanarPosition                   initialPosition_;
     bool                             inspecting_;
+    Duration                         inspectingDuration_;
     DefaultObservableId              observableId_;
     PlanarPosition                   position_;
     int                              radius_;
     Duration &                       time_;
-    Duration                         inspectingDuration_;
 
     Company const & getRandomCompany();
 
@@ -34,6 +34,7 @@ namespace it
 
     PlanarPosition const & getPosition() const;
     Company const * getTarget();
+    ObservablePointer<Company const> & getObservableTarget();
     Duration const & getInspectingDuration();
 
     // Inherited via I_ConstantObservable

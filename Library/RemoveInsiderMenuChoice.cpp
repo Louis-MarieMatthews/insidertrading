@@ -1,5 +1,6 @@
 #include "RemoveInsiderMenuChoice.h"
 
+#include "Sec.h"
 #include "ObserverListSingleton.h"
 
 namespace it
@@ -18,9 +19,11 @@ namespace it
     company_ (company),
     gameData_ (gameData),
     isDisabled_ (!company.hasInsiders()),
+    secTarget_ (gameData.getSec().getObservableTarget()),
     text_ ("Remove insiders")
   {
     ObserverListSingleton::getInstance().addObserver (company_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (secTarget_.getObservableId(), *this);
   }
 
 
@@ -28,6 +31,7 @@ namespace it
   RemoveInsiderMenuChoice::~RemoveInsiderMenuChoice()
   {
     ObserverListSingleton::getInstance().removeObserver (company_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (secTarget_.getObservableId(), *this);
   }
 
 
@@ -64,8 +68,9 @@ namespace it
 
   void RemoveInsiderMenuChoice::notifyObserver (I_ObservableId const & observableId)
   {
-    if (&company_.getObservableId() == &observableId) {
-      setDisabled (!company_.hasInsiders());
+    if (&company_.getObservableId() == &observableId ||
+        &secTarget_.getObservableId() == &observableId) {
+      setDisabled (!company_.hasInsiders() || secTarget_.getPointer() != &company_);
     }
   }
 }

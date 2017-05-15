@@ -16,6 +16,8 @@ namespace it
     return value_;
   }
 
+
+
   void Boolean::setValue (bool const & value)
   {
     if (value_ != value) {
@@ -29,6 +31,13 @@ namespace it
   void Boolean::operator= (bool const & value)
   {
     setValue (value);
+  }
+
+
+
+  Boolean::operator bool() const
+  {
+    return value_;
   }
 
 
