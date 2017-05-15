@@ -144,38 +144,38 @@
     <ClCompile Include="RemoveInsiderMenuChoice.cpp">
       <Filter>Source Files\Semantic View</Filter>
     </ClCompile>
-    <ClCompile Include="CompanyMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WallCompanyMapItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FloorCompanyMapItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerPosition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DefaultGameData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DocumentMapItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MapFormat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MapBitmap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Boolean.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="GameOverBitmap.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="CompanyMap.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="Controller.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultGameData.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentMapItem.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorCompanyMapItem.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverBitmap.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBitmap.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="MapFormat.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerPosition.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="WallCompanyMapItem.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -314,43 +314,43 @@
     <ClInclude Include="ObservablePointer.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="CompanyMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="I_CompanyMapItem.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="WallCompanyMapItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FloorCompanyMapItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerPosition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DefaultGameData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DocumentMapItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObservableSet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MapFormat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MapBitmap.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="I_GameData.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="Boolean.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="CompanyMap.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultGameData.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentMapItem.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorCompanyMapItem.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="GameOverBitmap.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Visual View</Filter>
     </ClInclude>
-    <ClInclude Include="I_GameData.h">
+    <ClInclude Include="MapBitmap.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="MapFormat.h">
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="ObservableSet.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerPosition.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="WallCompanyMapItem.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
