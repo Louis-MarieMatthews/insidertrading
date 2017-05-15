@@ -8,6 +8,7 @@ namespace it
     companyMap_ (company.getMap()),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
+    isPlayerInTheGame_ (viewData.getGameData().isPlayerInTheGame()),
     itemHeight_ (15),
     itemWidth_ (15),
     justOpened_ (true),
@@ -18,6 +19,7 @@ namespace it
   {
     ObserverListSingleton::getInstance().addObserver (bitmap_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (company_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (isPlayerInTheGame_.getObservableId(), *this);
   }
 
 
@@ -26,6 +28,7 @@ namespace it
   {
     ObserverListSingleton::getInstance().removeObserver (bitmap_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (company_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (isPlayerInTheGame_.getObservableId(), *this);
   }
 
 
@@ -101,6 +104,11 @@ namespace it
     }
     else if (&company_.getObservableId() == &observableId) {
       next_ = viewData_.getGameView();
+    }
+    else if (&isPlayerInTheGame_.getObservableId() == &observableId) {
+      if (!isPlayerInTheGame_.getValue()) {
+        next_ = viewData_.getGameView();
+      }
     }
   }
 }

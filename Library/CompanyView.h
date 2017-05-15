@@ -24,6 +24,7 @@ namespace it
     DefaultObservableId      observableId_;
     PlanarPosition &         playerPosition_;
     ViewData &               viewData_;
+    Boolean const &          isPlayerInTheGame_;
 
   public:
     CompanyView (Company & company, ViewData &, PlanarDimensions const &);

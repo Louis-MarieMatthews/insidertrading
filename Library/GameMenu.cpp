@@ -97,7 +97,7 @@ namespace it
     if (e.wasEscapeKeyPressed()) {
       next_ = viewData_.getMainMenu();
     }
-    else {
+    else if (viewData_.getGameData().isPlayerInTheGame().getValue()){
       I_EventSensitiveLocatedBitmap * menu (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap());
       if (menu != nullptr) {
         menu->processEvent (&e);
