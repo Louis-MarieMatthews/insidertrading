@@ -7,7 +7,7 @@
 
 namespace it
 {
-  std::set<CompanyIcon *> GameMenu::getCompanyIcons (I_GameData & gameData, DefaultContextualMenuBitmap * & parentContextualMenu)
+  std::set<CompanyIcon *> GameMenu::getCompanyIcons (I_GameData & gameData, ContextualMenuBitmap * & parentContextualMenu)
   {
     std::set<CompanyIcon *> icons;
     std::set<Company *> const companies (gameData.getCompanies());

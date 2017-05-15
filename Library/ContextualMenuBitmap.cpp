@@ -1,4 +1,4 @@
-#include "DefaultContextualMenuBitmap.h"
+#include "ContextualMenuBitmap.h"
 
 #include "allegro5\allegro_font.h"
 #include "allegro5\allegro_ttf.h"
@@ -11,7 +11,7 @@
 namespace it
 {
   // TODO: make a class ContextualMenuChoice bitmap?
-  int DefaultContextualMenuBitmap::getHoveredChoice (PlanarPosition const & position) const
+  int ContextualMenuBitmap::getHoveredChoice (PlanarPosition const & position) const
   {
     int hoveredChoice (-1);
     if (contains (position)) {
@@ -31,7 +31,7 @@ namespace it
 
 
 
-  DefaultLocatedRectangle DefaultContextualMenuBitmap::getLocatedRectangleForChoice (int const & choiceNo) const
+  DefaultLocatedRectangle ContextualMenuBitmap::getLocatedRectangleForChoice (int const & choiceNo) const
   {
     if (choiceNo > menu_->getNumberOfChoices() || choiceNo < 0) {
       throw std::exception(); // TODO: more precise exception
@@ -41,14 +41,14 @@ namespace it
 
 
 
-  PlanarDimensions DefaultContextualMenuBitmap::getDimensions (I_ContextualMenu const * menu)
+  PlanarDimensions ContextualMenuBitmap::getDimensions (I_ContextualMenu const * menu)
   {
     return PlanarDimensions (padding_ + menu->getLongestChoiceCharacterCount() * fontSize_ + padding_, padding_ + menu->getNumberOfChoices() * lineHeight_ + padding_);
   }
 
 
 
-  DefaultContextualMenuBitmap::DefaultContextualMenuBitmap (I_ContextualMenu * menu, PlanarPosition const & position) :
+  ContextualMenuBitmap::ContextualMenuBitmap (I_ContextualMenu * menu, PlanarPosition const & position) :
     beingClicked_ (false),
     cachedBitmap_ (nullptr),
     fontFormat_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", 20, 0)), // TODO: should be initialised from outside
@@ -70,7 +70,7 @@ namespace it
 
 
 
-  DefaultContextualMenuBitmap::~DefaultContextualMenuBitmap()
+  ContextualMenuBitmap::~ContextualMenuBitmap()
   {
     ObserverListSingleton::getInstance().removeObserver (menu_->getObservableId(), *this);
     al_destroy_bitmap (cachedBitmap_);
@@ -79,49 +79,49 @@ namespace it
 
 
 
-  const unsigned int& DefaultContextualMenuBitmap::getWidth() const
+  const unsigned int& ContextualMenuBitmap::getWidth() const
   {
     return rectangle_->getWidth();
   }
 
 
 
-  const unsigned int& DefaultContextualMenuBitmap::getHeight() const
+  const unsigned int& ContextualMenuBitmap::getHeight() const
   {
     return rectangle_->getHeight();
   }
 
 
 
-  bool DefaultContextualMenuBitmap::contains (PlanarPosition const & position) const
+  bool ContextualMenuBitmap::contains (PlanarPosition const & position) const
   {
     return rectangle_->contains (position);
   }
 
 
 
-  const int& DefaultContextualMenuBitmap::getX() const
+  const int& ContextualMenuBitmap::getX() const
   {
     return rectangle_->getX();
   }
 
 
 
-  const int& DefaultContextualMenuBitmap::getY() const
+  const int& ContextualMenuBitmap::getY() const
   {
     return rectangle_->getY();
   }
 
 
 
-  PlanarPosition const & DefaultContextualMenuBitmap::getCenter() const
+  PlanarPosition const & ContextualMenuBitmap::getCenter() const
   {
     return rectangle_->getCenter();
   }
 
 
 
-  ALLEGRO_BITMAP * DefaultContextualMenuBitmap::fetchBitmap()
+  ALLEGRO_BITMAP * ContextualMenuBitmap::fetchBitmap()
   {
     if (!isLastFetchedBitmapUpToDate_) {
       ALLEGRO_BITMAP* previousTargetBitmap = al_get_target_bitmap();
@@ -184,7 +184,7 @@ namespace it
 
 
   
-  void DefaultContextualMenuBitmap::processEvent (I_AllegroEventAdapter const & allegroEvent)
+  void ContextualMenuBitmap::processEvent (I_AllegroEventAdapter const & allegroEvent)
   {
     const PlanarPosition mousePosition (allegroEvent.getMousePosition());
     if (allegroEvent.isCausedByAMouseMove()) {
@@ -234,7 +234,7 @@ namespace it
 
 
 
-  void DefaultContextualMenuBitmap::notifyObserver (I_ObservableId const & id)
+  void ContextualMenuBitmap::notifyObserver (I_ObservableId const & id)
   {
     isLastFetchedBitmapUpToDate_ = false;
       ObserverListSingleton::getInstance().notifyObservers (observableId_);
@@ -242,27 +242,27 @@ namespace it
 
 
 
-  I_ObservableId const & DefaultContextualMenuBitmap::getObservableId() const
+  I_ObservableId const & ContextualMenuBitmap::getObservableId() const
   {
     return observableId_;
   }
 
 
 
-  void DefaultContextualMenuBitmap::reset()
+  void ContextualMenuBitmap::reset()
   {
   }
 
 
 
-  bool const & DefaultContextualMenuBitmap::isLastFetchedBitmapUpToDate() const
+  bool const & ContextualMenuBitmap::isLastFetchedBitmapUpToDate() const
   {
     return isLastFetchedBitmapUpToDate_;
   }
 
 
 
-  PlanarPosition const & DefaultContextualMenuBitmap::getPosition() const
+  PlanarPosition const & ContextualMenuBitmap::getPosition() const
   {
     return position_;
   }

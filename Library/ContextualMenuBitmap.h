@@ -11,7 +11,7 @@
 // TODO: classes used are inconsistent with the rest of the system. The system should be made more consistent.
 namespace it
 {
-  class DefaultContextualMenuBitmap : public I_LocatedInteractiveBitmap, public I_ConstantObserver
+  class ContextualMenuBitmap : public I_LocatedInteractiveBitmap, public I_ConstantObserver
   {
     const static unsigned short int fontSize_ {20};
     const static unsigned short int lineHeight_ {30};
@@ -34,8 +34,8 @@ namespace it
   public:
     static PlanarDimensions getDimensions (I_ContextualMenu const *);
 
-    DefaultContextualMenuBitmap (I_ContextualMenu *, PlanarPosition const &);
-    ~DefaultContextualMenuBitmap();
+    ContextualMenuBitmap (I_ContextualMenu *, PlanarPosition const &);
+    ~ContextualMenuBitmap();
 
     virtual const unsigned int& getWidth() const override;
     virtual const unsigned int& getHeight() const override;

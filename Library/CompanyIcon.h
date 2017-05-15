@@ -2,7 +2,7 @@
 
 #include "Company.h"
 #include "CompanyContextualMenu.h"
-#include "DefaultContextualMenuBitmap.h"
+#include "ContextualMenuBitmap.h"
 #include "DefaultLocatedRectangle.h"
 #include "DefaultObservableId.h"
 #include "DefaultContextualMenu.h"

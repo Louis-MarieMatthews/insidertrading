@@ -69,9 +69,6 @@
     <ClCompile Include="DefaultContextualMenu.cpp">
       <Filter>Source Files\Semantic View</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultContextualMenuBitmap.cpp">
-      <Filter>Source Files\Visual View</Filter>
-    </ClCompile>
     <ClCompile Include="DefaultLocatedRectangle.cpp">
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
@@ -177,6 +174,9 @@
     <ClCompile Include="WallCompanyMapItem.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="ContextualMenuBitmap.cpp">
+      <Filter>Source Files\Visual View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -205,9 +205,6 @@
     </ClInclude>
     <ClInclude Include="DefaultContextualMenu.h">
       <Filter>Header Files\Semantic View</Filter>
-    </ClInclude>
-    <ClInclude Include="DefaultContextualMenuBitmap.h">
-      <Filter>Header Files\Visual View</Filter>
     </ClInclude>
     <ClInclude Include="DefaultLocatedRectangle.h">
       <Filter>Header Files\Visual View</Filter>
@@ -349,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="WallCompanyMapItem.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextualMenuBitmap.h">
+      <Filter>Header Files\Visual View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

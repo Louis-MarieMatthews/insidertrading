@@ -172,7 +172,7 @@
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="DefaultAllegroEventAdapter.cpp" />
     <ClCompile Include="DefaultContextualMenu.cpp" />
-    <ClCompile Include="DefaultContextualMenuBitmap.cpp" />
+    <ClCompile Include="ContextualMenuBitmap.cpp" />
     <ClCompile Include="DefaultLocatedRectangle.cpp" />
     <ClCompile Include="DefaultObservableId.cpp" />
     <ClCompile Include="MainMenu.cpp" />
@@ -219,7 +219,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DefaultAllegroEventAdapter.h" />
     <ClInclude Include="DefaultContextualMenu.h" />
-    <ClInclude Include="DefaultContextualMenuBitmap.h" />
+    <ClInclude Include="ContextualMenuBitmap.h" />
     <ClInclude Include="DefaultLocatedRectangle.h" />
     <ClInclude Include="DefaultObservableId.h" />
     <ClInclude Include="I_AllegroEventAdapter.h" />

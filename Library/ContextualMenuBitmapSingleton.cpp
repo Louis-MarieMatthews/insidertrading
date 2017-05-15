@@ -1,5 +1,5 @@
 #include "ContextualMenuBitmapSingleton.h"
-#include "DefaultContextualMenuBitmap.h"
+#include "ContextualMenuBitmap.h"
 #include "DefaultObservableId.h"
 #include "ObserverListSingleton.h"
 
@@ -36,7 +36,7 @@ namespace it
   void ContextualMenuBitmapSingleton::setContextualMenu (I_ContextualMenu * menu, PlanarPosition const & iconPosition)
   {
     PlanarPosition menuPosition (iconPosition.getX(), iconPosition.getY() - menu->getNumberOfChoices() * lineHeight_ - 2 * padding_ - margin_);
-    contextualMenuBitmap_ = new DefaultContextualMenuBitmap (menu, menuPosition); // TODO: created pointer must be deleted!
+    contextualMenuBitmap_ = new ContextualMenuBitmap (menu, menuPosition); // TODO: created pointer must be deleted!
     ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }
 

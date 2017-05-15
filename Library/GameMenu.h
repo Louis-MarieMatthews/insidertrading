@@ -8,7 +8,7 @@
 #include "I_GameData.h"
 #include "CompanyIcon.h"
 #include "SecIcon.h"
-#include "DefaultContextualMenuBitmap.h"
+#include "ContextualMenuBitmap.h"
 #include "GameOverBitmap.h"
 
 namespace it
@@ -27,8 +27,8 @@ namespace it
     I_BitmapView *                 next_; // TODO: needs to be const!!
     SecIcon                        secIcon_;
     ViewData &                     viewData_;
-    static std::set<CompanyIcon *> getCompanyIcons (I_GameData &, DefaultContextualMenuBitmap * &);
-    DefaultContextualMenuBitmap *  contextualMenu_;
+    static std::set<CompanyIcon *> getCompanyIcons (I_GameData &, ContextualMenuBitmap * &);
+    ContextualMenuBitmap *  contextualMenu_;
     Company const *                secTarget_;
     GameOverBitmap                 gameOverBitmap_;
 
