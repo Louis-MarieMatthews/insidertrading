@@ -5,8 +5,9 @@
 
 namespace it
 {
-  Company::Company (std::string const & name, PlayerBalance & playerBalance, PlanarPosition const & position) :
+  Company::Company (GameData & gameData, std::string const & name, PlayerBalance & playerBalance, PlanarPosition const & position) :
     hasInsiders_ (false),
+    map_ (gameData),
     name_ (name),
     playerBalance_ (playerBalance),
     position_ (position)

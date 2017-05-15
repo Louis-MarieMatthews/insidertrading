@@ -2,18 +2,37 @@
 
 namespace it
 {
+  void DefaultAllegroEventAdapter::updateCurrentEvent (ALLEGRO_EVENT const & allegroEvent)
+  {
+    if (currentEvent_ != nullptr) {
+      delete currentEvent_;
+    }
+    currentEvent_ = new ALLEGRO_EVENT (allegroEvent);
+  }
+
+
+
   DefaultAllegroEventAdapter::DefaultAllegroEventAdapter (ALLEGRO_TIMER const * fpsTimer, ALLEGRO_TIMER const * secondsTimer, ALLEGRO_TIMER const * centisecondsTimer) :
-    centisecondsTimer_ (centisecondsTimer),
+    timerCentiseconds_ (centisecondsTimer),
     currentEvent_ (nullptr),
     currentLeftClickReleased_ (false),
     currentEscapeKeyPressed_ (false),
-    fpsTimer_ (fpsTimer),
-    secondsTimer_ (secondsTimer),
+    timerFps_ (fpsTimer),
+    timerSeconds_ (secondsTimer),
     previousEscapeKeyPressed_ (false),
     previousLeftClickReleased_ (false),
     currentPosition_ (nullptr),
     previousPosition_ (nullptr),
-    isFpsFrame_ (false)
+    isFpsFrame_ (false),
+    isUpKeyPressed_ (false),
+    isDownKeyPressed_ (false),
+    isLeftKeyPressed_ (false),
+    isRightKeyPressed_ (false),
+    isMouseButtonPressed_ (false),
+    wasUpKeyReleased_ (false),
+    wasDownKeyReleased_ (false),
+    wasLeftKeyReleased_ (false),
+    wasRightKeyReleased_ (false)
   {
   }
 
@@ -21,30 +40,81 @@ namespace it
 
   void DefaultAllegroEventAdapter::update (ALLEGRO_EVENT const & allegroEvent)
   {
-    if (currentEvent_ != nullptr) {
-      delete currentEvent_;
-    }
-    currentEvent_ = new ALLEGRO_EVENT (allegroEvent);
+    updateCurrentEvent (allegroEvent);
 
-    if (currentEvent_->type == ALLEGRO_EVENT_TIMER && currentEvent_->timer.source == fpsTimer_) {
+    if (currentEvent_->type == ALLEGRO_EVENT_TIMER && currentEvent_->timer.source == timerFps_) {
       isFpsFrame_ = true;
     }
     else {
       isFpsFrame_ = false;
     }
 
-    if (currentEvent_->type == ALLEGRO_EVENT_TIMER && currentEvent_->timer.source == secondsTimer_) {
+    if (currentEvent_->type == ALLEGRO_EVENT_TIMER && currentEvent_->timer.source == timerSeconds_) {
       isNewSecond_ = true;
     }
     else {
       isNewSecond_ = false;
     }
 
-    if (currentEvent_->type == ALLEGRO_EVENT_TIMER && currentEvent_->timer.source == centisecondsTimer_) {
+    if (currentEvent_->type == ALLEGRO_EVENT_TIMER && currentEvent_->timer.source == timerCentiseconds_) {
       isNewCentisecond_ = true;
     }
     else {
       isNewCentisecond_ = false;
+    }
+
+    if (currentEvent_->type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+      isMouseButtonPressed_ = true;
+    }
+    else if (currentEvent_->type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
+      isMouseButtonPressed_ = false;
+    }
+
+    wasUpKeyReleased_ = false;
+    wasDownKeyReleased_ = false;
+    wasLeftKeyReleased_ = false;
+    wasRightKeyReleased_ = false;
+    if (currentEvent_->type == ALLEGRO_EVENT_KEY_DOWN) {
+      switch (currentEvent_->keyboard.keycode) {
+      case ALLEGRO_KEY_UP:
+        isUpKeyPressed_ = true;
+        break;
+
+      case ALLEGRO_KEY_DOWN:
+        isDownKeyPressed_ = true;
+        break;
+
+      case ALLEGRO_KEY_LEFT:
+        isLeftKeyPressed_ = true;
+        break;
+
+      case ALLEGRO_KEY_RIGHT:
+        isRightKeyPressed_ = true;
+        break;
+      }
+    }
+    else if (currentEvent_->type == ALLEGRO_EVENT_KEY_UP) {
+      switch (currentEvent_->keyboard.keycode) {
+      case ALLEGRO_KEY_UP:
+        isUpKeyPressed_ = false;
+        wasUpKeyReleased_ = true;
+        break;
+
+      case ALLEGRO_KEY_DOWN:
+        isDownKeyPressed_ = false;
+        wasDownKeyReleased_ = true;
+        break;
+
+      case ALLEGRO_KEY_LEFT:
+        isLeftKeyPressed_ = false;
+        wasLeftKeyReleased_ = true;
+        break;
+
+      case ALLEGRO_KEY_RIGHT:
+        isRightKeyPressed_ = false;
+        wasRightKeyReleased_ = true;
+        break;
+      }
     }
 
     if (isCausedByAMouseMove()) {
@@ -229,5 +299,68 @@ namespace it
   bool const & DefaultAllegroEventAdapter::isNewCentisecond() const
   {
     return isNewCentisecond_;
+  }
+
+
+
+  bool const & DefaultAllegroEventAdapter::isMouseButtonPressed() const
+  {
+    return isMouseButtonPressed_;
+  }
+
+
+
+  bool const & DefaultAllegroEventAdapter::isUpKeyPressed() const
+  {
+    return isUpKeyPressed_;
+  }
+
+
+
+  bool const & DefaultAllegroEventAdapter::wasUpKeyReleased() const
+  {
+    return wasUpKeyReleased_;
+  }
+
+
+
+  bool const & DefaultAllegroEventAdapter::wasDownKeyReleased() const
+  {
+    return wasDownKeyReleased_;
+  }
+
+
+
+  bool const & DefaultAllegroEventAdapter::wasLeftKeyReleased() const
+  {
+    return wasLeftKeyReleased_;
+  }
+
+
+
+  bool const & DefaultAllegroEventAdapter::wasRightKeyReleased() const
+  {
+    return wasRightKeyReleased_;
+  }
+
+
+
+  bool const & DefaultAllegroEventAdapter::isDownKeyPressed() const
+  {
+    return isDownKeyPressed_;
+  }
+
+
+
+  bool const & DefaultAllegroEventAdapter::isLeftKeyPressed() const
+  {
+    return isLeftKeyPressed_;
+  }
+
+
+
+  bool const & DefaultAllegroEventAdapter::isRightKeyPressed() const
+  {
+    return isRightKeyPressed_;
   }
 }

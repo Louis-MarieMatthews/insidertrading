@@ -157,9 +157,9 @@
     <ClCompile Include="CompanyMap.cpp" />
     <ClCompile Include="CompanyView.cpp" />
     <ClCompile Include="ContextualMenuBitmapSingleton.cpp" />
+    <ClCompile Include="DefaultGameData.cpp" />
     <ClCompile Include="FloorCompanyMapItem.cpp" />
     <ClCompile Include="FontFormat.cpp" />
-    <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GameMenuBar.cpp" />
     <ClCompile Include="InsufficientPlayerBalanceException.cpp" />
@@ -175,6 +175,7 @@
     <ClCompile Include="PlanarDimensions.cpp" />
     <ClCompile Include="PlanarPosition.cpp" />
     <ClCompile Include="PlayerBalance.cpp" />
+    <ClCompile Include="PlayerPosition.cpp" />
     <ClCompile Include="RemoveInsiderMenuChoice.cpp" />
     <ClCompile Include="Sec.cpp" />
     <ClCompile Include="SecIcon.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="CompanyMap.h" />
     <ClInclude Include="CompanyView.h" />
     <ClInclude Include="ContextualMenuBitmapSingleton.h" />
+    <ClInclude Include="DefaultGameData.h" />
     <ClInclude Include="FloorCompanyMapItem.h" />
     <ClInclude Include="FontFormat.h" />
     <ClInclude Include="GameData.h" />
@@ -227,6 +229,7 @@
     <ClInclude Include="PlanarDimensions.h" />
     <ClInclude Include="PlanarPosition.h" />
     <ClInclude Include="PlayerBalance.h" />
+    <ClInclude Include="PlayerPosition.h" />
     <ClInclude Include="RemoveInsiderMenuChoice.h" />
     <ClInclude Include="Sec.h" />
     <ClInclude Include="SecIcon.h" />

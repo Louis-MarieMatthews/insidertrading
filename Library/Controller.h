@@ -11,6 +11,7 @@
 #include "I_AllegroEventAdapter.h"
 #include "MainMenu.h"
 #include "ViewData.h"
+#include "DefaultGameData.h"
 
 // TODO: refactor in singleton?
 // TODO: use dependency injection pattern?
@@ -19,9 +20,9 @@ namespace it
 {
   void startProgram()
   {
-    ALLEGRO_DISPLAY*       display (nullptr);
-    ALLEGRO_TIMER*         fpsTimer (nullptr);
-    ALLEGRO_TIMER*         secondsTimer (nullptr);
+    ALLEGRO_DISPLAY *      display (nullptr);
+    ALLEGRO_TIMER *        fpsTimer (nullptr);
+    ALLEGRO_TIMER *        secondsTimer (nullptr);
     ALLEGRO_TIMER *        centisecondsTimer (nullptr);
     const unsigned int     FPS (60);
     const PlanarDimensions winDimensions (1800, 900);
@@ -104,7 +105,7 @@ namespace it
     al_register_event_source (eventQueue, al_get_timer_event_source(secondsTimer));
     al_register_event_source (eventQueue, al_get_timer_event_source(centisecondsTimer));
 
-    GameData gameData;
+    DefaultGameData gameData;
     ViewData viewData (gameData, winDimensions);
     I_BitmapView * currentView (viewData.getMainMenu());
     I_AllegroEventAdapter * eventAdapter (new DefaultAllegroEventAdapter (fpsTimer, secondsTimer, centisecondsTimer));
@@ -116,7 +117,9 @@ namespace it
       if (eventAdapter->isNewCentisecond()) {
         gameData.getTime().tick();
       }
-      currentView->processEvent (*eventAdapter);
+      if (!eventAdapter->isFpsFrame()) {
+        currentView->processEvent (*eventAdapter);
+      }
       if (al_is_event_queue_empty (eventQueue) && e.timer.source == fpsTimer) {
         al_set_target_backbuffer (display);
         al_draw_bitmap (currentView->fetchBitmap(), 0, 0, 0);

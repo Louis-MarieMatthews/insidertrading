@@ -8,20 +8,31 @@ namespace it
 {
   class DefaultAllegroEventAdapter : public I_AllegroEventAdapter
   {
-    ALLEGRO_EVENT*  currentEvent_;
-    bool currentLeftClickReleased_;
-    bool previousLeftClickReleased_;
-    bool currentEscapeKeyPressed_;
-    bool previousEscapeKeyPressed_;
-    ALLEGRO_EVENT_TYPE lastType_;
-    PlanarPosition* currentPosition_;
-    PlanarPosition* previousPosition_;
-    bool isFpsFrame_;
-    bool isNewSecond_;
-    bool isNewCentisecond_;
-    ALLEGRO_TIMER const * fpsTimer_;
-    ALLEGRO_TIMER const * secondsTimer_;
-    ALLEGRO_TIMER const * centisecondsTimer_;
+    bool                  currentEscapeKeyPressed_;
+    ALLEGRO_EVENT*        currentEvent_;
+    bool                  currentLeftClickReleased_;
+    PlanarPosition*       currentPosition_;
+    bool                  isFpsFrame_;
+    bool                  isNewSecond_;
+    bool                  isNewCentisecond_;
+    bool                  isMouseButtonPressed_;
+    bool                  isUpKeyPressed_;
+    bool                  isDownKeyPressed_;
+    bool                  isLeftKeyPressed_;
+    bool                  isRightKeyPressed_;
+    ALLEGRO_EVENT_TYPE    lastType_;
+    bool                  previousLeftClickReleased_;
+    bool                  previousEscapeKeyPressed_;
+    PlanarPosition*       previousPosition_;
+    ALLEGRO_TIMER const * timerFps_;
+    ALLEGRO_TIMER const * timerSeconds_;
+    ALLEGRO_TIMER const * timerCentiseconds_;
+    bool                  wasUpKeyReleased_;
+    bool                  wasDownKeyReleased_;
+    bool                  wasLeftKeyReleased_;
+    bool                  wasRightKeyReleased_;
+
+    void updateCurrentEvent (ALLEGRO_EVENT const &);
 
   public:
     DefaultAllegroEventAdapter (ALLEGRO_TIMER const *, ALLEGRO_TIMER const *, ALLEGRO_TIMER const *);
@@ -37,5 +48,18 @@ namespace it
     virtual bool const & isFpsFrame() const override;
     virtual bool const & isNewSecond() const override;
     virtual bool const & isNewCentisecond() const override;
+    virtual bool const & isMouseButtonPressed() const override;
+
+    // Inherited via I_AllegroEventAdapter
+    virtual bool const & isDownKeyPressed() const override;
+    virtual bool const & isLeftKeyPressed() const override;
+    virtual bool const & isRightKeyPressed() const override;
+    virtual bool const & isUpKeyPressed() const override;
+
+    // Inherited via I_AllegroEventAdapter
+    virtual bool const & wasUpKeyReleased() const override;
+    virtual bool const & wasDownKeyReleased() const override;
+    virtual bool const & wasLeftKeyReleased() const override;
+    virtual bool const & wasRightKeyReleased() const override;
   };
 }

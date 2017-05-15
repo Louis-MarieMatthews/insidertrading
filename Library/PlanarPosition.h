@@ -10,7 +10,10 @@ namespace it
     PlanarPosition (const int&, const int&);
     const int& getX() const;
     const int& getY() const;
-    bool isNearby (PlanarPosition const &, int const &);
+    void setX (int const &);
+    void setY (int const &);
+    void update (PlanarPosition const &);
+    bool isNearby (PlanarPosition const &, int const &) const;
     bool operator== (const PlanarPosition&) const;
     bool operator!= (const PlanarPosition&) const;
   };

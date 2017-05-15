@@ -21,5 +21,14 @@ namespace it
     virtual bool const & isFpsFrame() const = 0;
     virtual bool const & isNewSecond() const = 0;
     virtual bool const & isNewCentisecond() const = 0;
+    virtual bool const & isMouseButtonPressed() const = 0;
+    virtual bool const & isUpKeyPressed() const = 0;
+    virtual bool const & isDownKeyPressed() const = 0;
+    virtual bool const & isLeftKeyPressed() const = 0;
+    virtual bool const & isRightKeyPressed() const = 0;
+    virtual bool const & wasUpKeyReleased() const = 0;
+    virtual bool const & wasDownKeyReleased() const = 0;
+    virtual bool const & wasLeftKeyReleased() const = 0;
+    virtual bool const & wasRightKeyReleased() const = 0;
   };
 }

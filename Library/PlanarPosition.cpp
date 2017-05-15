@@ -26,7 +26,29 @@ namespace it
 
 
 
-  bool PlanarPosition::isNearby (PlanarPosition const & position, int const & distance)
+  void PlanarPosition::setX (int const & x)
+  {
+    x_ = x;
+  }
+
+
+
+  void PlanarPosition::setY (int const & y)
+  {
+    y_ = y;
+  }
+
+
+
+  void PlanarPosition::update (PlanarPosition const & position)
+  {
+    x_ = position.getX();
+    y_ = position.getY();
+  }
+
+
+
+  bool PlanarPosition::isNearby (PlanarPosition const & position, int const & distance) const
   {
     bool nearbyX (std::abs (x_ - position.getX()) <= distance);
     bool nearbyY (std::abs (y_ - position.getY()) <= distance);

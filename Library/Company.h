@@ -22,7 +22,7 @@ namespace it
     PlanarPosition                  position_;
 
   public:
-    Company (std::string const &, PlayerBalance &, PlanarPosition const &);
+    Company (GameData &, std::string const &, PlayerBalance &, PlanarPosition const &);
     ~Company();
     CompanyMap & getMap();
     std::string const & getName() const;

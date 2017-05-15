@@ -108,9 +108,6 @@
     <ClCompile Include="ViewData.cpp">
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
-    <ClCompile Include="GameData.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="CompanyIcon.cpp">
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
@@ -154,6 +151,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FloorCompanyMapItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerPosition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultGameData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -306,6 +309,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FloorCompanyMapItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerPosition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultGameData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

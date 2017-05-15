@@ -3,21 +3,27 @@
 #include "DefaultObservableId.h"
 #include "I_BitmapView.h"
 #include "ViewData.h"
+#include "Company.h"
 
 namespace it
 {
   class CompanyView : public I_BitmapView
   {
     ALLEGRO_BITMAP *         bitmap_;
+    ALLEGRO_BITMAP *         bitmapMap_;
+    bool                     bitmapMapUpToDate_;
     Company &                company_;
     CompanyMap &             companyMap_;
     PlanarDimensions const & dimensions_;
     bool                     isLastFetchedBitmapUpToDate_;
+    unsigned short const     itemHeight_;
+    unsigned short const     itemWidth_;
+    bool                     justOpened_;
     I_BitmapView *           next_;
     DefaultObservableId      observableId_;
+    PlanarPosition &         playerPosition_;
     ViewData &               viewData_;
-
-    void displayMap() const;
+    void generateMapBitmap();
 
   public:
     CompanyView (Company & company, ViewData &, PlanarDimensions const &);
