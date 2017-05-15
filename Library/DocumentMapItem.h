@@ -4,13 +4,13 @@
 
 namespace it
 {
-  class WallCompanyMapItem : public I_CompanyMapItem
+  class DocumentMapItem : public I_CompanyMapItem
   {
-    bool const isDocument_;
-    bool const isTraversable_;
+    bool isTraversable_;
+    bool isDocument_;
 
   public:
-    WallCompanyMapItem();
+    DocumentMapItem();
 
     // Inherited via I_CompanyMapItem
     virtual bool const & isTraversable() const override;

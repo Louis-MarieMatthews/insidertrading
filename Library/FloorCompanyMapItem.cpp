@@ -3,6 +3,7 @@
 namespace it
 {
   FloorCompanyMapItem::FloorCompanyMapItem() :
+    isDocument_ (false),
     isTraversable_ (true)
   {
   }
@@ -12,5 +13,12 @@ namespace it
   bool const & FloorCompanyMapItem::isTraversable() const
   {
     return isTraversable_;
+  }
+
+
+
+  bool const & FloorCompanyMapItem::isDocument() const
+  {
+    return isDocument_;
   }
 }

@@ -3,6 +3,7 @@
 namespace it
 {
   WallCompanyMapItem::WallCompanyMapItem() :
+    isDocument_ (false),
     isTraversable_ (false)
   {
   }
@@ -12,5 +13,12 @@ namespace it
   bool const & WallCompanyMapItem::isTraversable() const
   {
     return isTraversable_;
+  }
+
+
+
+  bool const & WallCompanyMapItem::isDocument() const
+  {
+    return isDocument_;
   }
 }

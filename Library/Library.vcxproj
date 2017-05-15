@@ -158,6 +158,7 @@
     <ClCompile Include="CompanyView.cpp" />
     <ClCompile Include="ContextualMenuBitmapSingleton.cpp" />
     <ClCompile Include="DefaultGameData.cpp" />
+    <ClCompile Include="DocumentMapItem.cpp" />
     <ClCompile Include="FloorCompanyMapItem.cpp" />
     <ClCompile Include="FontFormat.cpp" />
     <ClCompile Include="GameMenu.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="CompanyView.h" />
     <ClInclude Include="ContextualMenuBitmapSingleton.h" />
     <ClInclude Include="DefaultGameData.h" />
+    <ClInclude Include="DocumentMapItem.h" />
     <ClInclude Include="FloorCompanyMapItem.h" />
     <ClInclude Include="FontFormat.h" />
     <ClInclude Include="GameData.h" />

@@ -159,6 +159,9 @@
     <ClCompile Include="DefaultGameData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DocumentMapItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -315,6 +318,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DefaultGameData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentMapItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

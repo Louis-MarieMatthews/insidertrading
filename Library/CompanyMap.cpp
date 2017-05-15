@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 
+#include "DocumentMapItem.h"
 #include "FloorCompanyMapItem.h"
 #include "WallCompanyMapItem.h"
 
@@ -29,11 +30,15 @@ namespace it
       for (unsigned short currentColumn (0); currentColumn < N_COLUMNS_; currentColumn++) {
         std::string item (line.substr (currentColumn, 1));
         if (item == "0") {
-          items_[currentRow][currentColumn] = new FloorCompanyMapItem();
+          items_[currentRow][currentColumn] = nullptr;
         }
         else if (item == "1") {
           items_[currentRow][currentColumn] = new WallCompanyMapItem();
         }
+        else if (item == "2") {
+          items_[currentRow][currentColumn] = new DocumentMapItem();
+        }
+        documents_.insert (items_[currentRow][currentColumn]);
       }
     }
   }
@@ -46,9 +51,9 @@ namespace it
 
 
 
-  I_CompanyMapItem const & CompanyMap::getItem (unsigned short const & row, unsigned short const & column) const
+  I_CompanyMapItem const * CompanyMap::getItem (unsigned short const & row, unsigned short const & column) const
   {
-    return *items_[row][column];
+    return items_[row][column];
   }
 
 
@@ -92,11 +97,12 @@ namespace it
                      
     case right:      
       targetPosition = new PlanarPosition (playerPosition_.getX() + speed_, playerPosition_.getY());
+      break;
     }
     if (targetPosition == nullptr) { // error in the code
       throw std::exception();
     }
-    if (items_[targetPosition->getX()][targetPosition->getY()]->isTraversable()) {
+    if (items_[targetPosition->getX()][targetPosition->getY()] == nullptr || items_[targetPosition->getX()][targetPosition->getY()]->isTraversable()) {
       playerPosition_.update (*targetPosition);
     }
     delete targetPosition;
