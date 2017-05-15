@@ -11,7 +11,7 @@ namespace it
   class MenuButton : public I_LocatedInteractiveBitmap
   {
     static unsigned short const TEXT_PADDING_ {20};
-    ALLEGRO_BITMAP *            bitmap_;
+    ALLEGRO_BITMAP *            mapBitmap_;
     PlanarDimensions            dimensions_;
     FontFormat                  fontFormat_;
     bool                        isHovered_;

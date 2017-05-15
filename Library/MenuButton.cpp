@@ -18,7 +18,7 @@ namespace it
 
 
   MenuButton::MenuButton (PlanarPosition const & position, std::string const & text, I_BitmapView * & next, I_BitmapView * & target) :
-    bitmap_ (nullptr),
+    mapBitmap_ (nullptr),
     dimensions_ (WIDTH_, HEIGHT_),
     fontFormat_ (dimensions_, TEXT_PADDING_),
     isLastFetchedBitmapUpToDate_ (false),
@@ -34,8 +34,8 @@ namespace it
 
   MenuButton::~MenuButton()
   {
-    if (bitmap_ != nullptr) {
-      al_destroy_bitmap (bitmap_);
+    if (mapBitmap_ != nullptr) {
+      al_destroy_bitmap (mapBitmap_);
     }
   }
 
@@ -85,12 +85,12 @@ namespace it
   ALLEGRO_BITMAP * MenuButton::fetchBitmap()
   {
     if (!isLastFetchedBitmapUpToDate_) {
-      if (bitmap_ != nullptr) {
-        al_destroy_bitmap (bitmap_);
+      if (mapBitmap_ != nullptr) {
+        al_destroy_bitmap (mapBitmap_);
       }
-      bitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getHeight()); // TODO: hard-coded values
+      mapBitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getHeight()); // TODO: hard-coded values
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
-      al_set_target_bitmap (bitmap_);
+      al_set_target_bitmap (mapBitmap_);
       if (isHovered_) {
         al_clear_to_color (al_map_rgb (40, 40, 40));
       }
@@ -101,7 +101,7 @@ namespace it
       al_set_target_bitmap (targetBitmap);
       isLastFetchedBitmapUpToDate_ = true;
     }
-    return bitmap_;
+    return mapBitmap_;
   }
 
 

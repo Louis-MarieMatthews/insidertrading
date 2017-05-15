@@ -1,9 +1,12 @@
 #include "CompanyView.h"
 
+#include "DefaultGameData.h"
+#include "FontFormat.h"
+
 namespace it
 {
   CompanyView::CompanyView (Company & company, ViewData & viewData, PlanarDimensions const & dimensions) :
-    bitmap_ (MapFormat (company.getMap(), dimensions), company.getMap(), PlanarPosition (0, 0)),
+    mapBitmap_ (MapFormat (company.getMap(), dimensions), company.getMap(), PlanarPosition (0, 0)),
     company_ (company),
     companyMap_ (company.getMap()),
     dimensions_ (dimensions),
@@ -17,7 +20,7 @@ namespace it
     playerPosition_ (viewData.getGameData().getPlayerPosition()),
     viewData_ (viewData)
   {
-    ObserverListSingleton::getInstance().addObserver (bitmap_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (mapBitmap_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (company_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (isPlayerInTheGame_.getObservableId(), *this);
   }
@@ -26,9 +29,13 @@ namespace it
 
   CompanyView::~CompanyView()
   {
-    ObserverListSingleton::getInstance().removeObserver (bitmap_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (mapBitmap_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (company_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (isPlayerInTheGame_.getObservableId(), *this);
+
+    if (bitmap_ != nullptr) {
+      al_destroy_bitmap (bitmap_);
+    }
   }
 
 
@@ -44,7 +51,7 @@ namespace it
   {
     next_ = this;
     justOpened_ = true;
-    bitmap_.reset();
+    mapBitmap_.reset();
   }
 
 
@@ -81,11 +88,26 @@ namespace it
 
   ALLEGRO_BITMAP * CompanyView::fetchBitmap()
   {
-    if (justOpened_) {
-      playerPosition_ = companyMap_.getPlayerEntryPoint();
+    if (!isLastFetchedBitmapUpToDate_) {
+      ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
+
+      
+      if (bitmap_ != nullptr) {
+        al_destroy_bitmap (bitmap_);
+      }
+      bitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getHeight());
+      al_set_target_bitmap (bitmap_);
+      al_draw_bitmap (mapBitmap_.fetchBitmap(), 0, 0, 0);
+
+      FontFormat ff (20, 40, 40);
+
+      //viewData_.getGameData().getSec().getInspectingDuration().getString().c_str()
+      al_draw_text (ff.getFont(), al_map_rgb (0, 0, 0), dimensions_.getWidth() - ff.getXPadding(), ff.getYPadding(), ALLEGRO_ALIGN_RIGHT, viewData_.getGameData().getSec().getInspectingDuration().getString().c_str());
+
+      al_set_target_bitmap (targetBitmap);
     }
     justOpened_ = false;
-    return bitmap_.fetchBitmap();
+    return bitmap_;
   }
 
 
@@ -99,7 +121,7 @@ namespace it
 
   void CompanyView::notifyObserver (I_ObservableId const & observableId)
   {
-    if (&bitmap_.getObservableId() == &observableId) {
+    if (&mapBitmap_.getObservableId() == &observableId) {
       isLastFetchedBitmapUpToDate_ = false;
     }
     else if (&company_.getObservableId() == &observableId) {

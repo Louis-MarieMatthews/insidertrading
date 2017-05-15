@@ -11,7 +11,7 @@ namespace it
 {
   class MainMenu : public I_BitmapView, public I_ConstantObserver
   {
-    ALLEGRO_BITMAP *    bitmap_;
+    ALLEGRO_BITMAP *    mapBitmap_;
     MenuButton          buttonQuit_;
     MenuButton          buttonPlay_;
     PlanarDimensions    dimensions_;

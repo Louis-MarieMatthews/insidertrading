@@ -12,7 +12,7 @@ namespace it
 {
   class GameMenuBar : public I_LocatedInteractiveBitmap, public I_ConstantObserver
   {
-    ALLEGRO_BITMAP *        bitmap_;
+    ALLEGRO_BITMAP *        mapBitmap_;
     FontFormat              fontFormat_;
     GameData &              gameData_;
     bool                    isLastFetchedBitmapUpToDate_;

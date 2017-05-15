@@ -39,6 +39,12 @@ namespace it
 
 
 
+  Sec::~Sec()
+  {
+  }
+
+
+
   PlanarPosition const & Sec::getPosition() const
   {
     return position_;
@@ -58,6 +64,13 @@ namespace it
 
 
 
+  Duration const & Sec::getInspectingDuration()
+  {
+    return inspectingDuration_;
+  }
+
+
+
   I_ObservableId const & Sec::getObservableId() const
   {
     return observableId_;
@@ -71,6 +84,9 @@ namespace it
     static unsigned short secondCount_ (0);
 
     if (&time_.getObservableId() == &observableId) {
+      if (currentTarget_.getPointer() != nullptr) {
+        inspectingDuration_.tick();
+      }
       if (time_.getSecond() != lastSecond_) {
         secondCount_++;
       }
@@ -88,6 +104,7 @@ namespace it
           if (currentTarget_.getPointer()->hasInsiders()) {
             gameData_.isPlayerInTheGame().setValue (false);
           }
+          inspectingDuration_.reset();
           secondCount_ = 0;
           currentTarget_.setPointer (nullptr);
           ObserverListSingleton::getInstance().notifyObservers (observableId_);

@@ -9,7 +9,7 @@ namespace it
 {
   class GameOverBitmap : public I_LocatedInteractiveBitmap
   {
-    ALLEGRO_BITMAP *        bitmap_;
+    ALLEGRO_BITMAP *        mapBitmap_;
     FontFormat              fontFormat_; // TODO: maybe move this in ViewData?
     bool                    isLastFetchedBitmapUpToDate_;
     DefaultObservableId     observableId_;

@@ -20,6 +20,7 @@ namespace it
     Duration();
     ~Duration();
     void tick();
+    void reset();
     unsigned short int const & getCentisecond() const;
     unsigned short int const & getSecond() const;
     unsigned short int const & getMinute() const;

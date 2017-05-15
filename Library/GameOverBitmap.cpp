@@ -17,8 +17,8 @@ namespace it
 
   GameOverBitmap::~GameOverBitmap()
   {
-    if (bitmap_ != nullptr) {
-      al_destroy_bitmap (bitmap_);
+    if (mapBitmap_ != nullptr) {
+      al_destroy_bitmap (mapBitmap_);
     }
   }
 
@@ -68,11 +68,11 @@ namespace it
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
 
 
-      if (bitmap_ != nullptr) {
-        al_destroy_bitmap (bitmap_);
+      if (mapBitmap_ != nullptr) {
+        al_destroy_bitmap (mapBitmap_);
       }
-      bitmap_ = al_create_bitmap (rectangle_.getWidth(), rectangle_.getHeight());
-      al_set_target_bitmap (bitmap_);
+      mapBitmap_ = al_create_bitmap (rectangle_.getWidth(), rectangle_.getHeight());
+      al_set_target_bitmap (mapBitmap_);
       al_clear_to_color (al_map_rgb (0, 0, 0));
       al_draw_text (fontFormat_.getFont(), al_map_rgb (255, 255, 255), rectangle_.getWidth() / 2,  fontFormat_.getYPadding(), ALLEGRO_ALIGN_CENTER, text_.c_str());
 
@@ -81,7 +81,7 @@ namespace it
       isLastFetchedBitmapUpToDate_ = true;
       al_set_target_bitmap (targetBitmap);
     }
-    return bitmap_;
+    return mapBitmap_;
   }
 
 

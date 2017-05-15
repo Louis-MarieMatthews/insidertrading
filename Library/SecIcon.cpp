@@ -6,13 +6,13 @@
 namespace it
 {
   SecIcon::SecIcon (Sec & sec) :
-    bitmap_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/sec.bmp")),
+    mapBitmap_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/sec.bmp")),
     isLastFetchedBitmapUpToDate_ (false),
     position_ (sec.getPosition()),
     rectangle_ (sec.getPosition(), PlanarDimensions (200, 200)),
     sec_ (sec)
   {
-    if (bitmap_ == nullptr) {
+    if (mapBitmap_ == nullptr) {
       throw BitmapLoadingException();
     }
   }
@@ -53,7 +53,7 @@ namespace it
 
   ALLEGRO_BITMAP * SecIcon::fetchBitmap()
   {
-    return bitmap_;
+    return mapBitmap_;
   }
 
 

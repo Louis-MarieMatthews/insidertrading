@@ -54,6 +54,16 @@ namespace it
 
 
 
+  void Duration::reset()
+  {
+    centisecond_ = 0;
+    second_ = 0;
+    minute_ = 0;
+    hour_ = 0;
+  }
+
+
+
   unsigned short int const & Duration::getCentisecond() const
   {
     return centisecond_;

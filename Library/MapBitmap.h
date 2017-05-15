@@ -11,7 +11,7 @@ namespace it
   class MapBitmap : public I_LocatedInteractiveBitmap, public I_ConstantObserver
   {
     ObservableSet<I_CompanyMapItem *> const & documents_;
-    ALLEGRO_BITMAP *                          bitmap_;
+    ALLEGRO_BITMAP *                          mapBitmap_;
     ALLEGRO_BITMAP *                          structureBitmap_;
     ALLEGRO_BITMAP *                          playerBitmap_;
     ALLEGRO_BITMAP *                          documentsBitmap_;
@@ -40,7 +40,7 @@ namespace it
     virtual ALLEGRO_BITMAP * fetchBitmap() override;
     virtual unsigned int const & getWidth() const override;
     virtual unsigned int const & getHeight() const override;
-    virtual bool contains(PlanarPosition const &) const override;
+    virtual bool contains (PlanarPosition const &) const override;
     virtual int const & getX() const override;
     virtual int const & getY() const override;
     virtual PlanarPosition const & getCenter() const override;

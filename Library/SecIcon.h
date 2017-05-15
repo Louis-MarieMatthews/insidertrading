@@ -10,7 +10,7 @@ namespace it
 {
   class SecIcon : public I_LocatedInteractiveBitmap, public I_ConstantObserver
   {
-    ALLEGRO_BITMAP *        bitmap_;
+    ALLEGRO_BITMAP *        mapBitmap_;
     DefaultObservableId     observableId_;
     bool                    isLastFetchedBitmapUpToDate_;
     PlanarPosition          position_;

@@ -11,7 +11,8 @@ namespace it
 {
   class CompanyView : public I_BitmapView, public I_ConstantObserver
   {
-    MapBitmap                bitmap_;
+    ALLEGRO_BITMAP *         bitmap_;
+    MapBitmap                mapBitmap_;
     Company &                company_;
     CompanyMap &             companyMap_;
     PlanarDimensions const & dimensions_;

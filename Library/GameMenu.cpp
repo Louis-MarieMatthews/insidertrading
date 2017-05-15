@@ -121,12 +121,12 @@ namespace it
   ALLEGRO_BITMAP * GameMenu::fetchBitmap()
   {
     if (!isLastFetchedBitmapUpToDate_) {
-      if (bitmap_ != nullptr) {
-        al_destroy_bitmap (bitmap_);
+      if (mapBitmap_ != nullptr) {
+        al_destroy_bitmap (mapBitmap_);
       }
-      bitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getWidth());
+      mapBitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getWidth());
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
-      al_set_target_bitmap (bitmap_);
+      al_set_target_bitmap (mapBitmap_);
 
       al_clear_to_color (al_map_rgb (100, 100, 100));
 
@@ -158,7 +158,7 @@ namespace it
       isLastFetchedBitmapUpToDate_ = true;
       al_set_target_bitmap (targetBitmap);
     }
-    return bitmap_;
+    return mapBitmap_;
   }
 
 

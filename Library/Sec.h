@@ -24,14 +24,17 @@ namespace it
     PlanarPosition                   position_;
     int                              radius_;
     Duration &                       time_;
+    Duration                         inspectingDuration_;
 
     Company const & getRandomCompany();
 
   public:
     Sec (GameData &, PlanarPosition const &, std::set<Company *> const &, Duration &);
+    ~Sec();
 
     PlanarPosition const & getPosition() const;
     Company const * getTarget();
+    Duration const & getInspectingDuration();
 
     // Inherited via I_ConstantObservable
     virtual I_ObservableId const & getObservableId() const override;

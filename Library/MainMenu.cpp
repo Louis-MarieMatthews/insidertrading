@@ -13,7 +13,7 @@ namespace it
 
 
   MainMenu::MainMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
-    bitmap_ (nullptr),
+    mapBitmap_ (nullptr),
     buttonPlay_ (getButtonPosition (dimensions, 0), "Play", next_, viewData.getGameView()),
     buttonQuit_ (getButtonPosition (dimensions, 1), "Quit", next_, viewData.getExit()),
     dimensions_ (dimensions),
@@ -28,8 +28,8 @@ namespace it
 
   MainMenu::~MainMenu()
   {
-    if (bitmap_ != nullptr) {
-      al_destroy_bitmap (bitmap_);
+    if (mapBitmap_ != nullptr) {
+      al_destroy_bitmap (mapBitmap_);
     }
     ObserverListSingleton::getInstance().removeObserver (buttonPlay_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (buttonQuit_.getObservableId(), *this);
@@ -69,18 +69,18 @@ namespace it
   ALLEGRO_BITMAP * MainMenu::fetchBitmap()
   {
     if (!isLastFetchedBitmapUpToDate_) {
-      if (bitmap_ != nullptr) {
-        al_destroy_bitmap (bitmap_);
+      if (mapBitmap_ != nullptr) {
+        al_destroy_bitmap (mapBitmap_);
       }
-      bitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getHeight());
+      mapBitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getHeight());
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
-      al_set_target_bitmap (bitmap_);
+      al_set_target_bitmap (mapBitmap_);
       al_clear_to_color (al_map_rgb (0, 0, 0));
       al_draw_bitmap (buttonPlay_.fetchBitmap(), buttonPlay_.getPosition().getX(), buttonPlay_.getPosition().getY(), 0);
       al_draw_bitmap (buttonQuit_.fetchBitmap(), buttonQuit_.getPosition().getX(), buttonQuit_.getPosition().getY(), 0);
       al_set_target_bitmap (targetBitmap);
     }
-    return bitmap_;
+    return mapBitmap_;
   }
 
 

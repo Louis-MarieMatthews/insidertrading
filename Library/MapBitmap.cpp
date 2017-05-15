@@ -97,8 +97,8 @@ namespace it
     if (structureBitmap_ != nullptr) {
       al_destroy_bitmap (structureBitmap_);
     }
-    if (bitmap_ != nullptr) {
-      al_destroy_bitmap (bitmap_);
+    if (mapBitmap_ != nullptr) {
+      al_destroy_bitmap (mapBitmap_);
     }
   }
 
@@ -136,11 +136,11 @@ namespace it
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
 
 
-      if (bitmap_ != nullptr) {
-        al_destroy_bitmap (bitmap_);
+      if (mapBitmap_ != nullptr) {
+        al_destroy_bitmap (mapBitmap_);
       }
-      bitmap_ = al_create_bitmap (format_.getMapWidth(), format_.getMapHeight());
-      al_set_target_bitmap (bitmap_);
+      mapBitmap_ = al_create_bitmap (format_.getMapWidth(), format_.getMapHeight());
+      al_set_target_bitmap (mapBitmap_);
 
       if (structureBitmap_ == nullptr) {
         updateStructureBitmap();
@@ -162,7 +162,7 @@ namespace it
 
       al_set_target_bitmap (targetBitmap);
     }
-    return bitmap_;
+    return mapBitmap_;
   }
 
 
