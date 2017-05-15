@@ -158,6 +158,7 @@
     <ClCompile Include="CompanyMap.cpp" />
     <ClCompile Include="CompanyView.cpp" />
     <ClCompile Include="ContextualMenuBitmapSingleton.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DefaultGameData.cpp" />
     <ClCompile Include="DocumentMapItem.cpp" />
     <ClCompile Include="GameOverBitmap.cpp" />

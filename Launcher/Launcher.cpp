@@ -11,6 +11,7 @@ using namespace it;
 
 int main()
 {
-  startProgram();
+  Controller program;
+  program.startProgram();
   return 0;
 }
