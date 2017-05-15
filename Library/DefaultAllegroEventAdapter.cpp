@@ -12,13 +12,12 @@ namespace it
 
 
 
-  DefaultAllegroEventAdapter::DefaultAllegroEventAdapter (ALLEGRO_TIMER const * fpsTimer, ALLEGRO_TIMER const * secondsTimer, ALLEGRO_TIMER const * centisecondsTimer) :
+  DefaultAllegroEventAdapter::DefaultAllegroEventAdapter (ALLEGRO_TIMER const * fpsTimer, ALLEGRO_TIMER const * centisecondsTimer) :
     timerCentiseconds_ (centisecondsTimer),
     currentEvent_ (nullptr),
     currentLeftClickReleased_ (false),
     currentEscapeKeyPressed_ (false),
     timerFps_ (fpsTimer),
-    timerSeconds_ (secondsTimer),
     previousEscapeKeyPressed_ (false),
     previousLeftClickReleased_ (false),
     currentPosition_ (nullptr),
@@ -47,13 +46,6 @@ namespace it
     }
     else {
       isFpsFrame_ = false;
-    }
-
-    if (currentEvent_->type == ALLEGRO_EVENT_TIMER && currentEvent_->timer.source == timerSeconds_) {
-      isNewSecond_ = true;
-    }
-    else {
-      isNewSecond_ = false;
     }
 
     if (currentEvent_->type == ALLEGRO_EVENT_TIMER && currentEvent_->timer.source == timerCentiseconds_) {
@@ -285,13 +277,6 @@ namespace it
   bool const & DefaultAllegroEventAdapter::isFpsFrame() const
   {
     return isFpsFrame_;
-  }
-
-
-
-  bool const & DefaultAllegroEventAdapter::isNewSecond() const
-  {
-    return isNewSecond_;
   }
 
 

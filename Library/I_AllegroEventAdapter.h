@@ -19,7 +19,6 @@ namespace it
     virtual PlanarPosition const & getMousePosition() const = 0;
     virtual bool wasEscapeKeyPressed() const = 0;
     virtual bool const & isFpsFrame() const = 0;
-    virtual bool const & isNewSecond() const = 0;
     virtual bool const & isNewCentisecond() const = 0;
     virtual bool const & isMouseButtonPressed() const = 0;
     virtual bool const & isUpKeyPressed() const = 0;

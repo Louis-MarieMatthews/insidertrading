@@ -22,7 +22,6 @@ namespace it
   {
     ALLEGRO_DISPLAY *      display (nullptr);
     ALLEGRO_TIMER *        fpsTimer (nullptr);
-    ALLEGRO_TIMER *        secondsTimer (nullptr);
     ALLEGRO_TIMER *        centisecondsTimer (nullptr);
     const unsigned int     FPS (60);
     const PlanarDimensions winDimensions (1800, 900);
@@ -73,42 +72,31 @@ namespace it
     }
     al_start_timer (fpsTimer);
 
-    secondsTimer = al_create_timer (1.0);
-    if (!secondsTimer) {
-      al_destroy_display (display);
-      al_destroy_timer (fpsTimer);
-      throw AllegroInitializationException ("Could not initialise seconds timer.");
-    }
-
     centisecondsTimer = al_create_timer (0.01);
     if (!centisecondsTimer) {
       al_destroy_display (display);
       al_destroy_timer (fpsTimer);
-      al_destroy_timer (secondsTimer);
       throw AllegroInitializationException ("Could not initialise centiseconds timer.");
     }
 
-    al_start_timer (secondsTimer);
     al_start_timer (centisecondsTimer);
 
     ALLEGRO_EVENT_QUEUE* eventQueue = al_create_event_queue();
     if (!eventQueue) {
       al_destroy_display (display);
       al_destroy_timer (fpsTimer);
-      al_destroy_timer (secondsTimer);
       al_destroy_timer (centisecondsTimer);
       throw AllegroInitializationException ("Could not initialise event queue.");
     }
     al_register_event_source (eventQueue, al_get_mouse_event_source());
     al_register_event_source (eventQueue, al_get_timer_event_source(fpsTimer));
     al_register_event_source (eventQueue, al_get_keyboard_event_source());
-    al_register_event_source (eventQueue, al_get_timer_event_source(secondsTimer));
     al_register_event_source (eventQueue, al_get_timer_event_source(centisecondsTimer));
 
     DefaultGameData gameData;
     ViewData viewData (gameData, winDimensions);
     I_BitmapView * currentView (viewData.getMainMenu());
-    I_AllegroEventAdapter * eventAdapter (new DefaultAllegroEventAdapter (fpsTimer, secondsTimer, centisecondsTimer));
+    I_AllegroEventAdapter * eventAdapter (new DefaultAllegroEventAdapter (fpsTimer, centisecondsTimer));
 
     while (currentView != nullptr) {
       ALLEGRO_EVENT e;
@@ -134,7 +122,6 @@ namespace it
     delete eventAdapter;
     delete currentView;
     al_destroy_event_queue (eventQueue);
-    al_destroy_timer (secondsTimer);
     al_destroy_timer (fpsTimer);
     al_destroy_timer (centisecondsTimer);
     al_destroy_display (display);

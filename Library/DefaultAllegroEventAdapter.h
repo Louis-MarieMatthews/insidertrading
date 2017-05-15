@@ -13,7 +13,6 @@ namespace it
     bool                  currentLeftClickReleased_;
     PlanarPosition*       currentPosition_;
     bool                  isFpsFrame_;
-    bool                  isNewSecond_;
     bool                  isNewCentisecond_;
     bool                  isMouseButtonPressed_;
     bool                  isUpKeyPressed_;
@@ -25,7 +24,6 @@ namespace it
     bool                  previousEscapeKeyPressed_;
     PlanarPosition*       previousPosition_;
     ALLEGRO_TIMER const * timerFps_;
-    ALLEGRO_TIMER const * timerSeconds_;
     ALLEGRO_TIMER const * timerCentiseconds_;
     bool                  wasUpKeyReleased_;
     bool                  wasDownKeyReleased_;
@@ -35,7 +33,7 @@ namespace it
     void updateCurrentEvent (ALLEGRO_EVENT const &);
 
   public:
-    DefaultAllegroEventAdapter (ALLEGRO_TIMER const *, ALLEGRO_TIMER const *, ALLEGRO_TIMER const *);
+    DefaultAllegroEventAdapter (ALLEGRO_TIMER const *, ALLEGRO_TIMER const *);
     virtual void update (ALLEGRO_EVENT const & event) override;
     virtual bool isCausedByAMouseMove() const override;
     virtual bool didTheMouseEnter (I_LocatedRectangle const &) const override;
@@ -46,7 +44,6 @@ namespace it
     virtual PlanarPosition const & getMousePosition() const override;
     virtual bool wasEscapeKeyPressed() const override;
     virtual bool const & isFpsFrame() const override;
-    virtual bool const & isNewSecond() const override;
     virtual bool const & isNewCentisecond() const override;
     virtual bool const & isMouseButtonPressed() const override;
 
