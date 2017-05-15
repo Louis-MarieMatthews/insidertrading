@@ -33,6 +33,14 @@ namespace it
 
 
 
+  void PlayerBalance::operator+= (unsigned long long const & sum)
+  {
+    money_ += sum;
+    ObserverListSingleton::getInstance().notifyObservers (observableId_);
+  }
+
+
+
   I_ObservableId const & PlayerBalance::getObservableId() const
   {
     return observableId_;

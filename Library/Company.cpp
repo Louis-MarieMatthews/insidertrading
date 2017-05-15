@@ -6,7 +6,10 @@
 namespace it
 {
   Company::Company (GameData & gameData, std::string const & name, PlayerBalance & playerBalance, PlanarPosition const & position) :
+    dividende_ (10),
+    time_ (gameData.getTime()),
     hasInsiders_ (false),
+    lastSecond_ (-1),
     map_ (gameData, *this),
     name_ (name),
     playerBalance_ (playerBalance),
@@ -18,6 +21,7 @@ namespace it
 
   Company::~Company()
   {
+    ObserverListSingleton::getInstance().removeObserver (time_.getObservableId(), *this);
   }
 
 
@@ -62,6 +66,7 @@ namespace it
     if (playerBalance_ >= insiderCost_) {
       playerBalance_ -= insiderCost_;
       hasInsiders_ = true;
+      ObserverListSingleton::getInstance().addObserver (time_.getObservableId(), *this);
       ObserverListSingleton::getInstance().notifyObservers (observableId_);
     }
     else {
@@ -74,6 +79,7 @@ namespace it
   void Company::removeInsiders()
   {
     hasInsiders_ = false;
+    ObserverListSingleton::getInstance().removeObserver (time_.getObservableId(), *this);
     ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }
 
@@ -82,6 +88,18 @@ namespace it
   I_ObservableId const & Company::getObservableId() const
   {
     return observableId_;
+  }
+
+
+
+  void Company::notifyObserver (I_ObservableId const & observableId)
+  {
+    if (&time_.getObservableId() == &observableId && hasInsiders_) {
+      if (lastSecond_ != time_.getSecond()) {
+        lastSecond_ = time_.getSecond();
+        playerBalance_+= (dividende_);
+      }
+    }
   }
 
 

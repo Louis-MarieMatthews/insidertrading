@@ -11,7 +11,7 @@
 
 namespace it
 {
-  class Company : public I_ConstantObservable
+  class Company : public I_ConstantObservable, public I_ConstantObserver
   {
     bool                            hasInsiders_;
     static unsigned long long const insiderCost_ {100};
@@ -20,6 +20,9 @@ namespace it
     DefaultObservableId             observableId_;
     PlayerBalance &                 playerBalance_;
     PlanarPosition                  position_;
+    Duration &                      time_;
+    unsigned long long              dividende_;
+    unsigned short                  lastSecond_;
 
   public:
     Company (GameData &, std::string const &, PlayerBalance &, PlanarPosition const &);
@@ -35,6 +38,9 @@ namespace it
 
     // Inherited via I_ConstantObservable
     virtual I_ObservableId const & getObservableId() const override;
+
+    // Inherited via I_ConstantObserver
+    virtual void notifyObserver (I_ObservableId const &) override;
   };
 
   bool operator< (Company const &, Company const &);

@@ -28,6 +28,7 @@ namespace it
     if (centisecond_ + 1 >= 100) {
       centisecond_ = 0;
       if (second_ + 1 >= 60) {
+        second_ = 0;
         if (minute_ + 1 >= 60) {
           minute_ = 0;
           if (hour_ + 1 >= 24) {
