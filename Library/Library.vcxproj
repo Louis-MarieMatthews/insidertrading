@@ -228,7 +228,6 @@
     <ClInclude Include="I_ConstantObserver.h" />
     <ClInclude Include="I_ContextualMenu.h" />
     <ClInclude Include="I_ContextualMenuChoice.h" />
-    <ClInclude Include="I_EventSensitiveLocatedBitmap.h" />
     <ClInclude Include="I_LocatedBitmap.h" />
     <ClInclude Include="I_LocatedRectangle.h" />
     <ClInclude Include="I_ObservableId.h" />

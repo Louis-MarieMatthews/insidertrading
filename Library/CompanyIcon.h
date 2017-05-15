@@ -16,11 +16,11 @@ namespace it
     ALLEGRO_BITMAP *                bitmapNotHovered_;
     Company const &                 company_;
     CompanyContextualMenu           contextualMenu_;
+    bool                            isHovered_;
     bool                            isLastFetchedBitmapUpToDate_;
     DefaultObservableId             observableId_;
     PlanarPosition                  position_;
     DefaultLocatedRectangle         rectangle_;
-    bool                            isHovered_;
 
     void setHovered (bool const &);
 

@@ -224,9 +224,6 @@
     <ClInclude Include="I_ContextualMenuChoice.h">
       <Filter>Header Files\Semantic View</Filter>
     </ClInclude>
-    <ClInclude Include="I_EventSensitiveLocatedBitmap.h">
-      <Filter>Header Files\Visual View</Filter>
-    </ClInclude>
     <ClInclude Include="I_LocatedBitmap.h">
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>

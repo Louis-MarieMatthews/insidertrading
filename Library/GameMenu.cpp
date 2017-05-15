@@ -98,9 +98,9 @@ namespace it
       next_ = viewData_.getMainMenu();
     }
     else if (viewData_.getGameData().isPlayerInTheGame().getValue()){
-      I_EventSensitiveLocatedBitmap * menu (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap());
+      I_LocatedInteractiveBitmap * menu (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap());
       if (menu != nullptr) {
-        menu->processEvent (&e);
+        menu->processEvent (e);
       }
 
       for (auto ci : companyIcons_) {
@@ -145,7 +145,7 @@ namespace it
       al_draw_bitmap (menuBar_.fetchBitmap(), menuBar_.getX(), menuBar_.getY(), 0);
 
       if (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap() != nullptr) {
-        I_EventSensitiveLocatedBitmap * menu (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap());
+        I_LocatedInteractiveBitmap * menu (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap());
         al_draw_bitmap (menu->fetchBitmap(), menu->getX(), menu->getY(), 0);
       }
 

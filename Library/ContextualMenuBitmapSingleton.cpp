@@ -25,7 +25,7 @@ namespace it
 
 
 
-  void ContextualMenuBitmapSingleton::setContextualMenuBitmap (I_EventSensitiveLocatedBitmap* contextualMenuBitmap)
+  void ContextualMenuBitmapSingleton::setContextualMenuBitmap (I_LocatedInteractiveBitmap * contextualMenuBitmap)
   {
     contextualMenuBitmap_ = contextualMenuBitmap;
     ObserverListSingleton::getInstance().notifyObservers (observableId_);
@@ -42,7 +42,7 @@ namespace it
 
 
 
-  I_EventSensitiveLocatedBitmap * ContextualMenuBitmapSingleton::getContextualMenuBitmap() const
+  I_LocatedInteractiveBitmap * ContextualMenuBitmapSingleton::getContextualMenuBitmap() const
   {
     return contextualMenuBitmap_;
   }

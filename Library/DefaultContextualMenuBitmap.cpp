@@ -53,10 +53,11 @@ namespace it
     cachedBitmap_ (nullptr),
     fontFormat_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", 20, 0)), // TODO: should be initialised from outside
     hoveredChoiceNo_ (-1),
-    isCachedBitmapUpToDate_ (false),
+    isLastFetchedBitmapUpToDate_ (false),
     menu_ (menu),
-    rectangle_ (nullptr),
-    observableId_ (DefaultObservableId())
+    observableId_ (DefaultObservableId()),
+    position_ (position),
+    rectangle_ (nullptr)
   {
     if (!fontFormat_)
       throw AllegroInitializationException ("Could not initialise the font of the contextual menu.");
@@ -122,7 +123,7 @@ namespace it
 
   ALLEGRO_BITMAP * DefaultContextualMenuBitmap::fetchBitmap()
   {
-    if (!isCachedBitmapUpToDate_) {
+    if (!isLastFetchedBitmapUpToDate_) {
       ALLEGRO_BITMAP* previousTargetBitmap = al_get_target_bitmap();
 
       ALLEGRO_BITMAP* wipBitmap = al_create_bitmap (rectangle_->getWidth(), rectangle_->getHeight()); // TODO: method to init & throw exception in the same time?
@@ -183,50 +184,50 @@ namespace it
 
 
   
-  void DefaultContextualMenuBitmap::processEvent (I_AllegroEventAdapter const * allegroEvent)
+  void DefaultContextualMenuBitmap::processEvent (I_AllegroEventAdapter const & allegroEvent)
   {
-    const PlanarPosition mousePosition (allegroEvent->getMousePosition());
-    if (allegroEvent->isCausedByAMouseMove()) {
-      if (allegroEvent->isMouseWithin (*this)) {
+    const PlanarPosition mousePosition (allegroEvent.getMousePosition());
+    if (allegroEvent.isCausedByAMouseMove()) {
+      if (allegroEvent.isMouseWithin (*this)) {
         int hoveredChoiceNo (getHoveredChoice (mousePosition));
         if (hoveredChoiceNo != hoveredChoiceNo_ ) {
           hoveredChoiceNo_ = hoveredChoiceNo;
-          isCachedBitmapUpToDate_ = false;
+          isLastFetchedBitmapUpToDate_ = false;
         }
       }
 
-      if (allegroEvent->didTheMouseLeave (*this)) {
+      if (allegroEvent.didTheMouseLeave (*this)) {
         hoveredChoiceNo_ = -1;
-        isCachedBitmapUpToDate_ = false;
+        isLastFetchedBitmapUpToDate_ = false;
       }
     }
-    else if (allegroEvent->wasTheMouseLeftClicked()) {
-      if (allegroEvent->isMouseWithin (*this)) {
+    else if (allegroEvent.wasTheMouseLeftClicked()) {
+      if (allegroEvent.isMouseWithin (*this)) {
         beingClicked_ = true;
         if (hoveredChoiceNo_ != -1) {
-          isCachedBitmapUpToDate_ = false;
+          isLastFetchedBitmapUpToDate_ = false;
         }
       }
     }
-    else if (allegroEvent->wasTheMouseLeftClickReleased()) {
+    else if (allegroEvent.wasTheMouseLeftClickReleased()) {
       beingClicked_ = false;
-      if (allegroEvent->isMouseWithin (*this)) {
+      if (allegroEvent.isMouseWithin (*this)) {
         if (hoveredChoiceNo_ != -1) {
           I_ContextualMenuChoice * selectedChoice = menu_->getChoices()[hoveredChoiceNo_];
           if (!selectedChoice->isDisabled()) { // TODO: remove. select method already checks.
             menu_->getChoices()[hoveredChoiceNo_]->select();
-            isCachedBitmapUpToDate_ = false;
+            isLastFetchedBitmapUpToDate_ = false;
           }
         }
       }
       else {
         // TODO: (assume this is the current contextual menu bitmap), probably a bad thing
         ContextualMenuBitmapSingleton::getInstance().setContextualMenuBitmap (nullptr);
-        isCachedBitmapUpToDate_ = false;
+        isLastFetchedBitmapUpToDate_ = false;
       }
     }
 
-    if (!isCachedBitmapUpToDate_) {
+    if (!isLastFetchedBitmapUpToDate_) {
       ObserverListSingleton::getInstance().notifyObservers (observableId_);
     }
   }
@@ -235,7 +236,7 @@ namespace it
 
   void DefaultContextualMenuBitmap::notifyObserver (I_ObservableId const & id)
   {
-    isCachedBitmapUpToDate_ = false;
+    isLastFetchedBitmapUpToDate_ = false;
       ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }
 
@@ -244,5 +245,25 @@ namespace it
   I_ObservableId const & DefaultContextualMenuBitmap::getObservableId() const
   {
     return observableId_;
+  }
+
+
+
+  void DefaultContextualMenuBitmap::reset()
+  {
+  }
+
+
+
+  bool const & DefaultContextualMenuBitmap::isLastFetchedBitmapUpToDate() const
+  {
+    return isLastFetchedBitmapUpToDate_;
+  }
+
+
+
+  PlanarPosition const & DefaultContextualMenuBitmap::getPosition() const
+  {
+    return position_;
   }
 }
