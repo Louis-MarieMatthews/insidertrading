@@ -1,6 +1,6 @@
 #include "Sec.h"
 
-#include "GameData.h"
+#include "I_GameData.h"
 #include "ObserverListSingleton.h"
 
 namespace it
@@ -24,7 +24,7 @@ namespace it
 
 
 
-  Sec::Sec (GameData & gameData, PlanarPosition const & position, std::set<Company *> const & companies, Duration & time) :
+  Sec::Sec (I_GameData & gameData, PlanarPosition const & position, std::set<Company *> const & companies, Duration & time) :
     companies_ (companies),
     currentTarget_ (nullptr),
     gameData_ (gameData),

@@ -6,16 +6,15 @@
 #include "PlayerPosition.h"
 #include "Boolean.h"
 
-// TODO: rename to I_GameData
 namespace it
 {
   class Company;
   class Sec;
 
-  class GameData
+  class I_GameData
   {
   public:
-    virtual virtual ~GameData() {};
+    virtual virtual ~I_GameData() {};
     virtual Duration & getTime() = 0;
     virtual PlayerBalance & getPlayersMoney() = 0;
     virtual std::set<Company *> const & getCompanies() = 0;

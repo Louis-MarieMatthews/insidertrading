@@ -25,7 +25,7 @@ namespace it
     unsigned short                  lastSecond_;
 
   public:
-    Company (GameData &, std::string const &, PlayerBalance &, PlanarPosition const &);
+    Company (I_GameData &, std::string const &, PlayerBalance &, PlanarPosition const &);
     ~Company();
     CompanyMap & getMap();
     std::string const & getName() const;

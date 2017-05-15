@@ -11,13 +11,13 @@
 
 namespace it
 {
-  class GameData;
+  class I_GameData;
 
   class Sec : public I_ConstantObservable, public I_ConstantObserver
   {
     std::set<Company *> const &      companies_;
     ObservablePointer<Company const> currentTarget_;
-    GameData &                       gameData_;
+    I_GameData &                       gameData_;
     PlanarPosition                   initialPosition_;
     bool                             inspecting_;
     Duration                         inspectingDuration_;
@@ -29,7 +29,7 @@ namespace it
     Company const & getRandomCompany();
 
   public:
-    Sec (GameData &, PlanarPosition const &, std::set<Company *> const &, Duration &);
+    Sec (I_GameData &, PlanarPosition const &, std::set<Company *> const &, Duration &);
     ~Sec();
 
     PlanarPosition const & getPosition() const;

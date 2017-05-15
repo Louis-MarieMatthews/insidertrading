@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Company.h"
-#include "GameData.h"
+#include "I_GameData.h"
 #include "Sec.h"
 
 namespace it
 {
-  class DefaultGameData : public GameData
+  class DefaultGameData : public I_GameData
   {
     std::set<Company *>        companies_;
     ObservablePointer<Company> companyBeingCleaned_;

@@ -25,7 +25,7 @@ namespace it
     void setHovered (bool const &);
 
   public:
-    CompanyIcon (Company &, GameData &, PlanarPosition const &);
+    CompanyIcon (Company &, I_GameData &, PlanarPosition const &);
     ~CompanyIcon();
     Company const & getCompany();
 

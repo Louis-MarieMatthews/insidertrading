@@ -3,7 +3,7 @@
 #include "I_LocatedInteractiveBitmap.h"
 #include "DefaultObservableId.h"
 #include "DefaultLocatedRectangle.h"
-#include "GameData.h"
+#include "I_GameData.h"
 #include "I_ConstantObserver.h"
 #include "FontFormat.h"
 
@@ -14,14 +14,14 @@ namespace it
   {
     ALLEGRO_BITMAP *        mapBitmap_;
     FontFormat              fontFormat_;
-    GameData &              gameData_;
+    I_GameData &              gameData_;
     bool                    isLastFetchedBitmapUpToDate_;
     DefaultObservableId     observableId_;
     PlanarPosition          position_;
     DefaultLocatedRectangle rectangle_;
 
   public:
-    GameMenuBar (GameData &, PlanarDimensions const & dimensions, PlanarPosition const & position);
+    GameMenuBar (I_GameData &, PlanarDimensions const & dimensions, PlanarPosition const & position);
     ~GameMenuBar();
 
     // Inherited via I_LocatedInteractiveBitmap

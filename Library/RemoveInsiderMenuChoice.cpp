@@ -15,7 +15,7 @@ namespace it
 
 
 
-  RemoveInsiderMenuChoice::RemoveInsiderMenuChoice (Company & company, GameData & gameData) :
+  RemoveInsiderMenuChoice::RemoveInsiderMenuChoice (Company & company, I_GameData & gameData) :
     company_ (company),
     gameData_ (gameData),
     isDisabled_ (!company.hasInsiders()),

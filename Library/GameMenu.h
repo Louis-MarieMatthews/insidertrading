@@ -5,7 +5,7 @@
 #include "ViewData.h"
 #include "GameMenuBar.h"
 #include "I_ConstantObserver.h"
-#include "GameData.h"
+#include "I_GameData.h"
 #include "CompanyIcon.h"
 #include "SecIcon.h"
 #include "DefaultContextualMenuBitmap.h"
@@ -20,14 +20,14 @@ namespace it
     std::set<CompanyIcon *>        companyIcons_;
     I_ObservableId const *         contextualMenuObservableId_;
     PlanarDimensions               dimensions_;
-    GameData &                     gameData_;
+    I_GameData &                     gameData_;
     bool                           isLastFetchedBitmapUpToDate_;
     DefaultObservableId            observableId_;
     GameMenuBar                    menuBar_;
     I_BitmapView *                 next_; // TODO: needs to be const!!
     SecIcon                        secIcon_;
     ViewData &                     viewData_;
-    static std::set<CompanyIcon *> getCompanyIcons (GameData &, DefaultContextualMenuBitmap * &);
+    static std::set<CompanyIcon *> getCompanyIcons (I_GameData &, DefaultContextualMenuBitmap * &);
     DefaultContextualMenuBitmap *  contextualMenu_;
     Company const *                secTarget_;
     GameOverBitmap                 gameOverBitmap_;

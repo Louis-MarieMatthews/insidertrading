@@ -11,7 +11,7 @@
 
 namespace it
 {
-  CompanyMap::CompanyMap (GameData & gameData, Company & company) :
+  CompanyMap::CompanyMap (I_GameData & gameData, Company & company) :
     company_ (company),
     playerEntryPoint_ (1, 1),
     playerPosition_ (1, 1),

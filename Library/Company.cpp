@@ -5,7 +5,7 @@
 
 namespace it
 {
-  Company::Company (GameData & gameData, std::string const & name, PlayerBalance & playerBalance, PlanarPosition const & position) :
+  Company::Company (I_GameData & gameData, std::string const & name, PlayerBalance & playerBalance, PlanarPosition const & position) :
     dividende_ (10),
     time_ (gameData.getTime()),
     hasInsiders_ (false),

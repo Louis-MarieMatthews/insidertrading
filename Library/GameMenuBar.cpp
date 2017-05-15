@@ -5,7 +5,7 @@
 
 namespace it
 {
-  GameMenuBar::GameMenuBar (GameData & gameData, PlanarDimensions const & dimensions, PlanarPosition const & position) :
+  GameMenuBar::GameMenuBar (I_GameData & gameData, PlanarDimensions const & dimensions, PlanarPosition const & position) :
     fontFormat_ (dimensions),
     gameData_ (gameData),
     isLastFetchedBitmapUpToDate_ (false),

@@ -272,9 +272,6 @@
     <ClInclude Include="GameMenuBar.h">
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
-    <ClInclude Include="GameData.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="CompanyIcon.h">
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
@@ -349,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="GameOverBitmap.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="I_GameData.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

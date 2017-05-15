@@ -206,7 +206,7 @@
     <ClInclude Include="MapBitmap.h" />
     <ClInclude Include="FloorCompanyMapItem.h" />
     <ClInclude Include="FontFormat.h" />
-    <ClInclude Include="GameData.h" />
+    <ClInclude Include="I_GameData.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GameMenuBar.h" />
     <ClInclude Include="InsufficientPlayerBalanceException.h" />

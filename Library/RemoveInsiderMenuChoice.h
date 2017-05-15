@@ -2,7 +2,7 @@
 
 #include "Company.h"
 #include "DefaultObservableId.h"
-#include "GameData.h"
+#include "I_GameData.h"
 #include "I_ContextualMenuChoice.h"
 #include "PlayerBalance.h"
 
@@ -12,7 +12,7 @@ namespace it
   class RemoveInsiderMenuChoice : public I_ContextualMenuChoice, public I_ConstantObserver
   {
     Company &                          company_;
-    GameData &                         gameData_;
+    I_GameData &                         gameData_;
     bool                               isDisabled_;
     DefaultObservableId                observableId_;
     ObservablePointer<Company const> & secTarget_;
@@ -21,7 +21,7 @@ namespace it
     void setDisabled (bool const &);
 
   public:
-    RemoveInsiderMenuChoice (Company &, GameData &);
+    RemoveInsiderMenuChoice (Company &, I_GameData &);
     ~RemoveInsiderMenuChoice();
 
     // Inherited via I_ContextualMenuChoice

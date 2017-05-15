@@ -5,7 +5,7 @@
 
 namespace it
 {
-  CompanyContextualMenu::CompanyContextualMenu (Company & company, GameData & gameData) :
+  CompanyContextualMenu::CompanyContextualMenu (Company & company, I_GameData & gameData) :
     gameData_ (gameData)
   {
     choices_.push_back (new RemoveInsiderMenuChoice (company, gameData));

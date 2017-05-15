@@ -6,7 +6,7 @@
 
 namespace it
 {
-  ViewData::ViewData (GameData & gameData, PlanarDimensions const & dimensions) :
+  ViewData::ViewData (I_GameData & gameData, PlanarDimensions const & dimensions) :
     dimensions_ (dimensions),
     exit_ (nullptr),
     gameData_ (gameData),
@@ -28,7 +28,7 @@ namespace it
 
 
 
-  GameData & ViewData::getGameData()
+  I_GameData & ViewData::getGameData()
   {
     return gameData_;
   }

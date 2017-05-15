@@ -2,7 +2,7 @@
 
 #include "I_CompanyMapItem.h"
 #include "PlayerPosition.h"
-#include "GameData.h"
+#include "I_GameData.h"
 #include "ObservableSet.h"
 
 namespace it
@@ -22,7 +22,7 @@ namespace it
     ObservableSet<I_CompanyMapItem *> documents_;
 
   public:
-    CompanyMap (GameData &, Company &);
+    CompanyMap (I_GameData &, Company &);
     ~CompanyMap();
     I_CompanyMapItem const * getItem (unsigned short const &, unsigned short const &) const;
     unsigned short const & getNumberOfRows() const;

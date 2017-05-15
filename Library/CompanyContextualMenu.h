@@ -5,7 +5,7 @@
 #include "I_ContextualMenu.h"
 #include "DefaultObservableId.h"
 #include "Company.h"
-#include "GameData.h"
+#include "I_GameData.h"
 
 namespace it
 {
@@ -13,11 +13,11 @@ namespace it
   class CompanyContextualMenu : public I_ContextualMenu
   {
     std::vector<I_ContextualMenuChoice *> choices_;
-    GameData &                            gameData_;
+    I_GameData &                            gameData_;
     DefaultObservableId                   observableId_;
 
   public:
-    CompanyContextualMenu (Company &, GameData &);
+    CompanyContextualMenu (Company &, I_GameData &);
     ~CompanyContextualMenu();
 
     // Inherited via I_ContextualMenu
