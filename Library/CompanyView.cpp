@@ -27,7 +27,7 @@ namespace it
         else if (companyMap_.getItem (r, c)->isDocument()) {
           item = al_load_bitmap ("../gamefiles/images/document.bmp");
         }
-        al_draw_bitmap (item, r * itemWidth_, -(c * itemHeight_) + (companyMap_.getNumberOfRows()) * itemHeight_, 0); // TODO: hard-coded values
+        al_draw_bitmap (item, r * itemWidth_, -(c * itemHeight_) + (companyMap_.getNumberOfRows() - 1) * itemHeight_, 0); // TODO: hard-coded values
         al_destroy_bitmap (item);
       }
     }
@@ -135,7 +135,7 @@ namespace it
       
 
       ALLEGRO_BITMAP * player (al_load_bitmap ("../gamefiles/images/player.bmp")); // TODO: hard-coded values
-      al_draw_bitmap (player, playerPosition_.getX() * itemWidth_, - (playerPosition_.getY() * itemHeight_) + companyMap_.getNumberOfRows() * itemHeight_, 0);
+      al_draw_bitmap (player, playerPosition_.getX() * itemWidth_, - (playerPosition_.getY() * itemHeight_) + (companyMap_.getNumberOfRows() -1) * itemHeight_, 0);
       al_destroy_bitmap (player);
 
       al_set_target_bitmap (targetBitmap);

@@ -28,6 +28,6 @@ namespace it
     unsigned short const & getNumberOfRows() const;
     unsigned short const & getNumberOfColums() const;
     PlanarPosition const & getPlayerEntryPoint() const;
-    void movePlayer (Direction const &) const;
+    void movePlayer (Direction const &);
   };
 }

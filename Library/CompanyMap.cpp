@@ -79,7 +79,7 @@ namespace it
 
 
 
-  void CompanyMap::movePlayer (Direction const & direction) const
+  void CompanyMap::movePlayer (Direction const & direction)
   {
     PlanarPosition const * targetPosition (nullptr);
     switch (direction) {
@@ -102,8 +102,12 @@ namespace it
     if (targetPosition == nullptr) { // error in the code
       throw std::exception();
     }
-    if (items_[targetPosition->getX()][targetPosition->getY()] == nullptr || items_[targetPosition->getX()][targetPosition->getY()]->isTraversable()) {
+    I_CompanyMapItem * targetDestination (items_[targetPosition->getX()][targetPosition->getY()]);
+    if (targetDestination == nullptr || targetDestination->isTraversable()) {
       playerPosition_.update (*targetPosition);
+      if (targetDestination != nullptr && targetDestination->isDocument()) {
+        documents_.erase (targetDestination);
+      }
     }
     delete targetPosition;
   }
