@@ -22,7 +22,7 @@ namespace it
     ALLEGRO_EVENT_TYPE    lastType_;
     bool                  previousLeftClickReleased_;
     bool                  previousEscapeKeyPressed_;
-    PlanarPosition*       previousPosition_;
+    PlanarPosition *      previousPosition_;
     ALLEGRO_TIMER const * timerFps_;
     ALLEGRO_TIMER const * timerCentiseconds_;
     bool                  wasUpKeyReleased_;

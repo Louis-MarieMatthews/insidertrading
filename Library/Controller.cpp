@@ -67,6 +67,14 @@ namespace it
 
 
 
+  Controller & Controller::getInstance()
+  {
+    static Controller instance;
+    return instance;
+  }
+
+
+
   Controller::~Controller()
   {
     delete currentView_;

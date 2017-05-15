@@ -13,8 +13,8 @@ namespace it
     virtual bool isCausedByAMouseMove() const = 0;
     virtual bool didTheMouseEnter (I_LocatedRectangle const &) const = 0;
     virtual bool didTheMouseLeave (I_LocatedRectangle const &) const = 0;
-    virtual bool wasTheMouseLeftClicked() const = 0;
-    virtual bool wasTheMouseLeftClickReleased() const = 0;
+    virtual bool wasTheMouseLeftClicked() const = 0; // TODO: should return bool const &
+    virtual bool wasTheMouseLeftClickReleased() const = 0; // TODO: should return bool const &
     virtual bool isMouseWithin (I_LocatedRectangle const &) const = 0;
     virtual PlanarPosition const & getMousePosition() const = 0;
     virtual bool wasEscapeKeyPressed() const = 0;

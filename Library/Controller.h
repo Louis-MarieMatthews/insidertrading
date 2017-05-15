@@ -20,7 +20,7 @@ namespace it
 {
   class Controller
   {
-    const unsigned int     FPS_ {60};
+    const unsigned int      FPS_ {60};
 
     I_BitmapView *          currentView_;
     I_AllegroEventAdapter * eventAdapter_;
@@ -29,9 +29,13 @@ namespace it
     ALLEGRO_TIMER *         timerFps_;
     ALLEGRO_DISPLAY *       window_;
     PlanarDimensions        windowDimensions_;
+    Controller();
+    Controller (Controller const &) = delete;
+    Controller & operator= (Controller const &) = delete;
 
   public:
-    Controller ();
+    static Controller & getInstance();
+
     ~Controller();
     void startProgram();
   };

@@ -11,7 +11,7 @@ using namespace it;
 
 int main()
 {
-  Controller program;
+  Controller & program (Controller::getInstance());
   program.startProgram();
   return 0;
 }
