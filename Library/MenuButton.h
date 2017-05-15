@@ -44,7 +44,7 @@ namespace it
     // Inherited via I_LocatedInteractiveBitmap
     virtual unsigned int const & getWidth() const override;
     virtual unsigned int const & getHeight() const override;
-    virtual bool contains(PlanarPosition const &) const override;
+    virtual bool contains (PlanarPosition const &) const override;
     virtual int const & getX() const override;
     virtual int const & getY() const override;
     virtual PlanarPosition const & getCenter() const override;

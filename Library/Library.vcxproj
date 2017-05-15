@@ -159,11 +159,13 @@
     <ClCompile Include="ContextualMenuBitmapSingleton.cpp" />
     <ClCompile Include="DefaultGameData.cpp" />
     <ClCompile Include="DocumentMapItem.cpp" />
+    <ClCompile Include="MapBitmap.cpp" />
     <ClCompile Include="FloorCompanyMapItem.cpp" />
     <ClCompile Include="FontFormat.cpp" />
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GameMenuBar.cpp" />
     <ClCompile Include="InsufficientPlayerBalanceException.cpp" />
+    <ClCompile Include="MapFormat.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="DefaultAllegroEventAdapter.cpp" />
     <ClCompile Include="DefaultContextualMenu.cpp" />
@@ -197,6 +199,7 @@
     <ClInclude Include="ContextualMenuBitmapSingleton.h" />
     <ClInclude Include="DefaultGameData.h" />
     <ClInclude Include="DocumentMapItem.h" />
+    <ClInclude Include="MapBitmap.h" />
     <ClInclude Include="FloorCompanyMapItem.h" />
     <ClInclude Include="FontFormat.h" />
     <ClInclude Include="GameData.h" />
@@ -206,6 +209,7 @@
     <ClInclude Include="I_CompanyMapItem.h" />
     <ClInclude Include="I_InteractiveBitmap.h" />
     <ClInclude Include="I_LocatedInteractiveBitmap.h" />
+    <ClInclude Include="MapFormat.h" />
     <ClInclude Include="MenuButton.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DefaultAllegroEventAdapter.h" />
@@ -227,6 +231,7 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NullContextualMenuChoice.h" />
     <ClInclude Include="ObservablePointer.h" />
+    <ClInclude Include="ObservableSet.h" />
     <ClInclude Include="ObserverListSingleton.h" />
     <ClInclude Include="PlanarDimensions.h" />
     <ClInclude Include="PlanarPosition.h" />

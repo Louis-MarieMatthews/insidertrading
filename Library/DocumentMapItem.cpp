@@ -2,9 +2,10 @@
 
 namespace it
 {
-  DocumentMapItem::DocumentMapItem() :
+  DocumentMapItem::DocumentMapItem (PlanarPosition const & position) :
     isDocument_ (true),
-    isTraversable_ (true)
+    isTraversable_ (true),
+    position_ (position)
   {
   }
 
@@ -20,5 +21,12 @@ namespace it
   bool const & DocumentMapItem::isDocument() const
   {
     return isDocument_;
+  }
+
+
+
+  PlanarPosition const & DocumentMapItem::getPosition() const
+  {
+    return position_;
   }
 }

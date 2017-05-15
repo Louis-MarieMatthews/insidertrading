@@ -8,12 +8,14 @@ namespace it
   {
     bool isTraversable_;
     bool isDocument_;
-
+    PlanarPosition position_;
+    
   public:
-    DocumentMapItem();
+    DocumentMapItem (PlanarPosition const &);
 
     // Inherited via I_CompanyMapItem
     virtual bool const & isTraversable() const override;
     virtual bool const & isDocument() const override;
+    virtual PlanarPosition const & getPosition() const override;
   };
 }

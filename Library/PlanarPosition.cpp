@@ -1,5 +1,6 @@
 #include "PlanarPosition.h"
 
+#include "ObserverListSingleton.h"
 #include <cmath>
 
 namespace it
@@ -29,6 +30,7 @@ namespace it
   void PlanarPosition::setX (int const & x)
   {
     x_ = x;
+    ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }
 
 
@@ -36,6 +38,7 @@ namespace it
   void PlanarPosition::setY (int const & y)
   {
     y_ = y;
+    ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }
 
 
@@ -44,6 +47,7 @@ namespace it
   {
     x_ = position.getX();
     y_ = position.getY();
+    ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }
 
 
@@ -67,5 +71,12 @@ namespace it
   bool PlanarPosition::operator!= (const PlanarPosition& position) const
   {
     return !(*this == position);
+  }
+
+
+
+  I_ObservableId const & PlanarPosition::getObservableId() const
+  {
+    return observableId_;
   }
 }

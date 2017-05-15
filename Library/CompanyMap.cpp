@@ -12,7 +12,8 @@ namespace it
 {
   CompanyMap::CompanyMap (GameData & gameData) :
     playerEntryPoint_ (30, 30),
-    playerPosition_ (gameData.getPlayerPosition()),
+
+    playerPosition_ (1, 1),
     speed_ (1)
   {
     std::ifstream file;
@@ -33,12 +34,12 @@ namespace it
           items_[currentRow][currentColumn] = nullptr;
         }
         else if (item == "1") {
-          items_[currentRow][currentColumn] = new WallCompanyMapItem();
+          items_[currentRow][currentColumn] = new WallCompanyMapItem (PlanarPosition (currentRow, currentColumn));
         }
         else if (item == "2") {
-          items_[currentRow][currentColumn] = new DocumentMapItem();
+          items_[currentRow][currentColumn] = new DocumentMapItem (PlanarPosition (currentRow, currentColumn));
+          documents_.insert (items_[currentRow][currentColumn]);
         }
-        documents_.insert (items_[currentRow][currentColumn]);
       }
     }
   }
@@ -79,6 +80,13 @@ namespace it
 
 
 
+  PlanarPosition const & CompanyMap::getPlayerPosition() const
+  {
+    return playerPosition_;
+  }
+
+
+
   void CompanyMap::movePlayer (Direction const & direction)
   {
     PlanarPosition const * targetPosition (nullptr);
@@ -110,6 +118,11 @@ namespace it
       }
     }
     delete targetPosition;
+  }
+
+  ObservableSet<I_CompanyMapItem *> const & CompanyMap::getDocuments() const
+  {
+    return documents_;
   }
 
 

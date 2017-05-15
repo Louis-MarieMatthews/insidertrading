@@ -4,14 +4,14 @@
 #include "I_BitmapView.h"
 #include "ViewData.h"
 #include "Company.h"
+#include "MapFormat.h"
+#include "MapBitmap.h"
 
 namespace it
 {
-  class CompanyView : public I_BitmapView
+  class CompanyView : public I_BitmapView, public I_ConstantObserver
   {
-    ALLEGRO_BITMAP *         bitmap_;
-    ALLEGRO_BITMAP *         bitmapMap_;
-    bool                     bitmapMapUpToDate_;
+    MapBitmap                bitmap_;
     Company &                company_;
     CompanyMap &             companyMap_;
     PlanarDimensions const & dimensions_;
@@ -19,11 +19,11 @@ namespace it
     unsigned short const     itemHeight_;
     unsigned short const     itemWidth_;
     bool                     justOpened_;
+    MapFormat                mapFormat_;
     I_BitmapView *           next_;
     DefaultObservableId      observableId_;
     PlanarPosition &         playerPosition_;
     ViewData &               viewData_;
-    void generateMapBitmap();
 
   public:
     CompanyView (Company & company, ViewData &, PlanarDimensions const &);
@@ -36,5 +36,8 @@ namespace it
     virtual bool const & isLastFetchedBitmapUpToDate() const override;
     virtual ALLEGRO_BITMAP * fetchBitmap() override;
     virtual I_BitmapView * getNext() override;
+
+    // Inherited via I_ConstantObserver
+    virtual void notifyObserver(I_ObservableId const &) override;
   };
 }

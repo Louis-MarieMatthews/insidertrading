@@ -1,10 +1,9 @@
 #pragma once
 
-#include <set>
-
 #include "I_CompanyMapItem.h"
 #include "PlayerPosition.h"
 #include "GameData.h"
+#include "ObservableSet.h"
 
 namespace it
 {
@@ -12,14 +11,14 @@ namespace it
 
   class CompanyMap
   {
-    static unsigned short const N_ROWS_ {50};
-    static unsigned short const N_COLUMNS_ {50};
-
-    I_CompanyMapItem *           items_[N_ROWS_][N_COLUMNS_];
-    PlanarPosition               playerEntryPoint_;
-    double                       speed_;
-    PlanarPosition &             playerPosition_;
-    std::set<I_CompanyMapItem *> documents_;
+    static unsigned short const       N_ROWS_ {50};
+    static unsigned short const       N_COLUMNS_ {50};
+                                      
+    I_CompanyMapItem *                items_[N_ROWS_][N_COLUMNS_];
+    PlanarPosition const              playerEntryPoint_;
+    double                            speed_;
+    PlanarPosition                    playerPosition_;
+    ObservableSet<I_CompanyMapItem *> documents_;
 
   public:
     CompanyMap (GameData &);
@@ -28,6 +27,8 @@ namespace it
     unsigned short const & getNumberOfRows() const;
     unsigned short const & getNumberOfColums() const;
     PlanarPosition const & getPlayerEntryPoint() const;
+    PlanarPosition const & getPlayerPosition() const;
     void movePlayer (Direction const &);
+    ObservableSet<I_CompanyMapItem *> const & getDocuments() const;
   };
 }

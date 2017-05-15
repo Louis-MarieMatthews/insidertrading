@@ -2,45 +2,8 @@
 
 namespace it
 {
-  void CompanyView::generateMapBitmap()
-  {
-    ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
-
-
-    if (bitmapMap_ != nullptr) {
-      al_destroy_bitmap (bitmapMap_);
-    }
-    bitmapMap_ = al_create_bitmap (companyMap_.getNumberOfRows() * itemWidth_, companyMap_.getNumberOfColums() * itemHeight_);
-    al_set_target_bitmap (bitmapMap_);
-    for (unsigned short r (0); r < companyMap_.getNumberOfRows(); r++) {
-      for (unsigned short c (0); c < companyMap_.getNumberOfColums(); c++) {
-        if (companyMap_.getItem (r, c) == nullptr) {
-          continue;
-        }
-        ALLEGRO_BITMAP * item (nullptr); // TODO: hard-coded values
-        if (!companyMap_.getItem (r, c)->isTraversable()) {
-          item = al_create_bitmap (itemWidth_, itemHeight_);
-          al_set_target_bitmap (item);
-          al_clear_to_color (al_map_rgb (0, 0, 0));
-          al_set_target_bitmap (bitmapMap_);
-        }
-        else if (companyMap_.getItem (r, c)->isDocument()) {
-          item = al_load_bitmap ("../gamefiles/images/document.bmp");
-        }
-        al_draw_bitmap (item, r * itemWidth_, -(c * itemHeight_) + (companyMap_.getNumberOfRows() - 1) * itemHeight_, 0); // TODO: hard-coded values
-        al_destroy_bitmap (item);
-      }
-    }
-    bitmapMapUpToDate_ = true;
-
-
-    al_set_target_bitmap (targetBitmap);
-  }
-
-
-
   CompanyView::CompanyView (Company & company, ViewData & viewData, PlanarDimensions const & dimensions) :
-    bitmapMapUpToDate_ (false),
+    bitmap_ (MapFormat (company.getMap(), dimensions), company.getMap(), PlanarPosition (0, 0)),
     company_ (company),
     companyMap_ (company.getMap()),
     dimensions_ (dimensions),
@@ -48,22 +11,19 @@ namespace it
     itemHeight_ (15),
     itemWidth_ (15),
     justOpened_ (true),
+    mapFormat_ (company.getMap(), dimensions),
     next_ (this),
     playerPosition_ (viewData.getGameData().getPlayerPosition()),
     viewData_ (viewData)
   {
+    ObserverListSingleton::getInstance().addObserver (bitmap_.getObservableId(), *this);
   }
 
 
 
   CompanyView::~CompanyView()
   {
-    if (bitmap_ != nullptr) {
-      al_destroy_bitmap (bitmap_);
-    }
-    if (bitmapMap_ != nullptr) {
-      al_destroy_bitmap (bitmapMap_);
-    }
+    ObserverListSingleton::getInstance().removeObserver (bitmap_.getObservableId(), *this);
   }
 
 
@@ -79,6 +39,7 @@ namespace it
   {
     next_ = this;
     justOpened_ = true;
+    bitmap_.reset();
   }
 
 
@@ -118,30 +79,8 @@ namespace it
     if (justOpened_) {
       playerPosition_ = companyMap_.getPlayerEntryPoint();
     }
-    if (!isLastFetchedBitmapUpToDate_) {
-      ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
-
-      if (bitmap_ != nullptr) {
-        al_destroy_bitmap (bitmap_);
-      }
-      bitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getWidth());
-      al_set_target_bitmap (bitmap_);
-      al_clear_to_color (al_map_rgb (100, 100, 0));
-      
-      if (!bitmapMapUpToDate_) {
-        generateMapBitmap();
-      }
-      al_draw_bitmap (bitmapMap_, 0, 0, 0);
-      
-
-      ALLEGRO_BITMAP * player (al_load_bitmap ("../gamefiles/images/player.bmp")); // TODO: hard-coded values
-      al_draw_bitmap (player, playerPosition_.getX() * itemWidth_, - (playerPosition_.getY() * itemHeight_) + (companyMap_.getNumberOfRows() -1) * itemHeight_, 0);
-      al_destroy_bitmap (player);
-
-      al_set_target_bitmap (targetBitmap);
-    }
     justOpened_ = false;
-    return bitmap_;
+    return bitmap_.fetchBitmap();
   }
 
 
@@ -149,5 +88,14 @@ namespace it
   I_BitmapView * CompanyView::getNext()
   {
     return next_;
+  }
+
+
+
+  void CompanyView::notifyObserver (I_ObservableId const & observableId)
+  {
+    if (&bitmap_.getObservableId() == &observableId) {
+      isLastFetchedBitmapUpToDate_ = false;
+    }
   }
 }

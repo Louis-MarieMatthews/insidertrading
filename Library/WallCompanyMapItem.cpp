@@ -2,9 +2,10 @@
 
 namespace it
 {
-  WallCompanyMapItem::WallCompanyMapItem() :
+  WallCompanyMapItem::WallCompanyMapItem (PlanarPosition const & position) :
     isDocument_ (false),
-    isTraversable_ (false)
+    isTraversable_ (false),
+    position_ (position)
   {
   }
 
@@ -20,5 +21,12 @@ namespace it
   bool const & WallCompanyMapItem::isDocument() const
   {
     return isDocument_;
+  }
+
+
+
+  PlanarPosition const & WallCompanyMapItem::getPosition() const
+  {
+    return position_;
   }
 }

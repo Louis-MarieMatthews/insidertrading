@@ -2,9 +2,10 @@
 
 namespace it
 {
-  FloorCompanyMapItem::FloorCompanyMapItem() :
+  FloorCompanyMapItem::FloorCompanyMapItem (PlanarPosition const & position) :
     isDocument_ (false),
-    isTraversable_ (true)
+    isTraversable_ (true),
+    position_ (position)
   {
   }
 
@@ -20,5 +21,12 @@ namespace it
   bool const & FloorCompanyMapItem::isDocument() const
   {
     return isDocument_;
+  }
+
+
+
+  PlanarPosition const & FloorCompanyMapItem::getPosition() const
+  {
+    return position_;
   }
 }
