@@ -140,11 +140,4 @@ namespace it
   {
     return position_;
   }
-
-
-
-  bool operator< (CompanyIcon const & c0, CompanyIcon const & c1)
-  {
-    return &c0 < &c1;
-  }
 }

@@ -43,6 +43,4 @@ namespace it
     virtual PlanarPosition const & getCenter() const override;
     virtual PlanarPosition const & getPosition() const override;
   };
-
-  bool operator< (CompanyIcon const &, CompanyIcon const &);
 }
