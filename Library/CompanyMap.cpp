@@ -4,15 +4,16 @@
 #include <fstream>
 #include <string>
 
+#include "Company.h"
 #include "DocumentMapItem.h"
 #include "FloorCompanyMapItem.h"
 #include "WallCompanyMapItem.h"
 
 namespace it
 {
-  CompanyMap::CompanyMap (GameData & gameData) :
-    playerEntryPoint_ (30, 30),
-
+  CompanyMap::CompanyMap (GameData & gameData, Company & company) :
+    company_ (company),
+    playerEntryPoint_ (1, 1),
     playerPosition_ (1, 1),
     speed_ (1)
   {
@@ -115,6 +116,9 @@ namespace it
       playerPosition_.update (*targetPosition);
       if (targetDestination != nullptr && targetDestination->isDocument()) {
         documents_.erase (targetDestination);
+        if (documents_.getSize() == 0) {
+          company_.removeInsiders();
+        }
       }
     }
     delete targetPosition;
