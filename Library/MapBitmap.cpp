@@ -222,5 +222,10 @@ namespace it
       isLastFetchedBitmapUpToDate_ = false;
       ObserverListSingleton::getInstance().notifyObservers (observableId_);
     }
+    else if (&documents_.getObservableId() == &observableId) {
+      isDocumentsBitmapUpToDate_ = false;
+      isLastFetchedBitmapUpToDate_ = false;
+      ObserverListSingleton::getInstance().notifyObservers (observableId_);
+    }
   }
 }
