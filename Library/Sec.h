@@ -17,16 +17,21 @@ namespace it
   {
     std::set<Company *> const &      companies_;
     ObservablePointer<Company const> currentTarget_;
-    I_GameData &                       gameData_;
+    I_GameData &                     gameData_;
     PlanarPosition                   initialPosition_;
     bool                             inspecting_;
-    Duration                         inspectingDuration_;
+    Duration                         timeSinceInState_;
+    unsigned short                   lastSecond_;
+    unsigned short                   maxSecondsOfIdleness_;
+    unsigned short                   maxSecondsOfInspectingInsidedCompany_;
+    unsigned short                   maxSecondsOfInspectingGenuineCompany_;
     DefaultObservableId              observableId_;
     PlanarPosition                   position_;
     int                              radius_;
     Duration &                       time_;
 
     Company const & getRandomCompany();
+    void updateInspection();
 
   public:
     Sec (I_GameData &, PlanarPosition const &, std::set<Company *> const &, Duration &);
