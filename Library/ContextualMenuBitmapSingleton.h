@@ -15,7 +15,7 @@ namespace it
     unsigned short int const        margin_;
     unsigned short int const        lineHeight_;
                                     
-    I_LocatedInteractiveBitmap *    contextualMenuBitmap_;
+    I_LocatedInteractiveBitmap *    contextualMenuBitmapSingleton_;
     I_ObservableId                  observableId_;
 
     ContextualMenuBitmapSingleton();
@@ -25,6 +25,7 @@ namespace it
   public:
     static ContextualMenuBitmapSingleton & getInstance();
 
+    ~ContextualMenuBitmapSingleton();
     void setContextualMenuBitmap (I_LocatedInteractiveBitmap *);
     void setContextualMenu (I_ContextualMenu *, PlanarPosition const &);
     I_LocatedInteractiveBitmap * getContextualMenuBitmap() const;

@@ -13,6 +13,7 @@ namespace it
 
   public:
     PlanarPosition (const int&, const int&);
+    ~PlanarPosition();
     const int& getX() const;
     const int& getY() const;
     void setX (int const &);

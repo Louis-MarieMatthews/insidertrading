@@ -11,6 +11,13 @@ namespace it
 
 
 
+  PlayerBalance::~PlayerBalance()
+  {
+    ObserverListSingleton::getInstance().removeObservable (observableId_);
+  }
+
+
+
   unsigned long long const & PlayerBalance::getMoney() const
   {
     return money_;

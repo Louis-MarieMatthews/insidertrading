@@ -11,6 +11,10 @@ namespace it
 {
   class MainMenu : public I_BitmapView, public I_ConstantObserver
   {
+    static const unsigned           BUTTON_WIDTH_ {500};
+    static const unsigned           TOP_MARGIN_ {200};
+    static const unsigned           BUTTON_BOTTOM_MARGIN_ {100};
+
     ALLEGRO_BITMAP *                mapBitmap_;
     MenuButton                      buttonQuit_;
     MenuButton                      buttonNewGame1_;
@@ -24,24 +28,22 @@ namespace it
     ObservablePointer<I_GameData> & gameData_;
     ViewData &                      viewData_;
 
-    static const unsigned BUTTON_WIDTH_ {500};
-    static const unsigned TOP_MARGIN_ {200};
-    static const unsigned BUTTON_BOTTOM_MARGIN_ {100};
 
+    void stopObserving();
     static PlanarPosition getButtonPosition (PlanarDimensions const &, unsigned short const &);
 
   public:
-    MainMenu (ViewData &, PlanarDimensions const &);
+    MainMenu (ObservablePointer<I_GameData> &, ViewData &, PlanarDimensions const &);
     ~MainMenu();
 
     // Inherited via I_BitmapView
     virtual I_BitmapView * getNext() override;
+    virtual void open() override;
+    virtual void close() override;
     virtual void reset() override;
     virtual void processEvent (I_AllegroEventAdapter const &) override;
     virtual bool const & isLastFetchedBitmapUpToDate() const override;
     virtual ALLEGRO_BITMAP * fetchBitmap() override;
-
-    // Inherited via I_BitmapView
     virtual I_ObservableId const & getObservableId() const override;
 
     // Inherited via I_ConstantObserver

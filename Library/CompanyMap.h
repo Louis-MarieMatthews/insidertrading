@@ -16,7 +16,7 @@ namespace it
     
     Company &                         company_;
     I_CompanyMapItem *                items_[N_ROWS_][N_COLUMNS_];
-    PlanarPosition const              playerEntryPoint_;
+    PlanarPosition                    playerEntryPoint_;
     double                            speed_;
     PlanarPosition                    playerPosition_;
     ObservableSet<I_CompanyMapItem *> documents_;
@@ -29,7 +29,7 @@ namespace it
     unsigned short const & getNumberOfColums() const;
     PlanarPosition const & getPlayerEntryPoint() const;
     PlanarPosition const & getPlayerPosition() const;
-    void movePlayer (Direction const &);
     ObservableSet<I_CompanyMapItem *> const & getDocuments() const;
+    void movePlayer (Direction const &);
   };
 }

@@ -8,11 +8,11 @@
 
 namespace it
 {
-  ViewData::ViewData (Duration const & time, PlanarDimensions const & dimensions) :
+  ViewData::ViewData (ObservablePointer<I_GameData> & gameData, Duration const & time, PlanarDimensions const & dimensions) :
     dimensions_ (dimensions),
     exit_ (nullptr),
-    gameData_ (nullptr),
-    mainMenu_ (new MainMenu (*this, dimensions)),
+    gameData_ (gameData),
+    mainMenu_ (new MainMenu (gameData, *this, dimensions)),
     time_ (time)
   {
 
@@ -21,7 +21,7 @@ namespace it
       lines[0] = "A game made by Louis-Marie Matthews. The font used in the game";
       lines[1] = "is named Good Times RG and it is used and licensed by Ray Larabie.";
       lines[2] = "2D graphics are powered by the C++ Allegro library. JSON for Modern C++ by Niels Lohmann.";
-      creditsNoticeView_ = new NoticeView (mainMenu_, dimensions_, lines, *this);
+      viewOfCredits_ = new NoticeView (mainMenu_, dimensions_, lines, *this);
   }
 
 
@@ -31,8 +31,8 @@ namespace it
     for (auto cm : companyMenus_) {
       delete cm.second;
     }
-    if (gameMenu_.getPointer() != nullptr) {
-      delete gameMenu_.getPointer();
+    if (viewOfGame_.getPointer() != nullptr) {
+      delete viewOfGame_.getPointer();
     }
     delete mainMenu_;
 
@@ -44,8 +44,8 @@ namespace it
     if (viewOfLegalNotice_ != nullptr) {
       delete viewOfLegalNotice_;
     }
-    if (creditsNoticeView_ != nullptr) {
-      delete creditsNoticeView_;
+    if (viewOfCredits_ != nullptr) {
+      delete viewOfCredits_;
     }
   }
 
@@ -60,14 +60,14 @@ namespace it
 
   I_BitmapView * ViewData::getGameView()
   {
-    return gameMenu_.getPointer();
+    return viewOfGame_.getPointer();
   }
 
 
 
-  ObservablePointer<I_BitmapView> & ViewData::getObservableGameView()
+  ObservablePointer<I_BitmapView> const & ViewData::getObservableGameView()
   {
-    return gameMenu_;
+    return viewOfGame_;
   }
 
 
@@ -101,7 +101,7 @@ namespace it
     if (viewOfLegalNotice_ == nullptr) {
       std::vector<std::string> lines (1);
       lines[0] = "Insider trading is illegal and is severely punished in most countries.";
-      viewOfLegalNotice_ = new NoticeView (creditsNoticeView_, dimensions_, lines, *this);
+      viewOfLegalNotice_ = new NoticeView (viewOfCredits_, dimensions_, lines, *this);
     }
     return viewOfLegalNotice_;
   }
@@ -110,20 +110,20 @@ namespace it
 
   I_BitmapView * ViewData::getCreditsNoticeView()
   {
-    return creditsNoticeView_;
+    return viewOfCredits_;
   }
 
 
 
   void ViewData::createNewGame (std::string const & filename)
   {
+    if (viewOfGame_.getPointer() != nullptr) {
+      delete viewOfGame_.getPointer();
+    }
     if (gameData_.getPointer() != nullptr) {
       delete gameData_.getPointer();
     }
     gameData_.setPointer (new DefaultGameData (time_, filename));
-    if (gameMenu_.getPointer() != nullptr) {
-      delete gameMenu_.getPointer();
-    }
-    gameMenu_.setPointer (new GameMenu (*this, dimensions_));
+    viewOfGame_.setPointer (new GameMenu (*this, dimensions_));
   }
 }

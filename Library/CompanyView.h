@@ -27,6 +27,8 @@ namespace it
     ViewData &               viewData_;
     Boolean const &          isPlayerInTheGame_;
 
+    void stopObserving();
+
   public:
     CompanyView (Company & company, ViewData &, PlanarDimensions const &);
     ~CompanyView();
@@ -38,6 +40,8 @@ namespace it
     virtual bool const & isLastFetchedBitmapUpToDate() const override;
     virtual ALLEGRO_BITMAP * fetchBitmap() override;
     virtual I_BitmapView * getNext() override;
+    virtual void open() override;
+    virtual void close() override;
 
     // Inherited via I_ConstantObserver
     virtual void notifyObserver(I_ObservableId const &) override;

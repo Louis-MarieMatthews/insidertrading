@@ -6,7 +6,7 @@
 namespace it
 {
   ContextualMenuBitmapSingleton::ContextualMenuBitmapSingleton() :
-    contextualMenuBitmap_ (nullptr),
+    contextualMenuBitmapSingleton_ (nullptr),
     lineHeight_ (30),
     padding_ (10),
     margin_ (20),
@@ -25,9 +25,16 @@ namespace it
 
 
 
+  ContextualMenuBitmapSingleton::~ContextualMenuBitmapSingleton()
+  {
+    ObserverListSingleton::getInstance().removeObservable (observableId_);
+  }
+
+
+
   void ContextualMenuBitmapSingleton::setContextualMenuBitmap (I_LocatedInteractiveBitmap * contextualMenuBitmap)
   {
-    contextualMenuBitmap_ = contextualMenuBitmap;
+    contextualMenuBitmapSingleton_ = contextualMenuBitmap;
     ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }
 
@@ -36,7 +43,7 @@ namespace it
   void ContextualMenuBitmapSingleton::setContextualMenu (I_ContextualMenu * menu, PlanarPosition const & iconPosition)
   {
     PlanarPosition menuPosition (iconPosition.getX(), iconPosition.getY() - menu->getNumberOfChoices() * lineHeight_ - 2 * padding_ - margin_);
-    contextualMenuBitmap_ = new ContextualMenuBitmap (menu, menuPosition); // TODO: created pointer must be deleted!
+    contextualMenuBitmapSingleton_ = new ContextualMenuBitmap (menu, menuPosition); // TODO: created pointer must be deleted!
     ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }
 
@@ -44,7 +51,7 @@ namespace it
 
   I_LocatedInteractiveBitmap * ContextualMenuBitmapSingleton::getContextualMenuBitmap() const
   {
-    return contextualMenuBitmap_;
+    return contextualMenuBitmapSingleton_;
   }
 
 

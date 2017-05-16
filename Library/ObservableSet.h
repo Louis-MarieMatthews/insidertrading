@@ -16,6 +16,7 @@ namespace it
 
   public:
     ObservableSet();
+    ~ObservableSet();
     void insert (T const &);
     void erase (T const &);
     std::set<T> const & getSet() const;
@@ -31,6 +32,14 @@ namespace it
   inline ObservableSet<T>::ObservableSet() :
     observableId_ (DefaultObservableId())
   {
+  }
+
+
+
+  template<class T>
+  inline ObservableSet<T>::~ObservableSet()
+  {
+    ObserverListSingleton::getInstance().removeObservable (observableId_);
   }
 
 

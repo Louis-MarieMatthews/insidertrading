@@ -19,6 +19,26 @@ namespace it
 
 
 
+  void GameMenu::stopObserving()
+  {
+    ObserverListSingleton::getInstance().removeObserver (ContextualMenuBitmapSingleton::getInstance().getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (menuBar_.getObservableId(), *this);
+    
+    for (auto ci : companyIcons_) {
+      ObserverListSingleton::getInstance().removeObserver (ci->getObservableId(), *this);
+    }
+
+    ObserverListSingleton::getInstance().removeObserver (secIcon_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (gameData_.getSec().getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (companyBeingCleaned_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (gameData_.isPlayerInTheGame().getObservableId(), *this);
+    if (contextualMenuBitmapSingleton_.getContextualMenuBitmap() != nullptr) {
+      ObserverListSingleton::getInstance().removeObserver (contextualMenuBitmapSingleton_.getContextualMenuBitmap()->getObservableId(), *this);
+    }
+  }
+
+
+
   CompanyIcon const * GameMenu::getIcon (Company const & company) const
   {
     for (auto & ci : companyIcons_) {
@@ -34,7 +54,7 @@ namespace it
   GameMenu::GameMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
     companyBeingCleaned_ (viewData.getGameData().getPointer()->getCompanyBeingCleaned()),
     companyIcons_ (getCompanyIcons (*viewData.getGameData().getPointer(), contextualMenu_)),
-    contextualMenuObservableId_ (nullptr),
+    contextualMenuBitmapSingleton_ (ContextualMenuBitmapSingleton::getInstance()),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
     gameData_ (*viewData.getGameData().getPointer()),
@@ -44,34 +64,13 @@ namespace it
     secIcon_ (viewData.getGameData().getPointer()->getSec()),
     viewData_ (viewData)
   {
-    ObserverListSingleton::getInstance().addObserver (menuBar_.getObservableId(), *this);
-
-    for (auto ci : companyIcons_) {
-      ObserverListSingleton::getInstance().addObserver (ci->getObservableId(), *this);
-    }
-
-    ObserverListSingleton::getInstance().addObserver (ContextualMenuBitmapSingleton::getInstance().getObservableId(), *this);
-    ObserverListSingleton::getInstance().addObserver (secIcon_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().addObserver (gameData_.getSec().getObservableId(), *this);
-    ObserverListSingleton::getInstance().addObserver (companyBeingCleaned_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().addObserver (gameData_.isPlayerInTheGame().getObservableId(), *this);
   }
 
 
 
   GameMenu::~GameMenu()
   {
-    ObserverListSingleton::getInstance().removeObserver (ContextualMenuBitmapSingleton::getInstance().getObservableId(), *this);
-    ObserverListSingleton::getInstance().removeObserver (menuBar_.getObservableId(), *this);
-    
-    for (auto ci : companyIcons_) {
-      ObserverListSingleton::getInstance().removeObserver (ci->getObservableId(), *this);
-    }
-
-    ObserverListSingleton::getInstance().removeObserver (secIcon_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().removeObserver (gameData_.getSec().getObservableId(), *this);
-    ObserverListSingleton::getInstance().removeObserver (companyBeingCleaned_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().removeObserver (gameData_.isPlayerInTheGame().getObservableId(), *this);
+    stopObserving();
   }
 
 
@@ -173,6 +172,30 @@ namespace it
 
 
 
+  void GameMenu::open()
+  {
+    ObserverListSingleton::getInstance().addObserver (menuBar_.getObservableId(), *this);
+
+    for (auto ci : companyIcons_) {
+      ObserverListSingleton::getInstance().addObserver (ci->getObservableId(), *this);
+    }
+
+    ObserverListSingleton::getInstance().addObserver (ContextualMenuBitmapSingleton::getInstance().getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (secIcon_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (gameData_.getSec().getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (companyBeingCleaned_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (gameData_.isPlayerInTheGame().getObservableId(), *this);
+  }
+
+
+
+  void GameMenu::close()
+  {
+    stopObserving();
+  }
+
+
+
   void GameMenu::notifyObserver (I_ObservableId const & observableId)
   {
     isLastFetchedBitmapUpToDate_ = false; // TODO: should only set this to false when a change is detected
@@ -186,17 +209,9 @@ namespace it
         next_ = viewData_.getCompanyMenu (*companyBeingCleaned_.getPointer());
       }
     }
-    else if (&ContextualMenuBitmapSingleton::getInstance().getObservableId() == &observableId) {
-      if (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap() != nullptr) {
-        if (contextualMenuObservableId_ != nullptr) {
-          ObserverListSingleton::getInstance().removeObserver (*contextualMenuObservableId_, *this);
-        }
-        ObserverListSingleton::getInstance().addObserver (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap()->getObservableId(), *this);
-        contextualMenuObservableId_ = &ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap()->getObservableId();
-      }
-      else {
-        ObserverListSingleton::getInstance().removeObserver (*contextualMenuObservableId_, *this);
-        contextualMenuObservableId_ = nullptr;
+    else if (&contextualMenuBitmapSingleton_.getObservableId() == &observableId) {
+      if (contextualMenuBitmapSingleton_.getContextualMenuBitmap() != nullptr) {
+        ObserverListSingleton::getInstance().addObserver (contextualMenuBitmapSingleton_.getContextualMenuBitmap()->getObservableId(), *this);
       }
     }
     else if (&gameData_.isPlayerInTheGame().getObservableId() == &observableId) {

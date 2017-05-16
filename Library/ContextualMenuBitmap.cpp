@@ -237,7 +237,7 @@ namespace it
   void ContextualMenuBitmap::notifyObserver (I_ObservableId const & id)
   {
     isLastFetchedBitmapUpToDate_ = false;
-      ObserverListSingleton::getInstance().notifyObservers (observableId_);
+    ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }
 
 

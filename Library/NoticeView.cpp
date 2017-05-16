@@ -102,4 +102,16 @@ namespace it
   {
     return next_;
   }
+
+
+
+  void NoticeView::open()
+  {
+  }
+
+
+
+  void NoticeView::close()
+  {
+  }
 }

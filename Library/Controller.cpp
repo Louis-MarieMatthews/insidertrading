@@ -91,13 +91,14 @@ namespace it
   {
     // TODO: those variables could maybe be initialised in the constructor of a class (this one or a new one)
     Duration time;
-    ViewData viewData (time, windowDimensions_);
-    currentView_ = viewData.getInsiderTradingLegalNoticeView();
+    ObservablePointer<I_GameData> gameData;
+    ViewData viewData (gameData, time, windowDimensions_);
+    currentView_ = viewData.getMainMenu(); // TODO: TEMP (display insider trading ln)
     eventAdapter_ = new DefaultAllegroEventAdapter (timerFps_, timerCentiseconds_);
 
     al_start_timer (timerCentiseconds_);
     al_start_timer (timerFps_);
-
+    currentView_->open();
     while (currentView_ != nullptr) {
       ALLEGRO_EVENT e;
       al_wait_for_event (eventQueue_, &e);
@@ -113,9 +114,13 @@ namespace it
         al_draw_bitmap (currentView_->fetchBitmap(), 0, 0, 0);
         al_flip_display();
       }
-      if (currentView_->getNext() != currentView_) {
+      if (currentView_->getNext() != currentView_) { // TODO: instead, could maybe use a method like viewData.getCurrentView()
         I_BitmapView * oldView = currentView_;
         currentView_ = currentView_->getNext();
+        if (currentView_ != nullptr) {
+          currentView_->open();
+        }
+        oldView->close();
         oldView->reset();
       }
     }

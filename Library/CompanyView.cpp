@@ -5,6 +5,15 @@
 
 namespace it
 {
+  void CompanyView::stopObserving()
+  {
+    ObserverListSingleton::getInstance().removeObserver (mapBitmap_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (company_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (isPlayerInTheGame_.getObservableId(), *this);
+  }
+
+
+
   CompanyView::CompanyView (Company & company, ViewData & viewData, PlanarDimensions const & dimensions) :
     mapBitmap_ (MapFormat (company.getMap(), dimensions), company.getMap(), PlanarPosition (0, 0)),
     company_ (company),
@@ -20,19 +29,13 @@ namespace it
     playerPosition_ (viewData.getGameData().getPointer()->getPlayerPosition()),
     viewData_ (viewData)
   {
-    ObserverListSingleton::getInstance().addObserver (mapBitmap_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().addObserver (company_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().addObserver (isPlayerInTheGame_.getObservableId(), *this);
   }
 
 
 
   CompanyView::~CompanyView()
   {
-    ObserverListSingleton::getInstance().removeObserver (mapBitmap_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().removeObserver (company_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().removeObserver (isPlayerInTheGame_.getObservableId(), *this);
-
+    stopObserving();
     if (bitmap_ != nullptr) {
       al_destroy_bitmap (bitmap_);
     }
@@ -115,6 +118,22 @@ namespace it
   I_BitmapView * CompanyView::getNext()
   {
     return next_;
+  }
+
+
+
+  void CompanyView::open()
+  {
+    ObserverListSingleton::getInstance().addObserver (mapBitmap_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (company_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (isPlayerInTheGame_.getObservableId(), *this);
+  }
+
+
+
+  void CompanyView::close()
+  {
+    stopObserving();
   }
 
 

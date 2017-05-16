@@ -10,5 +10,7 @@ namespace it
   public:
     virtual ~I_BitmapView() {};
     virtual I_BitmapView * getNext() = 0;
+    virtual void open() = 0;
+    virtual void close() = 0;
   };
 }

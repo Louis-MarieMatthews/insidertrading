@@ -19,6 +19,7 @@ namespace it
 
   Duration::~Duration()
   {
+    ObserverListSingleton::getInstance().removeObservable (observableId_);
   }
 
 

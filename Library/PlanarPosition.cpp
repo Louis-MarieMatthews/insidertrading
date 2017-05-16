@@ -13,6 +13,13 @@ namespace it
 
 
 
+  PlanarPosition::~PlanarPosition()
+  {
+    ObserverListSingleton::getInstance().removeObservable (observableId_);
+  }
+
+
+
   const int& PlanarPosition::getX() const
   {
     return x_;

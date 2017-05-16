@@ -38,5 +38,7 @@ namespace it
     virtual bool const & isLastFetchedBitmapUpToDate() const override;
     virtual ALLEGRO_BITMAP * fetchBitmap() override;
     virtual I_BitmapView * getNext() override;
+    virtual void open() override;
+    virtual void close() override;
   };
 }

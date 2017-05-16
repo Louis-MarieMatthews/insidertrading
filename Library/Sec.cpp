@@ -79,6 +79,8 @@ namespace it
 
   Sec::~Sec()
   {
+    ObserverListSingleton::getInstance().removeObserver (time_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObservable (observableId_);
   }
 
 

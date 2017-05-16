@@ -15,6 +15,7 @@ namespace it
 
   public:
     ObservablePointer();
+    ~ObservablePointer();
     ObservablePointer (T *);
     T * getPointer();
     void setPointer (T *);
@@ -29,6 +30,14 @@ namespace it
   inline ObservablePointer<T>::ObservablePointer() :
     ptr_ (nullptr)
   {
+  }
+
+
+
+  template<class T>
+  inline ObservablePointer<T>::~ObservablePointer()
+  {
+    ObserverListSingleton::getInstance().removeObservable (observableId_);
   }
 
 

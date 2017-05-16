@@ -14,6 +14,7 @@ namespace it
 
   public:
     PlayerBalance();
+    ~PlayerBalance();
 
     unsigned long long const & getMoney() const;
     std::string getString() const;

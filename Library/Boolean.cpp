@@ -11,6 +11,13 @@ namespace it
 
 
 
+  Boolean::~Boolean()
+  {
+    ObserverListSingleton::getInstance().removeObservable (observableId_);
+  }
+
+
+
   bool const & Boolean::getValue() const
   {
     return value_;

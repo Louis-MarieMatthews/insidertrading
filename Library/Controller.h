@@ -16,19 +16,22 @@
 // TODO: refactor in singleton?
 // TODO: use dependency injection pattern?
 // TODO: refactor: variables initialisation could be moved in subfunctions
+// TODO: separate allegro initialisation, loop and view / game logic?
 namespace it
 {
   class Controller
   {
-    const unsigned int      FPS_ {60};
+    const unsigned int            FPS_ {60};
+                                  
+    I_BitmapView *                currentView_;
+    I_AllegroEventAdapter *       eventAdapter_;
+    ALLEGRO_EVENT_QUEUE*          eventQueue_;
+    ALLEGRO_TIMER *               timerCentiseconds_;
+    ALLEGRO_TIMER *               timerFps_;
+    ALLEGRO_DISPLAY *             window_;
+    PlanarDimensions              windowDimensions_;
+    ObservablePointer<I_GameData> gameData_; // TODO: move in another class
 
-    I_BitmapView *          currentView_;
-    I_AllegroEventAdapter * eventAdapter_;
-    ALLEGRO_EVENT_QUEUE*    eventQueue_;
-    ALLEGRO_TIMER *         timerCentiseconds_;
-    ALLEGRO_TIMER *         timerFps_;
-    ALLEGRO_DISPLAY *       window_;
-    PlanarDimensions        windowDimensions_;
     Controller();
     Controller (Controller const &) = delete;
     Controller & operator= (Controller const &) = delete;

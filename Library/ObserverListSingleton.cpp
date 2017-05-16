@@ -23,9 +23,16 @@ namespace it
 
 
 
-  void ObserverListSingleton::removeObserver (I_ObservableId const & observable, I_ConstantObserver & observer)
+  void ObserverListSingleton::removeObserver (I_ObservableId const & observableId, I_ConstantObserver & observer)
   {
-    observers_[&observable].erase (&observer);
+    observers_[&observableId].erase (&observer);
+  }
+
+
+
+  void ObserverListSingleton::removeObservable (I_ObservableId & observableId)
+  {
+    observers_.erase (&observableId);
   }
 
 

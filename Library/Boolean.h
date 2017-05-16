@@ -12,6 +12,7 @@ namespace it
 
   public:
     Boolean (bool const &);
+    ~Boolean();
     bool const & getValue() const;
     void setValue (bool const &);
     void operator= (bool const &);

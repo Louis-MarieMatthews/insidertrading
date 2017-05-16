@@ -41,6 +41,10 @@ namespace it
           items_[currentRow][currentColumn] = new DocumentMapItem (PlanarPosition (currentRow, currentColumn));
           documents_.insert (items_[currentRow][currentColumn]);
         }
+        else if (item == "3") {
+          items_[currentRow][currentColumn] = nullptr;
+          playerEntryPoint_ = PlanarPosition (currentRow, currentColumn);
+        }
       }
     }
   }

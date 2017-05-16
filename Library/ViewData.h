@@ -9,23 +9,23 @@ namespace it
 {
   class ViewData
   {
-    I_BitmapView *                      exit_;
-    ObservablePointer<I_GameData>       gameData_;
-    ObservablePointer<I_BitmapView>     gameMenu_;
-    I_BitmapView *                      mainMenu_;
-    std::map<Company *, I_BitmapView *> companyMenus_;
+    std::map<Company *, I_BitmapView *> companyMenus_; // TODO: should be moved in viewOfGame_!
     PlanarDimensions                    dimensions_;
-    I_BitmapView *                      viewOfLegalNotice_;
-    I_BitmapView *                      creditsNoticeView_;
+    I_BitmapView *                      exit_;
+    ObservablePointer<I_GameData> &     gameData_;
+    I_BitmapView *                      mainMenu_;
     Duration const &                    time_;
+    I_BitmapView *                      viewOfCredits_;
+    ObservablePointer<I_BitmapView>     viewOfGame_;
+    I_BitmapView *                      viewOfLegalNotice_;
 
   public:
-    ViewData (Duration const &, PlanarDimensions const &);
+    ViewData (ObservablePointer<I_GameData> &, Duration const &, PlanarDimensions const &);
     ~ViewData();
 
     ObservablePointer<I_GameData> &  getGameData();
     I_BitmapView * getGameView(); // TODO: const!
-    ObservablePointer<I_BitmapView> & getObservableGameView();
+    ObservablePointer<I_BitmapView> const & getObservableGameView();
     I_BitmapView * & getMainMenu();
     I_BitmapView * & getExit();
     I_BitmapView * getCompanyMenu (Company &);
