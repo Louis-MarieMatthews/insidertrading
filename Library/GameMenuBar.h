@@ -12,13 +12,15 @@ namespace it
 {
   class GameMenuBar : public I_LocatedInteractiveBitmap, public I_ConstantObserver
   {
-    ALLEGRO_BITMAP *        mapBitmap_;
-    FontFormat              fontFormat_;
-    I_GameData &              gameData_;
-    bool                    isLastFetchedBitmapUpToDate_;
-    DefaultObservableId     observableId_;
-    PlanarPosition          position_;
-    DefaultLocatedRectangle rectangle_;
+    ALLEGRO_BITMAP *                   mapBitmap_;
+    FontFormat                         fontFormat_;
+    I_GameData &                       gameData_;
+    Duration const &                   secCountDown_;
+    bool                               isLastFetchedBitmapUpToDate_;
+    DefaultObservableId                observableId_;
+    PlanarPosition                     position_;
+    DefaultLocatedRectangle            rectangle_;
+    ObservablePointer<Company const> & secTarget_;
 
   public:
     GameMenuBar (I_GameData &, PlanarDimensions const & dimensions, PlanarPosition const & position);

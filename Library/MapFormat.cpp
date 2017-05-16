@@ -69,7 +69,7 @@ namespace it
 
 
 
-  int MapFormat::convertXToPixel(int const & x)
+  int MapFormat::convertXToPixel (int const & x)
   {
     return x * itemDimensions_.getWidth();
   }
@@ -78,6 +78,7 @@ namespace it
 
   int MapFormat::convertYToPixel (int const & y)
   {
-    return -static_cast<int> (((y + 1) * itemDimensions_.getHeight())) + mapDimensions_.getHeight();
+    int yInPixel (static_cast<int> (y * itemDimensions_.getHeight()));
+    return -yInPixel + mapDimensions_.getHeight() - itemDimensions_.getHeight();
   }
 }

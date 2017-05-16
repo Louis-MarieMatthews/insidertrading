@@ -17,6 +17,16 @@ namespace it
 
 
 
+  Duration::Duration (unsigned short const & hour, unsigned short const & minute, unsigned short const & second, unsigned short const & centisecond) :
+    hour_ (hour),
+    minute_ (minute),
+    second_ (second),
+    centisecond_ (centisecond)
+  {
+  }
+
+
+
   Duration::~Duration()
   {
     ObserverListSingleton::getInstance().removeObservable (observableId_);
@@ -49,6 +59,37 @@ namespace it
     }
     else {
       centisecond_++;
+    }
+    ObserverListSingleton::getInstance().notifyObservers (observableId_);
+  }
+
+
+
+  void Duration::untick()
+  {
+    if (centisecond_ == 0) {
+      centisecond_ = 59;
+      if (second_ == 0) {
+        second_ = 59;
+        if (minute_ == 0) {
+          minute_ = 59;
+          if (hour_ == 0) {
+            hour_ = 23;
+          }
+          else {
+            hour_--;
+          }
+        }
+        else {
+          minute_--;
+        }
+      }
+      else {
+        second_--;
+      }
+    }
+    else {
+      centisecond_--;
     }
     ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }
@@ -103,5 +144,20 @@ namespace it
   I_ObservableId const & Duration::getObservableId() const
   {
     return observableId_;
+  }
+
+
+
+  bool operator== (Duration const & duration, int const & timeInSecond)
+  {
+    if (duration.getCentisecond() == 0 &&
+        duration.getSecond() == timeInSecond &&
+        duration.getMinute() == 0 &&
+        duration.getHour() == 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }

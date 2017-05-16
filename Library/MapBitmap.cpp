@@ -141,6 +141,7 @@ namespace it
       }
       mapBitmap_ = al_create_bitmap (format_.getMapWidth(), format_.getMapHeight());
       al_set_target_bitmap (mapBitmap_);
+      al_clear_to_color (al_map_rgb (255, 0, 0));
 
       if (structureBitmap_ == nullptr) {
         updateStructureBitmap();
@@ -157,9 +158,8 @@ namespace it
       }
       al_draw_bitmap (playerBitmap_, format_.convertXToPixel (playerPosition_.getX()), format_.convertYToPixel (playerPosition_.getY()), 0);
 
+
       isLastFetchedBitmapUpToDate_ = true;
-
-
       al_set_target_bitmap (targetBitmap);
     }
     return mapBitmap_;

@@ -15,13 +15,14 @@ namespace it
 
   class Sec : public I_ConstantObservable, public I_ConstantObserver
   {
+    static unsigned short const      IDLENESS_S_ {5};
+
     std::set<Company *> const &      companies_;
     ObservablePointer<Company const> currentTarget_;
     I_GameData &                     gameData_;
     PlanarPosition                   initialPosition_;
     bool                             inspecting_;
     unsigned short                   lastSecond_;
-    unsigned short                   maxSecondsOfIdleness_;
     unsigned short                   maxSecondsOfInspectingInsidedCompany_;
     unsigned short                   maxSecondsOfInspectingGenuineCompany_;
     DefaultObservableId              observableId_;
@@ -29,6 +30,7 @@ namespace it
     int                              radius_;
     Duration const &                 time_;
     Duration                         timeSinceInState_;
+    Duration                         stateCountDown_;
 
     Company const & getRandomCompany();
     void updateInspection();
@@ -41,6 +43,7 @@ namespace it
     Company const * getTarget();
     ObservablePointer<Company const> & getObservableTarget();
     Duration const & getInspectingDuration();
+    Duration const & getInspectingCountDown();
 
     // Inherited via I_ConstantObservable
     virtual I_ObservableId const & getObservableId() const override;

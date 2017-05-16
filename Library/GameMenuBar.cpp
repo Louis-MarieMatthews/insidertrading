@@ -2,17 +2,21 @@
 
 #include "ObserverListSingleton.h"
 #include "allegro5\allegro_ttf.h"
+#include "Sec.h"
 
 namespace it
 {
   GameMenuBar::GameMenuBar (I_GameData & gameData, PlanarDimensions const & dimensions, PlanarPosition const & position) :
     fontFormat_ (dimensions),
     gameData_ (gameData),
+    secCountDown_ (gameData.getSec().getInspectingCountDown()),
     isLastFetchedBitmapUpToDate_ (false),
     position_ (position),
-    rectangle_ (position, dimensions)
+    rectangle_ (position, dimensions),
+    secTarget_ (gameData.getSec().getObservableTarget())
   {
     ObserverListSingleton::getInstance().addObserver (gameData.getPlayersMoney().getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (secCountDown_.getObservableId(), *this);
   }
 
 
@@ -22,7 +26,7 @@ namespace it
     if (mapBitmap_ != nullptr) {
       al_destroy_bitmap (mapBitmap_);
     }
-    ObserverListSingleton::getInstance().removeObserver (gameData_.getPlayersMoney().getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (secCountDown_.getObservableId(), *this);
   }
 
 
@@ -65,6 +69,12 @@ namespace it
       al_set_target_bitmap (mapBitmap_);
       al_clear_to_color (al_map_rgb (0, 0, 0));
       al_draw_text (fontFormat_.getFont(), al_map_rgb (255, 255, 255), rectangle_.getWidth() - fontFormat_.getXPadding(), fontFormat_.getYPadding(), ALLEGRO_ALIGN_RIGHT, gameData_.getPlayersMoney().getString().c_str());
+
+      if (secTarget_.getPointer() != nullptr && secTarget_.getPointer()->hasInsiders()) {
+        al_draw_text (fontFormat_.getFont(), al_map_rgb (255, 255, 255), rectangle_.getWidth() / 2, fontFormat_.getYPadding(), ALLEGRO_ALIGN_CENTER, secCountDown_.getString().c_str());
+      }
+
+
       //ALLEGRO_FONT * font (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", 20, 0));
       //al_draw_text (font, al_map_rgb (255, 255, 255), 5, 5, ALLEGRO_ALIGN_CENTER, "prout");
       //al_destroy_font (font);
@@ -127,7 +137,8 @@ namespace it
 
   void GameMenuBar::notifyObserver (I_ObservableId const & observableId)
   {
-    if (&gameData_.getPlayersMoney().getObservableId() == &observableId) {
+    if (&gameData_.getPlayersMoney().getObservableId() == &observableId ||
+        &secCountDown_.getObservableId() == &observableId) {
       isLastFetchedBitmapUpToDate_ = false;
       ObserverListSingleton::getInstance().notifyObservers (observableId_);
     }

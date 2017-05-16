@@ -27,6 +27,7 @@ namespace it
   void Sec::updateInspection()
   {
     timeSinceInState_.tick();
+    stateCountDown_.untick();
 
     if (lastSecond_ == timeSinceInState_.getSecond()) {
       return;
@@ -34,27 +35,33 @@ namespace it
 
     lastSecond_ = timeSinceInState_.getSecond();
 
-    if (currentTarget_.getPointer() == nullptr) {
-      if (timeSinceInState_.getSecond() == maxSecondsOfIdleness_) {
+    if (stateCountDown_ == 0) {
+      if (currentTarget_.getPointer() == nullptr) {
+        timeSinceInState_.reset();
         currentTarget_.setPointer (&getRandomCompany());
+        if (currentTarget_.getPointer()->hasInsiders()) {
+          stateCountDown_ = Duration (0, 0, maxSecondsOfInspectingInsidedCompany_, 0);
+        }
+        else {
+          stateCountDown_ = Duration (0, 0, maxSecondsOfInspectingGenuineCompany_, 0);
+        }
+        ObserverListSingleton::getInstance().notifyObservers (observableId_);
+      }
+      else if (currentTarget_.getPointer()->hasInsiders()) {
+        gameData_.isPlayerInTheGame().setValue (false);
+        timeSinceInState_.reset();
+        currentTarget_.setPointer (nullptr);
+        stateCountDown_ = Duration (0, 0, IDLENESS_S_, 0);
+        ObserverListSingleton::getInstance().notifyObservers (observableId_);
+      }
+      else {
+        timeSinceInState_.reset();
+        currentTarget_.setPointer (nullptr);
+        stateCountDown_ = Duration (0, 0, IDLENESS_S_, 0);
         ObserverListSingleton::getInstance().notifyObservers (observableId_);
       }
     }
-    else if (currentTarget_.getPointer()->hasInsiders()) {
-      if (timeSinceInState_.getSecond() >= maxSecondsOfInspectingInsidedCompany_) {
-        if (currentTarget_.getPointer()->hasInsiders()) {
-          gameData_.isPlayerInTheGame().setValue (false);
-          timeSinceInState_.reset();
-          currentTarget_.setPointer (nullptr);
-          ObserverListSingleton::getInstance().notifyObservers (observableId_);
-        }
-      }
-    }
-    else if (timeSinceInState_.getSecond() >= maxSecondsOfInspectingGenuineCompany_) {
-      timeSinceInState_.reset();
-      currentTarget_.setPointer (nullptr);
-      ObserverListSingleton::getInstance().notifyObservers (observableId_);
-    }
+
   }
 
 
@@ -65,11 +72,11 @@ namespace it
     initialPosition_ (position),
     inspecting_ (false),
     lastSecond_ (-1),
-    maxSecondsOfIdleness_ (5),
     maxSecondsOfInspectingInsidedCompany_ (15),
     maxSecondsOfInspectingGenuineCompany_ (5),
     position_ (position),
     radius_ (300),
+    stateCountDown_ (0, 0, IDLENESS_S_, 0),
     time_ (time)
   {
     ObserverListSingleton::getInstance().addObserver (time_.getObservableId(), *this);
@@ -114,6 +121,13 @@ namespace it
   Duration const & Sec::getInspectingDuration()
   {
     return timeSinceInState_;
+  }
+
+
+
+  Duration const & Sec::getInspectingCountDown()
+  {
+    return stateCountDown_;
   }
 
 
