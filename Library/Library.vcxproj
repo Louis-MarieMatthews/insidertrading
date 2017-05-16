@@ -176,6 +176,7 @@
     <ClCompile Include="DefaultLocatedRectangle.cpp" />
     <ClCompile Include="DefaultObservableId.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="NewGameViewTransition.cpp" />
     <ClCompile Include="NoticeView.cpp" />
     <ClCompile Include="NullContextualMenuChoice.cpp" />
     <ClCompile Include="ObserverListSingleton.cpp" />
@@ -187,6 +188,7 @@
     <ClCompile Include="Sec.cpp" />
     <ClCompile Include="SecIcon.cpp" />
     <ClCompile Include="Duration.cpp" />
+    <ClCompile Include="SimpleViewTransition.cpp" />
     <ClCompile Include="ViewData.cpp" />
     <ClCompile Include="WallCompanyMapItem.cpp" />
   </ItemGroup>
@@ -205,6 +207,7 @@
     <ClInclude Include="DefaultGameData.h" />
     <ClInclude Include="DocumentMapItem.h" />
     <ClInclude Include="GameOverBitmap.h" />
+    <ClInclude Include="I_ViewTransition.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="MapBitmap.h" />
     <ClInclude Include="FloorCompanyMapItem.h" />
@@ -235,6 +238,7 @@
     <ClInclude Include="I_ObservableId.h" />
     <ClInclude Include="I_Rectangle.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="NewGameViewTransition.h" />
     <ClInclude Include="NoticeView.h" />
     <ClInclude Include="NullContextualMenuChoice.h" />
     <ClInclude Include="ObservablePointer.h" />
@@ -248,6 +252,7 @@
     <ClInclude Include="Sec.h" />
     <ClInclude Include="SecIcon.h" />
     <ClInclude Include="Duration.h" />
+    <ClInclude Include="SimpleViewTransition.h" />
     <ClInclude Include="ViewData.h" />
     <ClInclude Include="WallCompanyMapItem.h" />
   </ItemGroup>

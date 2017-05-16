@@ -8,13 +8,14 @@ using json = nlohmann::json;
 
 namespace it
 {
-  DefaultGameData::DefaultGameData() :
+  DefaultGameData::DefaultGameData (Duration const & time, std::string const & gameFilename) :
     companyBeingCleaned_ (nullptr),
     isPlayerInTheGame_ (true),
     playerPosition_ (0, 0),
-    sec_ (*this, PlanarPosition (500, 50), companies_, time_)
+    sec_ (*this, PlanarPosition (500, 50), companies_, time),
+    time_ (time)
   {
-    std::ifstream f ("../gamefiles/games/game0.json");
+    std::ifstream f (std::string ("../gamefiles/games/" + gameFilename).c_str());
     json j;
     f >> j;
     std::set<std::string> const companyList = j.at ("companyList");
@@ -39,7 +40,7 @@ namespace it
 
 
 
-  Duration & DefaultGameData::getTime()
+  Duration const & DefaultGameData::getTime()
   {
     return time_;
   }

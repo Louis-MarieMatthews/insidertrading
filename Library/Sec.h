@@ -27,14 +27,14 @@ namespace it
     DefaultObservableId              observableId_;
     PlanarPosition                   position_;
     int                              radius_;
-    Duration &                       time_;
+    Duration const &                 time_;
     Duration                         timeSinceInState_;
 
     Company const & getRandomCompany();
     void updateInspection();
 
   public:
-    Sec (I_GameData &, PlanarPosition const &, std::set<Company *> const &, Duration &);
+    Sec (I_GameData &, PlanarPosition const &, std::set<Company *> const &, Duration const &);
     ~Sec();
 
     PlanarPosition const & getPosition() const;

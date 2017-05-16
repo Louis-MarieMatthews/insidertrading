@@ -1,18 +1,19 @@
 #include "ViewData.h"
 
 #include "CompanyView.h"
+#include "DefaultGameData.h"
 #include "GameMenu.h"
 #include "MainMenu.h"
 #include "NoticeView.h"
 
 namespace it
 {
-  ViewData::ViewData (I_GameData & gameData, PlanarDimensions const & dimensions) :
+  ViewData::ViewData (Duration const & time, PlanarDimensions const & dimensions) :
     dimensions_ (dimensions),
     exit_ (nullptr),
-    gameData_ (gameData),
-    gameMenu_ (new GameMenu (*this, dimensions)),
-    mainMenu_ (new MainMenu (*this, dimensions))
+    gameData_ (nullptr),
+    mainMenu_ (new MainMenu (*this, dimensions)),
+    time_ (time)
   {
 
 
@@ -30,8 +31,15 @@ namespace it
     for (auto cm : companyMenus_) {
       delete cm.second;
     }
-    delete gameMenu_;
+    if (gameMenu_ != nullptr) {
+      delete gameMenu_;
+    }
     delete mainMenu_;
+
+    if (gameData_.getPointer() != nullptr) {
+      delete gameData_.getPointer();
+      gameData_.setPointer (nullptr);
+    }
 
     if (viewOfLegalNotice_ != nullptr) {
       delete viewOfLegalNotice_;
@@ -43,7 +51,7 @@ namespace it
 
 
 
-  I_GameData & ViewData::getGameData()
+  ObservablePointer<I_GameData> & ViewData::getGameData()
   {
     return gameData_;
   }
@@ -96,5 +104,13 @@ namespace it
   I_BitmapView * ViewData::getCreditsNoticeView()
   {
     return creditsNoticeView_;
+  }
+
+
+
+  void ViewData::createNewGame()
+  {
+    gameData_.setPointer (new DefaultGameData (time_, "game0.json"));
+    gameMenu_ = new GameMenu (*this, dimensions_);
   }
 }

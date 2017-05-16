@@ -59,7 +59,7 @@ namespace it
 
 
 
-  Sec::Sec (I_GameData & gameData, PlanarPosition const & position, std::set<Company *> const & companies, Duration & time) :
+  Sec::Sec (I_GameData & gameData, PlanarPosition const & position, std::set<Company *> const & companies, Duration const & time) :
     companies_ (companies),
     gameData_ (gameData),
     initialPosition_ (position),

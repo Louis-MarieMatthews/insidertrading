@@ -20,7 +20,7 @@ namespace it
     DefaultObservableId             observableId_;
     PlayerBalance &                 playerBalance_;
     PlanarPosition                  position_;
-    Duration &                      time_;
+    Duration const &                time_;
     unsigned long long              dividend_;
     unsigned short                  lastSecond_;
 

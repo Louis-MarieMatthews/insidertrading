@@ -90,8 +90,8 @@ namespace it
   void Controller::startProgram()
   {
     // TODO: those variables could maybe be initialised in the constructor of a class (this one or a new one)
-    DefaultGameData gameData;
-    ViewData viewData (gameData, windowDimensions_);
+    Duration time;
+    ViewData viewData (time, windowDimensions_);
     currentView_ = viewData.getInsiderTradingLegalNoticeView();
     eventAdapter_ = new DefaultAllegroEventAdapter (timerFps_, timerCentiseconds_);
 
@@ -103,7 +103,7 @@ namespace it
       al_wait_for_event (eventQueue_, &e);
       eventAdapter_->update (e);
       if (eventAdapter_->isNewCentisecond()) {
-        gameData.getTime().tick();
+        time.tick();
       }
       if (!eventAdapter_->isFpsFrame()) {
         currentView_->processEvent (*eventAdapter_);

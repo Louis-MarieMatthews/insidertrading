@@ -12,14 +12,14 @@ namespace it
     ObservablePointer<Company> companyBeingCleaned_;
     Boolean                    isPlayerInTheGame_;
     PlayerBalance              playersMoney_;
-    Duration                   time_;
     Sec                        sec_;
     PlanarPosition             playerPosition_;
+    Duration const &           time_;
 
   public:
-    DefaultGameData();
+    DefaultGameData (Duration const &, std::string const &);
     ~DefaultGameData();
-    virtual Duration & getTime() override;
+    virtual Duration const & getTime() override;
     virtual PlayerBalance & getPlayersMoney() override;
     virtual std::set<Company *> const & getCompanies() override;
     virtual ObservablePointer<Company> & getCompanyBeingCleaned() override;

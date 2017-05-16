@@ -32,16 +32,16 @@ namespace it
 
 
   GameMenu::GameMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
-    companyBeingCleaned_ (viewData.getGameData().getCompanyBeingCleaned()),
-    companyIcons_ (getCompanyIcons (viewData.getGameData(), contextualMenu_)),
+    companyBeingCleaned_ (viewData.getGameData().getPointer()->getCompanyBeingCleaned()),
+    companyIcons_ (getCompanyIcons (*viewData.getGameData().getPointer(), contextualMenu_)),
     contextualMenuObservableId_ (nullptr),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
-    gameData_ (viewData.getGameData()),
+    gameData_ (*viewData.getGameData().getPointer()),
     gameOverBitmap_ (dimensions),
-    menuBar_ (viewData.getGameData(), PlanarDimensions (dimensions.getWidth(), 40), PlanarPosition (0, 0)),
+    menuBar_ (*viewData.getGameData().getPointer(), PlanarDimensions (dimensions.getWidth(), 40), PlanarPosition (0, 0)),
     next_ (this),
-    secIcon_ (viewData.getGameData().getSec()),
+    secIcon_ (viewData.getGameData().getPointer()->getSec()),
     viewData_ (viewData)
   {
     ObserverListSingleton::getInstance().addObserver (menuBar_.getObservableId(), *this);
@@ -97,7 +97,10 @@ namespace it
     if (e.wasEscapeKeyPressed()) {
       next_ = viewData_.getMainMenu();
     }
-    else if (viewData_.getGameData().isPlayerInTheGame().getValue()){
+    else if (e.isNewCentisecond()) {
+
+    }
+    else if (gameData_.isPlayerInTheGame().getValue()){
       I_LocatedInteractiveBitmap * menu (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap());
       if (menu != nullptr) {
         menu->processEvent (e);

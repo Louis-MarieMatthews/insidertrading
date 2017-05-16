@@ -11,13 +11,13 @@ namespace it
     companyMap_ (company.getMap()),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
-    isPlayerInTheGame_ (viewData.getGameData().isPlayerInTheGame()),
+    isPlayerInTheGame_ (viewData.getGameData().getPointer()->isPlayerInTheGame()),
     itemHeight_ (15),
     itemWidth_ (15),
     justOpened_ (true),
     mapFormat_ (company.getMap(), dimensions),
     next_ (this),
-    playerPosition_ (viewData.getGameData().getPlayerPosition()),
+    playerPosition_ (viewData.getGameData().getPointer()->getPlayerPosition()),
     viewData_ (viewData)
   {
     ObserverListSingleton::getInstance().addObserver (mapBitmap_.getObservableId(), *this);
@@ -102,7 +102,7 @@ namespace it
       FontFormat ff (20, 40, 40);
 
       //viewData_.getGameData().getSec().getInspectingDuration().getString().c_str()
-      al_draw_text (ff.getFont(), al_map_rgb (0, 0, 0), dimensions_.getWidth() - ff.getXPadding(), ff.getYPadding(), ALLEGRO_ALIGN_RIGHT, viewData_.getGameData().getSec().getInspectingDuration().getString().c_str());
+      al_draw_text (ff.getFont(), al_map_rgb (0, 0, 0), dimensions_.getWidth() - ff.getXPadding(), ff.getYPadding(), ALLEGRO_ALIGN_RIGHT, viewData_.getGameData().getPointer()->getSec().getInspectingDuration().getString().c_str());
 
       al_set_target_bitmap (targetBitmap);
     }

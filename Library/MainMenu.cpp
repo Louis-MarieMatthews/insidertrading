@@ -1,6 +1,8 @@
 #include "MainMenu.h"
 
+#include "NewGameViewTransition.h"
 #include "ObserverListSingleton.h"
+#include "SimpleViewTransition.h"
 
 namespace it
 {
@@ -14,8 +16,8 @@ namespace it
 
   MainMenu::MainMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
     mapBitmap_ (nullptr),
-    buttonPlay_ (getButtonPosition (dimensions, 0), "Play", next_, viewData.getGameView()),
-    buttonQuit_ (getButtonPosition (dimensions, 1), "Quit", next_, viewData.getExit()),
+    buttonPlay_ (getButtonPosition (dimensions, 0), "Play", next_, new NewGameViewTransition (viewData)),
+    buttonQuit_ (getButtonPosition (dimensions, 1), "Quit", next_, new SimpleViewTransition (nullptr)),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
     next_ (this)

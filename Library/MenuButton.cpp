@@ -17,16 +17,16 @@ namespace it
 
 
 
-  MenuButton::MenuButton (PlanarPosition const & position, std::string const & text, I_BitmapView * & next, I_BitmapView * & target) :
+  MenuButton::MenuButton (PlanarPosition const & position, std::string const & text, I_BitmapView * & next, I_ViewTransition * transition) :
     mapBitmap_ (nullptr),
     dimensions_ (WIDTH_, HEIGHT_),
     fontFormat_ (dimensions_, TEXT_PADDING_),
     isLastFetchedBitmapUpToDate_ (false),
+    next_ (next),
     position_ (position),
     rectangle_ (position, dimensions_),
-    target_ (target),
     text_ (text),
-    next_ (next)
+    transition_ (transition)
   {
   }
 
@@ -36,6 +36,9 @@ namespace it
   {
     if (mapBitmap_ != nullptr) {
       al_destroy_bitmap (mapBitmap_);
+    }
+    if (transition_ != nullptr) {
+      delete transition_;
     }
   }
 
@@ -61,7 +64,8 @@ namespace it
     }
     else if (e.wasTheMouseLeftClickReleased()) {
       if (e.isMouseWithin (*this)) {
-        next_ = target_;
+        transition_->prepare();
+        next_ = transition_->getTarget();
       }
     }
   }
