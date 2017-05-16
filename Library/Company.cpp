@@ -101,11 +101,4 @@ namespace it
       }
     }
   }
-
-
-
-  bool operator< (Company const & c1, Company const & c2)
-  {
-    return c1.getName() < c2.getName();
-  }
 }

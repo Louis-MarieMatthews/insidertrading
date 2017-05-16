@@ -183,11 +183,11 @@
     <ClCompile Include="NoticeView.cpp">
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleViewTransition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NewGameViewTransition.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Semantic View</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleViewTransition.cpp">
+      <Filter>Source Files\Semantic View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -371,11 +371,11 @@
     <ClInclude Include="I_ViewTransition.h">
       <Filter>Header Files\Semantic View</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleViewTransition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NewGameViewTransition.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Semantic View</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleViewTransition.h">
+      <Filter>Header Files\Semantic View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

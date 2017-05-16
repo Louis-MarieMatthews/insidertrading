@@ -15,11 +15,11 @@ namespace it
   {
   public:
     virtual virtual ~I_GameData() {};
-    virtual Duration const & getTime() = 0;
+    virtual Duration const & getTime() = 0; // TODO: could be const
     virtual PlayerBalance & getPlayersMoney() = 0; // TODO: rename to getPlayerBalance
     virtual std::set<Company *> const & getCompanies() = 0;
     virtual ObservablePointer<Company> & getCompanyBeingCleaned() = 0;
-    virtual PlanarPosition & getPlayerPosition() = 0;
+    virtual PlanarPosition & getPlayerPosition() = 0; // TODO: const method?
     virtual Sec & getSec() = 0;
     virtual void setCompanyBeingCleaned (Company *) = 0;
     virtual Boolean & isPlayerInTheGame() = 0;

@@ -14,7 +14,7 @@ namespace it
   class Company : public I_ConstantObservable, public I_ConstantObserver
   {
     Boolean                         hasInsiders_;
-    static unsigned long long const insiderCost_ {100};
+    static unsigned long long const insiderCost_ {100}; // TODO: should not be static
     CompanyMap                      map_;
     std::string                     name_;
     DefaultObservableId             observableId_;
@@ -42,6 +42,4 @@ namespace it
     // Inherited via I_ConstantObserver
     virtual void notifyObserver (I_ObservableId const &) override;
   };
-
-  bool operator< (Company const &, Company const &);
 }
