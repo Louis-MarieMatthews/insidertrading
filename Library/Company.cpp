@@ -7,13 +7,14 @@ namespace it
 {
   Company::Company (I_GameData & gameData, unsigned long long const & dividend, std::string const & mapFilename, std::string const & name, PlanarPosition const & position) :
     dividend_ (dividend),
-    time_ (gameData.getTime()),
     hasInsiders_ (false),
+    insiderCost_ (dividend * 10),
     lastSecond_ (-1),
     map_ (gameData, *this, mapFilename),
     name_ (name),
     playerBalance_ (gameData.getPlayersMoney()),
-    position_ (position)
+    position_ (position),
+    time_ (gameData.getTime())
   {
   }
 

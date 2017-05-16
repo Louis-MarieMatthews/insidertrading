@@ -18,7 +18,7 @@ namespace it
     company_ (company),
     isDisabled_ (false),
     playerBalance_ (playerBalance),
-    text_ ("Add insider")
+    text_ (std::string ("Add insider ($" + std::to_string (company.getInsiderCost()) + ")"))
   {
     setDisabled (company_.hasInsiders() || playerBalance_ < company_.getInsiderCost());
     ObserverListSingleton::getInstance().addObserver (company_.getObservableId(), *this);

@@ -13,16 +13,16 @@ namespace it
 {
   class Company : public I_ConstantObservable, public I_ConstantObserver
   {
+    unsigned long long              dividend_;
     Boolean                         hasInsiders_;
-    static unsigned long long const insiderCost_ {100}; // TODO: should not be static
+    unsigned long long              insiderCost_;
+    unsigned short                  lastSecond_;
     CompanyMap                      map_;
     std::string                     name_;
     DefaultObservableId             observableId_;
     PlayerBalance &                 playerBalance_;
     PlanarPosition                  position_;
     Duration const &                time_;
-    unsigned long long              dividend_;
-    unsigned short                  lastSecond_;
 
   public:
     Company (I_GameData &, unsigned long long const &, std::string const &, std::string const &, PlanarPosition const &);
