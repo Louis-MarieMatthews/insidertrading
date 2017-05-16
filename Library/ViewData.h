@@ -31,6 +31,6 @@ namespace it
     I_BitmapView * getCompanyMenu (Company &);
     I_BitmapView * getInsiderTradingLegalNoticeView();
     I_BitmapView * getCreditsNoticeView();
-    void createNewGame();
+    void createNewGame (std::string const &);
   };
 }

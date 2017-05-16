@@ -13,7 +13,9 @@ namespace it
   {
     ALLEGRO_BITMAP *                mapBitmap_;
     MenuButton                      buttonQuit_;
-    MenuButton                      buttonNewGame_;
+    MenuButton                      buttonNewGame1_;
+    MenuButton                      buttonNewGame2_;
+    MenuButton                      buttonNewGame3_;
     MenuButton                      buttonResumeGame_;
     PlanarDimensions                dimensions_;
     bool                            isLastFetchedBitmapUpToDate_;

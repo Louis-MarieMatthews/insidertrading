@@ -1,0 +1,11 @@
+{
+  "companyList": [ "pageIndustries" ],
+  "companies": {
+    "pageIndustries": {
+      "dividend": 15,
+      "map": "pagesindustries.map",
+      "name": "Pages Industries",
+      "position": [ 500, 500 ]
+    }
+  }
+}

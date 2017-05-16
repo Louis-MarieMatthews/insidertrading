@@ -1,0 +1,29 @@
+{
+  "companyList": [ "pageIndustries", "tym", "prout", "camembert" ],
+  "companies": {
+    "pageIndustries": {
+      "dividend": 10,
+      "map": "map0.map",
+      "name": "Pages Industries",
+      "position": [ 150, 300 ]
+    },
+    "tym": {
+      "dividend": 20,
+      "map": "map1.map",
+      "name": "Pages Industries",
+      "position": [ 400, 400 ]
+    },
+    "prout": {
+      "dividend": 8,
+      "map": "map2.map",
+      "name": "Pages Industries",
+      "position": [ 600, 300 ]
+    },
+    "camembert": {
+      "dividend": 15,
+      "map": "map3.map",
+      "name": "Pages Industries",
+      "position": [ 500, 700 ]
+    }
+  }
+}

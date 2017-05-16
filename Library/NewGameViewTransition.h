@@ -8,9 +8,10 @@ namespace it
   class NewGameViewTransition : public I_ViewTransition
   {
     ViewData &     viewData_;
+    std::string    gameFilename_;
 
   public:
-    NewGameViewTransition (ViewData &);
+    NewGameViewTransition (ViewData &, std::string const &);
 
     // Inherited via I_ViewTransition
     virtual I_BitmapView * getTarget() override;

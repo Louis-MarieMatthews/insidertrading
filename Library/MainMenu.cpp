@@ -16,9 +16,11 @@ namespace it
 
   MainMenu::MainMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
     mapBitmap_ (nullptr),
-    buttonNewGame_ (getButtonPosition (dimensions, 1), "New Game", next_, new NewGameViewTransition (viewData)),
+    buttonNewGame1_ (getButtonPosition (dimensions, 1), "New Game 1", next_, new NewGameViewTransition (viewData, "game0.json")),
+    buttonNewGame2_ (getButtonPosition (dimensions, 2), "New Game 2", next_, new NewGameViewTransition (viewData, "game1.json")),
+    buttonNewGame3_ (getButtonPosition (dimensions, 3), "New Game 3", next_, new NewGameViewTransition (viewData, "game2.json")),
     buttonResumeGame_ (getButtonPosition (dimensions, 0), "Resume", next_, new SimpleViewTransition (nullptr)),
-    buttonQuit_ (getButtonPosition (dimensions, 2), "Quit", next_, new SimpleViewTransition (nullptr)),
+    buttonQuit_ (getButtonPosition (dimensions, 4), "Quit", next_, new SimpleViewTransition (nullptr)),
     dimensions_ (dimensions),
     gameData_ (viewData.getGameData()),
     isLastFetchedBitmapUpToDate_ (false),
@@ -26,7 +28,9 @@ namespace it
     viewData_ (viewData)
   {
     ObserverListSingleton::getInstance().addObserver (buttonQuit_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().addObserver (buttonNewGame_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (buttonNewGame1_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (buttonNewGame2_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (buttonNewGame3_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (buttonResumeGame_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (viewData_.getObservableGameView().getObservableId(), *this);
   }
@@ -40,7 +44,9 @@ namespace it
     }
     ObserverListSingleton::getInstance().removeObserver (buttonQuit_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (buttonResumeGame_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().removeObserver (buttonNewGame_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (buttonNewGame1_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (buttonNewGame2_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (buttonNewGame3_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (viewData_.getObservableGameView().getObservableId(), *this);
   }
 
@@ -64,7 +70,9 @@ namespace it
   void MainMenu::processEvent (I_AllegroEventAdapter const & e)
   {
     buttonQuit_.processEvent (e);
-    buttonNewGame_.processEvent (e);
+    buttonNewGame1_.processEvent (e);
+    buttonNewGame2_.processEvent (e);
+    buttonNewGame3_.processEvent (e);
     buttonResumeGame_.processEvent (e);
   }
 
@@ -92,7 +100,9 @@ namespace it
         al_draw_bitmap (buttonResumeGame_.fetchBitmap(), buttonResumeGame_.getPosition().getX(), buttonResumeGame_.getPosition().getY(), 0);
       }
 
-      al_draw_bitmap (buttonNewGame_.fetchBitmap(), buttonNewGame_.getPosition().getX(), buttonNewGame_.getPosition().getY(), 0);
+      al_draw_bitmap (buttonNewGame1_.fetchBitmap(), buttonNewGame1_.getPosition().getX(), buttonNewGame1_.getPosition().getY(), 0);
+      al_draw_bitmap (buttonNewGame2_.fetchBitmap(), buttonNewGame2_.getPosition().getX(), buttonNewGame2_.getPosition().getY(), 0);
+      al_draw_bitmap (buttonNewGame3_.fetchBitmap(), buttonNewGame3_.getPosition().getX(), buttonNewGame3_.getPosition().getY(), 0);
       al_draw_bitmap (buttonQuit_.fetchBitmap(), buttonQuit_.getPosition().getX(), buttonQuit_.getPosition().getY(), 0);
       al_set_target_bitmap (targetBitmap);
     }
@@ -111,7 +121,9 @@ namespace it
   void MainMenu::notifyObserver (I_ObservableId const & observableId)
   {
     if (!buttonQuit_.isLastFetchedBitmapUpToDate() ||
-        !buttonNewGame_.isLastFetchedBitmapUpToDate() ||
+        !buttonNewGame1_.isLastFetchedBitmapUpToDate() ||
+        !buttonNewGame2_.isLastFetchedBitmapUpToDate() ||
+        !buttonNewGame3_.isLastFetchedBitmapUpToDate() ||
         !buttonResumeGame_.isLastFetchedBitmapUpToDate()) {
       isLastFetchedBitmapUpToDate_ = false;
     }

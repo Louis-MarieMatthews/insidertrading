@@ -2,7 +2,8 @@
 
 namespace it
 {
-  NewGameViewTransition::NewGameViewTransition (ViewData & viewData) :
+  NewGameViewTransition::NewGameViewTransition (ViewData & viewData, std::string const & gameFilename) :
+    gameFilename_ (gameFilename),
     viewData_ (viewData)
   {
   }
@@ -24,6 +25,6 @@ namespace it
 
   void NewGameViewTransition::prepare()
   {
-    viewData_.createNewGame();
+    viewData_.createNewGame (gameFilename_);
   }
 }

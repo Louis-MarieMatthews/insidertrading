@@ -115,9 +115,15 @@ namespace it
 
 
 
-  void ViewData::createNewGame()
+  void ViewData::createNewGame (std::string const & filename)
   {
-    gameData_.setPointer (new DefaultGameData (time_, "game0.json"));
+    if (gameData_.getPointer() != nullptr) {
+      delete gameData_.getPointer();
+    }
+    gameData_.setPointer (new DefaultGameData (time_, filename));
+    if (gameMenu_.getPointer() != nullptr) {
+      delete gameMenu_.getPointer();
+    }
     gameMenu_.setPointer (new GameMenu (*this, dimensions_));
   }
 }
