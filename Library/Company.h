@@ -21,11 +21,11 @@ namespace it
     PlayerBalance &                 playerBalance_;
     PlanarPosition                  position_;
     Duration &                      time_;
-    unsigned long long              dividende_;
+    unsigned long long              dividend_;
     unsigned short                  lastSecond_;
 
   public:
-    Company (I_GameData &, std::string const &, PlayerBalance &, PlanarPosition const &);
+    Company (unsigned long long const &, std::string const &, I_GameData &, std::string const &, PlanarPosition const &);
     ~Company();
     CompanyMap & getMap();
     std::string const & getName() const;

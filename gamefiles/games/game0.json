@@ -1,0 +1,23 @@
+{
+  "companyList": [ "sarifIndustries", "versalife", "tym" ],
+  "companies": {
+    "sarifIndustries": {
+      "dividend": 15,
+      "map": "map0.map",
+      "name": "Sarif Industries",
+      "position": [ 100, 100 ]
+    },
+    "versalife": {
+      "dividend": 10,
+      "map": "map0.map",
+      "name": "Versalife",
+      "position": [ 400, 400 ]
+    },
+    "tym": {
+      "dividend": 7,
+      "map": "map0.map",
+      "name": "TYM",
+      "position": [ 800, 600 ]
+    }
+  }
+}

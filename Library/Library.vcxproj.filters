@@ -49,6 +49,9 @@
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{9c5e3374-8c6b-4e67-8a0f-6f13a1d43ce2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{a947207f-dde4-4eb1-8b61-5027ecfa5cc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -178,7 +181,7 @@
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
     <ClCompile Include="NoticeView.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Visual View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -354,7 +357,10 @@
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
     <ClInclude Include="NoticeView.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

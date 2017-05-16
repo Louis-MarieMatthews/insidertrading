@@ -22,7 +22,7 @@ namespace it
     ObservableSet<I_CompanyMapItem *> documents_;
 
   public:
-    CompanyMap (I_GameData &, Company &);
+    CompanyMap (I_GameData &, Company &, std::string const &);
     ~CompanyMap();
     I_CompanyMapItem const * getItem (unsigned short const &, unsigned short const &) const;
     unsigned short const & getNumberOfRows() const;

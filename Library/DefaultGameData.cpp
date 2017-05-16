@@ -1,5 +1,11 @@
 #include "DefaultGameData.h"
 
+#include "json.hpp"
+
+#include <fstream>
+
+using json = nlohmann::json;
+
 namespace it
 {
   DefaultGameData::DefaultGameData() :
@@ -8,9 +14,18 @@ namespace it
     playerPosition_ (0, 0),
     sec_ (*this, PlanarPosition (500, 50), companies_, time_)
   {
-    companies_.insert (new Company (*this, "Lockheed Martin", playersMoney_, PlanarPosition (100, 100)));
-    companies_.insert (new Company (*this, "Sarif Industries", playersMoney_, PlanarPosition (300, 500)));
-    companies_.insert (new Company (*this, "Versalife", playersMoney_, PlanarPosition (600, 500)));
+    std::ifstream f ("../gamefiles/games/game0.json");
+    json j;
+    f >> j;
+    std::set<std::string> const companyList = j.at ("companyList");
+    for (auto e : companyList) {
+      unsigned long long dividend = j.at ("companies").at (e).at ("dividend");
+      std::string map = j.at ("companies").at (e).at ("map");
+      std::string name = j.at ("companies").at (e).at ("name");
+      int x = j.at ("companies").at (e).at ("position").at (0);
+      int y = j.at ("companies").at (e).at ("position").at (1);
+      companies_.insert (new Company (10, map, *this, name, PlanarPosition (x, y)));
+    }
   }
 
 

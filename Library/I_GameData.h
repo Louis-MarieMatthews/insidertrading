@@ -16,7 +16,7 @@ namespace it
   public:
     virtual virtual ~I_GameData() {};
     virtual Duration & getTime() = 0;
-    virtual PlayerBalance & getPlayersMoney() = 0;
+    virtual PlayerBalance & getPlayersMoney() = 0; // TODO: rename to getPlayerBalance
     virtual std::set<Company *> const & getCompanies() = 0;
     virtual ObservablePointer<Company> & getCompanyBeingCleaned() = 0;
     virtual PlanarPosition & getPlayerPosition() = 0;

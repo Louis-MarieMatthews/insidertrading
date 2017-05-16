@@ -14,10 +14,12 @@ namespace it
     gameMenu_ (new GameMenu (*this, dimensions)),
     mainMenu_ (new MainMenu (*this, dimensions))
   {
+
+
       std::vector<std::string> lines (3);
-      lines[0] = "A game made by Louis-Marie Matthews. The font used in the game is";
-      lines[1] = "named Good Times RG and it is used and licensed by Ray Larabie.";
-      lines[2] = "2D graphics are powered by the C++ Allegro library.";
+      lines[0] = "A game made by Louis-Marie Matthews. The font used in the game";
+      lines[1] = "is named Good Times RG and it is used and licensed by Ray Larabie.";
+      lines[2] = "2D graphics are powered by the C++ Allegro library. JSON for Modern C++ by Niels Lohmann.";
       creditsNoticeView_ = new NoticeView (mainMenu_, dimensions_, lines, *this);
   }
 

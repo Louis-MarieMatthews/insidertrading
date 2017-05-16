@@ -5,14 +5,14 @@
 
 namespace it
 {
-  Company::Company (I_GameData & gameData, std::string const & name, PlayerBalance & playerBalance, PlanarPosition const & position) :
-    dividende_ (10),
+  Company::Company (unsigned long long const & dividend, std::string const & mapFilename, I_GameData & gameData, std::string const & name, PlanarPosition const & position) :
+    dividend_ (dividend),
     time_ (gameData.getTime()),
     hasInsiders_ (false),
     lastSecond_ (-1),
-    map_ (gameData, *this),
+    map_ (gameData, *this, mapFilename),
     name_ (name),
-    playerBalance_ (playerBalance),
+    playerBalance_ (gameData.getPlayersMoney()),
     position_ (position)
   {
   }
@@ -97,7 +97,7 @@ namespace it
     if (&time_.getObservableId() == &observableId && hasInsiders_) {
       if (lastSecond_ != time_.getSecond()) {
         lastSecond_ = time_.getSecond();
-        playerBalance_+= (dividende_);
+        playerBalance_+= (dividend_);
       }
     }
   }

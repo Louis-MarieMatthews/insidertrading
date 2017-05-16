@@ -11,14 +11,14 @@
 
 namespace it
 {
-  CompanyMap::CompanyMap (I_GameData & gameData, Company & company) :
+  CompanyMap::CompanyMap (I_GameData & gameData, Company & company, std::string const & filename) :
     company_ (company),
     playerEntryPoint_ (1, 1),
     playerPosition_ (1, 1),
     speed_ (1)
   {
     std::ifstream file;
-    file.open ("../gamefiles/maps/map0.map", std::ios::in);
+    file.open ((std::string ("../gamefiles/maps/" + filename)).c_str(), std::ios::in);
     if (!file) {
       throw std::exception(); // TODO: custom ex
     }
