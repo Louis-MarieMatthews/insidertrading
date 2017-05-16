@@ -8,12 +8,24 @@
 
 namespace it
 {
+  void ViewData::destroyGameView()
+  {
+    if (viewOfGame_.getPointer() != nullptr) {
+      delete viewOfGame_.getPointer();
+    }
+    for (auto pair : companyMenus_) {
+      delete pair.second;
+    }
+  }
+
+
+
   ViewData::ViewData (ObservablePointer<I_GameData> & gameData, Duration const & time, PlanarDimensions const & dimensions) :
     dimensions_ (dimensions),
     exit_ (nullptr),
     gameData_ (gameData),
     mainMenu_ (new MainMenu (gameData, *this, dimensions)),
-    time_ (time)
+    programTime_ (time)
   {
 
 
@@ -117,13 +129,11 @@ namespace it
 
   void ViewData::createNewGame (std::string const & filename)
   {
-    if (viewOfGame_.getPointer() != nullptr) {
-      delete viewOfGame_.getPointer();
-    }
+    destroyGameView();
     if (gameData_.getPointer() != nullptr) {
       delete gameData_.getPointer();
     }
-    gameData_.setPointer (new DefaultGameData (time_, filename));
+    gameData_.setPointer (new DefaultGameData (programTime_, filename));
     viewOfGame_.setPointer (new GameMenu (*this, dimensions_));
   }
 }

@@ -13,7 +13,7 @@ namespace it
     isPlayerInTheGame_ (true),
     playerPosition_ (0, 0),
     sec_ (*this, PlanarPosition (500, 50), companies_, time),
-    time_ (time)
+    programTime_ (time)
   {
     std::ifstream f (std::string ("../gamefiles/games/" + gameFilename).c_str());
     json j;
@@ -27,12 +27,18 @@ namespace it
       int y = j.at ("companies").at (e).at ("position").at (1);
       companies_.insert (new Company (*this, dividend, map, name, PlanarPosition (x, y)));
     }
+    ObserverListSingleton::getInstance().addObserver (isPlayerInTheGame_.getObservableId(), *this);
+    if (isPlayerInTheGame_) {
+      ObserverListSingleton::getInstance().addObserver (programTime_.getObservableId(), *this);
+    }
   }
 
 
 
   DefaultGameData::~DefaultGameData()
   {
+    ObserverListSingleton::getInstance().removeObserver (isPlayerInTheGame_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (programTime_.getObservableId(), *this);
     for (auto c : companies_) {
       delete c;
     }
@@ -42,7 +48,7 @@ namespace it
 
   Duration const & DefaultGameData::getTime()
   {
-    return time_;
+    return gameTime_;
   }
 
 
@@ -92,5 +98,22 @@ namespace it
   Boolean & DefaultGameData::isPlayerInTheGame()
   {
     return isPlayerInTheGame_;
+  }
+
+
+
+  void DefaultGameData::notifyObserver (I_ObservableId const & observableId)
+  {
+    if (&programTime_.getObservableId() == &observableId) {
+      gameTime_.tick();
+    }
+    else if (&isPlayerInTheGame_.getObservableId() == &observableId) {
+      if (isPlayerInTheGame_) {
+        ObserverListSingleton::getInstance().addObserver (programTime_.getObservableId(), *this);
+      }
+      else {
+        ObserverListSingleton::getInstance().removeObserver (programTime_.getObservableId(), *this);
+      }
+    }
   }
 }

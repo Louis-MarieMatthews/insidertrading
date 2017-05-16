@@ -14,10 +14,12 @@ namespace it
     I_BitmapView *                      exit_;
     ObservablePointer<I_GameData> &     gameData_;
     I_BitmapView *                      mainMenu_;
-    Duration const &                    time_;
+    Duration const &                    programTime_;
     I_BitmapView *                      viewOfCredits_;
     ObservablePointer<I_BitmapView>     viewOfGame_;
     I_BitmapView *                      viewOfLegalNotice_;
+
+    void destroyGameView();
 
   public:
     ViewData (ObservablePointer<I_GameData> &, Duration const &, PlanarDimensions const &);

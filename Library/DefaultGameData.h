@@ -6,7 +6,7 @@
 
 namespace it
 {
-  class DefaultGameData : public I_GameData
+  class DefaultGameData : public I_GameData, public I_ConstantObserver
   {
     std::set<Company *>        companies_;
     ObservablePointer<Company> companyBeingCleaned_;
@@ -14,7 +14,8 @@ namespace it
     PlayerBalance              playersMoney_;
     Sec                        sec_;
     PlanarPosition             playerPosition_;
-    Duration const &           time_;
+    Duration const &           programTime_;
+    Duration                   gameTime_;
 
   public:
     DefaultGameData (Duration const &, std::string const &);
@@ -27,5 +28,8 @@ namespace it
     virtual Sec & getSec() override;
     virtual void setCompanyBeingCleaned (Company *) override;
     virtual Boolean & isPlayerInTheGame() override;
+
+    // Inherited via I_ConstantObserver
+    virtual void notifyObserver(I_ObservableId const &) override;
   };
 }
