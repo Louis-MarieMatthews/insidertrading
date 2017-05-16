@@ -25,14 +25,14 @@ namespace it
     unsigned short                  lastSecond_;
 
   public:
-    Company (unsigned long long const &, std::string const &, I_GameData &, std::string const &, PlanarPosition const &);
+    Company (I_GameData &, unsigned long long const &, std::string const &, std::string const &, PlanarPosition const &);
     ~Company();
     CompanyMap & getMap();
     std::string const & getName() const;
     PlanarPosition const & getPosition() const;
     unsigned long long const & getInsiderCost() const;
-
     Boolean const & hasInsiders() const;
+
     void addInsiders();
     void removeInsiders();
 

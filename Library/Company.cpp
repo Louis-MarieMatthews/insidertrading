@@ -5,7 +5,7 @@
 
 namespace it
 {
-  Company::Company (unsigned long long const & dividend, std::string const & mapFilename, I_GameData & gameData, std::string const & name, PlanarPosition const & position) :
+  Company::Company (I_GameData & gameData, unsigned long long const & dividend, std::string const & mapFilename, std::string const & name, PlanarPosition const & position) :
     dividend_ (dividend),
     time_ (gameData.getTime()),
     hasInsiders_ (false),

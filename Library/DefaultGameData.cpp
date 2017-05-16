@@ -25,7 +25,7 @@ namespace it
       std::string name = j.at ("companies").at (e).at ("name");
       int x = j.at ("companies").at (e).at ("position").at (0);
       int y = j.at ("companies").at (e).at ("position").at (1);
-      companies_.insert (new Company (10, map, *this, name, PlanarPosition (x, y)));
+      companies_.insert (new Company (*this, 10, map, name, PlanarPosition (x, y)));
     }
   }
 
