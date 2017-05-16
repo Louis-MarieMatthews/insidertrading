@@ -39,7 +39,13 @@ namespace it
 
   unsigned int CompanyContextualMenu::getLongestChoiceCharacterCount() const
   {
-    return 10;
+    unsigned int biggestLength (0);
+    for (I_ContextualMenuChoice* cmc : choices_) {
+      if (cmc->getText().length() > biggestLength) {
+        biggestLength = cmc->getText().length();
+      }
+    }
+    return biggestLength;
   }
 
 

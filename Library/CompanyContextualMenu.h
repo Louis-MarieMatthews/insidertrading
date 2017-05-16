@@ -13,7 +13,7 @@ namespace it
   class CompanyContextualMenu : public I_ContextualMenu
   {
     std::vector<I_ContextualMenuChoice *> choices_;
-    I_GameData &                            gameData_;
+    I_GameData &                          gameData_;
     DefaultObservableId                   observableId_;
 
   public:
