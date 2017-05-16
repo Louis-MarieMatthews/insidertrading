@@ -44,6 +44,13 @@ namespace it
 
 
 
+  I_ViewTransition * MenuButton::getViewTransition()
+  {
+    return transition_;
+  }
+
+
+
   void MenuButton::reset()
   {
   }

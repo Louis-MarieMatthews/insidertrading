@@ -11,7 +11,7 @@ namespace it
   {
     I_BitmapView *                      exit_;
     ObservablePointer<I_GameData>       gameData_;
-    I_BitmapView *                      gameMenu_;
+    ObservablePointer<I_BitmapView>     gameMenu_;
     I_BitmapView *                      mainMenu_;
     std::map<Company *, I_BitmapView *> companyMenus_;
     PlanarDimensions                    dimensions_;
@@ -24,7 +24,8 @@ namespace it
     ~ViewData();
 
     ObservablePointer<I_GameData> &  getGameData();
-    I_BitmapView * & getGameView(); // TODO: const!
+    I_BitmapView * getGameView(); // TODO: const!
+    ObservablePointer<I_BitmapView> & getObservableGameView();
     I_BitmapView * & getMainMenu();
     I_BitmapView * & getExit();
     I_BitmapView * getCompanyMenu (Company &);

@@ -16,6 +16,13 @@ namespace it
 
 
 
+  void SimpleViewTransition::setTarget (I_BitmapView * target)
+  {
+    target_ = target;
+  }
+
+
+
   void SimpleViewTransition::prepare()
   {
   }

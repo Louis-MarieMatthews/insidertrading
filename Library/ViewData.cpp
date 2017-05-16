@@ -31,8 +31,8 @@ namespace it
     for (auto cm : companyMenus_) {
       delete cm.second;
     }
-    if (gameMenu_ != nullptr) {
-      delete gameMenu_;
+    if (gameMenu_.getPointer() != nullptr) {
+      delete gameMenu_.getPointer();
     }
     delete mainMenu_;
 
@@ -58,7 +58,14 @@ namespace it
 
 
 
-  I_BitmapView * & ViewData::getGameView()
+  I_BitmapView * ViewData::getGameView()
+  {
+    return gameMenu_.getPointer();
+  }
+
+
+
+  ObservablePointer<I_BitmapView> & ViewData::getObservableGameView()
   {
     return gameMenu_;
   }
@@ -111,6 +118,6 @@ namespace it
   void ViewData::createNewGame()
   {
     gameData_.setPointer (new DefaultGameData (time_, "game0.json"));
-    gameMenu_ = new GameMenu (*this, dimensions_);
+    gameMenu_.setPointer (new GameMenu (*this, dimensions_));
   }
 }

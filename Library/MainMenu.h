@@ -11,13 +11,16 @@ namespace it
 {
   class MainMenu : public I_BitmapView, public I_ConstantObserver
   {
-    ALLEGRO_BITMAP *    mapBitmap_;
-    MenuButton          buttonQuit_;
-    MenuButton          buttonPlay_;
-    PlanarDimensions    dimensions_;
-    bool                isLastFetchedBitmapUpToDate_;
-    I_BitmapView *      next_;
-    DefaultObservableId observableId_;
+    ALLEGRO_BITMAP *                mapBitmap_;
+    MenuButton                      buttonQuit_;
+    MenuButton                      buttonNewGame_;
+    MenuButton                      buttonResumeGame_;
+    PlanarDimensions                dimensions_;
+    bool                            isLastFetchedBitmapUpToDate_;
+    I_BitmapView *                  next_;
+    DefaultObservableId             observableId_;
+    ObservablePointer<I_GameData> & gameData_;
+    ViewData &                      viewData_;
 
     static const unsigned BUTTON_WIDTH_ {500};
     static const unsigned TOP_MARGIN_ {200};

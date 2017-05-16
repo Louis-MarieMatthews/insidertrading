@@ -9,6 +9,7 @@ namespace it
   public:
     virtual ~I_ViewTransition() {};
     virtual I_BitmapView * getTarget() = 0;
+    virtual void setTarget (I_BitmapView *) = 0;
     virtual void prepare() = 0;
   };
 }

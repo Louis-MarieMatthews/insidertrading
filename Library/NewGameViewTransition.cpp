@@ -16,6 +16,12 @@ namespace it
 
 
 
+  void NewGameViewTransition::setTarget (I_BitmapView * view)
+  {
+  }
+
+
+
   void NewGameViewTransition::prepare()
   {
     viewData_.createNewGame();

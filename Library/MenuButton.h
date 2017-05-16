@@ -32,17 +32,14 @@ namespace it
   public:
     MenuButton (PlanarPosition const &, std::string const &, I_BitmapView * &, I_ViewTransition *); // TODO: would it not be better for the menu to listen to its buttons which would notify their parent menu when they're triggered
     ~MenuButton();
+    I_ViewTransition * getViewTransition();
 
     virtual bool const & isLastFetchedBitmapUpToDate() const override;
     virtual PlanarPosition const & getPosition() const override;
     virtual ALLEGRO_BITMAP * fetchBitmap() override;
     virtual void processEvent (I_AllegroEventAdapter const &) override;
     virtual void reset() override;
-
-    // Inherited via I_LocatedInteractiveBitmap
     virtual I_ObservableId const & getObservableId() const override;
-
-    // Inherited via I_LocatedInteractiveBitmap
     virtual unsigned int const & getWidth() const override;
     virtual unsigned int const & getHeight() const override;
     virtual bool contains (PlanarPosition const &) const override;

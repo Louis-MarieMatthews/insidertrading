@@ -14,6 +14,7 @@ namespace it
 
     // Inherited via I_ViewTransition
     virtual I_BitmapView * getTarget() override;
+    virtual void setTarget (I_BitmapView *) override;
     virtual void prepare() override;
   };
 }
