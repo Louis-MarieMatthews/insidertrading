@@ -177,6 +177,9 @@
     <ClCompile Include="ContextualMenuBitmap.cpp">
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
+    <ClCompile Include="InsiderTradingLegalNoticeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -349,6 +352,9 @@
     </ClInclude>
     <ClInclude Include="ContextualMenuBitmap.h">
       <Filter>Header Files\Visual View</Filter>
+    </ClInclude>
+    <ClInclude Include="InsiderTradingLegalNoticeView.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,8 @@
 // TODO: separate interface & implementation
 namespace it
 {
+  enum Style {small, large};
+
   class FontFormat
   {
     ALLEGRO_FONT * font_;
@@ -14,13 +16,14 @@ namespace it
     short          paddingX_;
     short          paddingY_;
 
-    static unsigned short getFontSize (PlanarDimensions const &);
-    static unsigned short getYPadding (PlanarDimensions const &);
+    static unsigned short getFontSize (PlanarDimensions const &, Style const &);
+    static unsigned short getYPadding (PlanarDimensions const &, Style const &);
 
   public:
     FontFormat (unsigned short const &, short const &, short const &);
     FontFormat (PlanarDimensions const &, unsigned short const &);
     FontFormat (PlanarDimensions const &);
+    FontFormat (PlanarDimensions const &, Style const &);
     ~FontFormat();
 
     ALLEGRO_FONT * getFont() const; // TODO: return const font

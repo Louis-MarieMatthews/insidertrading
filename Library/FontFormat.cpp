@@ -6,25 +6,35 @@
 
 namespace it
 {
-  unsigned short FontFormat::getFontSize (PlanarDimensions const & dimensions)
+  unsigned short FontFormat::getFontSize (PlanarDimensions const & dimensions, Style const & style)
   {
-    if (dimensions.getWidth() > dimensions.getHeight() * 10) {
-      return dimensions.getHeight() * 0.90;
+    if (style == large) {
+      if (dimensions.getWidth() > dimensions.getHeight() * 10) {
+        return dimensions.getHeight() * 0.90;
+      }
+      else {
+        return dimensions.getHeight() * 0.40;
+      }
     }
-    else {
-      return dimensions.getHeight() * 0.40;
+    else if (style == small) {
+      return 20;
     }
   }
 
 
 
-  unsigned short FontFormat::getYPadding (PlanarDimensions const & dimensions)
+  unsigned short FontFormat::getYPadding (PlanarDimensions const & dimensions, Style const & style)
   {
-    if (dimensions.getWidth() > dimensions.getHeight() * 10) {
-      return dimensions.getHeight() * 0.05;
+    if (style == large) {
+      if (dimensions.getWidth() > dimensions.getHeight() * 10) {
+        return dimensions.getHeight() * 0.05;
+      }
+      else {
+        return dimensions.getHeight() * 0.30;
+      }
     }
-    else {
-      return dimensions.getHeight() * 0.30;
+    else if (style == small) {
+      return (dimensions.getHeight() - 20) / 2;
     }
   }
 
@@ -57,10 +67,20 @@ namespace it
 
 
   FontFormat::FontFormat (PlanarDimensions const & dimensions) :
-    font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", getFontSize (dimensions), 0)),
-    fontSize_ (getFontSize (dimensions)),
+    font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", getFontSize (dimensions, large), 0)),
+    fontSize_ (getFontSize (dimensions, large)),
     paddingX_ (dimensions.getWidth() * 0.05),
-    paddingY_ (getYPadding (dimensions))
+    paddingY_ (getYPadding (dimensions, large))
+  {
+  }
+
+
+
+  FontFormat::FontFormat(PlanarDimensions const & dimensions, Style const &) :
+    font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", getFontSize (dimensions, small), 0)),
+    fontSize_ (getFontSize (dimensions, small)),
+    paddingX_ (dimensions.getWidth() * 0.05),
+    paddingY_ (getYPadding (dimensions, small))
   {
   }
 

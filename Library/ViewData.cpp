@@ -3,6 +3,7 @@
 #include "CompanyView.h"
 #include "GameMenu.h"
 #include "MainMenu.h"
+#include "InsiderTradingLegalNoticeView.h"
 
 namespace it
 {
@@ -24,6 +25,10 @@ namespace it
     }
     delete gameMenu_;
     delete mainMenu_;
+
+    if (viewOfLegalNotice_ != nullptr) {
+      delete viewOfLegalNotice_;
+    }
   }
 
 
@@ -62,5 +67,15 @@ namespace it
       companyMenus_[&company] = new CompanyView (company, *this, dimensions_);
     }
     return companyMenus_.at (&company);
+  }
+
+
+
+  I_BitmapView * ViewData::getInsiderTradingLegalNoticeView()
+  {
+    if (viewOfLegalNotice_ == nullptr) {
+      viewOfLegalNotice_ = new InsiderTradingLegalNoticeView (dimensions_, *this);
+    }
+    return viewOfLegalNotice_;
   }
 }

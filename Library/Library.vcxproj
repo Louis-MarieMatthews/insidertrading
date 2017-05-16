@@ -162,6 +162,7 @@
     <ClCompile Include="DefaultGameData.cpp" />
     <ClCompile Include="DocumentMapItem.cpp" />
     <ClCompile Include="GameOverBitmap.cpp" />
+    <ClCompile Include="InsiderTradingLegalNoticeView.cpp" />
     <ClCompile Include="MapBitmap.cpp" />
     <ClCompile Include="FloorCompanyMapItem.cpp" />
     <ClCompile Include="FontFormat.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="DefaultGameData.h" />
     <ClInclude Include="DocumentMapItem.h" />
     <ClInclude Include="GameOverBitmap.h" />
+    <ClInclude Include="InsiderTradingLegalNoticeView.h" />
     <ClInclude Include="MapBitmap.h" />
     <ClInclude Include="FloorCompanyMapItem.h" />
     <ClInclude Include="FontFormat.h" />

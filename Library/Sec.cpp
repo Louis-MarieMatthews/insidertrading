@@ -61,7 +61,6 @@ namespace it
 
   Sec::Sec (I_GameData & gameData, PlanarPosition const & position, std::set<Company *> const & companies, Duration & time) :
     companies_ (companies),
-    currentTarget_ (nullptr),
     gameData_ (gameData),
     initialPosition_ (position),
     inspecting_ (false),

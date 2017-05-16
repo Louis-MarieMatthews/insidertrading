@@ -92,7 +92,7 @@ namespace it
     // TODO: those variables could maybe be initialised in the constructor of a class (this one or a new one)
     DefaultGameData gameData;
     ViewData viewData (gameData, windowDimensions_);
-    currentView_ = viewData.getMainMenu();
+    currentView_ = viewData.getInsiderTradingLegalNoticeView();
     eventAdapter_ = new DefaultAllegroEventAdapter (timerFps_, timerCentiseconds_);
 
     al_start_timer (timerCentiseconds_);

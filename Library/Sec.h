@@ -20,7 +20,6 @@ namespace it
     I_GameData &                     gameData_;
     PlanarPosition                   initialPosition_;
     bool                             inspecting_;
-    Duration                         timeSinceInState_;
     unsigned short                   lastSecond_;
     unsigned short                   maxSecondsOfIdleness_;
     unsigned short                   maxSecondsOfInspectingInsidedCompany_;
@@ -29,6 +28,7 @@ namespace it
     PlanarPosition                   position_;
     int                              radius_;
     Duration &                       time_;
+    Duration                         timeSinceInState_;
 
     Company const & getRandomCompany();
     void updateInspection();
