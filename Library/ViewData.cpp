@@ -3,7 +3,7 @@
 #include "CompanyView.h"
 #include "GameMenu.h"
 #include "MainMenu.h"
-#include "InsiderTradingLegalNoticeView.h"
+#include "NoticeView.h"
 
 namespace it
 {
@@ -14,6 +14,11 @@ namespace it
     gameMenu_ (new GameMenu (*this, dimensions)),
     mainMenu_ (new MainMenu (*this, dimensions))
   {
+      std::vector<std::string> lines (3);
+      lines[0] = "A game made by Louis-Marie Matthews. The font used in the game is";
+      lines[1] = "named Good Times RG and it is used and licensed by Ray Larabie.";
+      lines[2] = "2D graphics are powered by the C++ Allegro library.";
+      creditsNoticeView_ = new NoticeView (mainMenu_, dimensions_, lines, *this);
   }
 
 
@@ -28,6 +33,9 @@ namespace it
 
     if (viewOfLegalNotice_ != nullptr) {
       delete viewOfLegalNotice_;
+    }
+    if (creditsNoticeView_ != nullptr) {
+      delete creditsNoticeView_;
     }
   }
 
@@ -74,8 +82,17 @@ namespace it
   I_BitmapView * ViewData::getInsiderTradingLegalNoticeView()
   {
     if (viewOfLegalNotice_ == nullptr) {
-      viewOfLegalNotice_ = new InsiderTradingLegalNoticeView (dimensions_, *this);
+      std::vector<std::string> lines (1);
+      lines[0] = "Insider trading is illegal and is severely punished in most countries.";
+      viewOfLegalNotice_ = new NoticeView (creditsNoticeView_, dimensions_, lines, *this);
     }
     return viewOfLegalNotice_;
+  }
+
+
+
+  I_BitmapView * ViewData::getCreditsNoticeView()
+  {
+    return creditsNoticeView_;
   }
 }

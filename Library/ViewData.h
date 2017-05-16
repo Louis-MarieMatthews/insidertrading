@@ -16,6 +16,7 @@ namespace it
     std::map<Company *, I_BitmapView *> companyMenus_;
     PlanarDimensions                    dimensions_;
     I_BitmapView *                      viewOfLegalNotice_;
+    I_BitmapView *                      creditsNoticeView_;
 
   public:
     ViewData (I_GameData &, PlanarDimensions const &);
@@ -27,5 +28,6 @@ namespace it
     I_BitmapView * & getExit();
     I_BitmapView * getCompanyMenu (Company &);
     I_BitmapView * getInsiderTradingLegalNoticeView();
+    I_BitmapView * getCreditsNoticeView();
   };
 }

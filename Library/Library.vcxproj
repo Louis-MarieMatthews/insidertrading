@@ -162,7 +162,6 @@
     <ClCompile Include="DefaultGameData.cpp" />
     <ClCompile Include="DocumentMapItem.cpp" />
     <ClCompile Include="GameOverBitmap.cpp" />
-    <ClCompile Include="InsiderTradingLegalNoticeView.cpp" />
     <ClCompile Include="MapBitmap.cpp" />
     <ClCompile Include="FloorCompanyMapItem.cpp" />
     <ClCompile Include="FontFormat.cpp" />
@@ -177,6 +176,7 @@
     <ClCompile Include="DefaultLocatedRectangle.cpp" />
     <ClCompile Include="DefaultObservableId.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="NoticeView.cpp" />
     <ClCompile Include="NullContextualMenuChoice.cpp" />
     <ClCompile Include="ObserverListSingleton.cpp" />
     <ClCompile Include="PlanarDimensions.cpp" />
@@ -205,7 +205,6 @@
     <ClInclude Include="DefaultGameData.h" />
     <ClInclude Include="DocumentMapItem.h" />
     <ClInclude Include="GameOverBitmap.h" />
-    <ClInclude Include="InsiderTradingLegalNoticeView.h" />
     <ClInclude Include="MapBitmap.h" />
     <ClInclude Include="FloorCompanyMapItem.h" />
     <ClInclude Include="FontFormat.h" />
@@ -235,6 +234,7 @@
     <ClInclude Include="I_ObservableId.h" />
     <ClInclude Include="I_Rectangle.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="NoticeView.h" />
     <ClInclude Include="NullContextualMenuChoice.h" />
     <ClInclude Include="ObservablePointer.h" />
     <ClInclude Include="ObservableSet.h" />

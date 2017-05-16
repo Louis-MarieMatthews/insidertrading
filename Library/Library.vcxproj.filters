@@ -177,7 +177,7 @@
     <ClCompile Include="ContextualMenuBitmap.cpp">
       <Filter>Source Files\Visual View</Filter>
     </ClCompile>
-    <ClCompile Include="InsiderTradingLegalNoticeView.cpp">
+    <ClCompile Include="NoticeView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -353,7 +353,7 @@
     <ClInclude Include="ContextualMenuBitmap.h">
       <Filter>Header Files\Visual View</Filter>
     </ClInclude>
-    <ClInclude Include="InsiderTradingLegalNoticeView.h">
+    <ClInclude Include="NoticeView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
