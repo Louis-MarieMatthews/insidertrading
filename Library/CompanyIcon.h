@@ -7,15 +7,21 @@
 #include "DefaultObservableId.h"
 #include "DefaultContextualMenu.h"
 #include "I_LocatedInteractiveBitmap.h"
+#include "FontFormat.h"
 
 namespace it
 {
   class CompanyIcon : public I_LocatedInteractiveBitmap
   {
+    static unsigned short const     WIDTH_ {300};
+    static unsigned short const     HEIGHT_ {200};
+
+    ALLEGRO_BITMAP *                bitmap_;
     ALLEGRO_BITMAP *                bitmapHovered_;
     ALLEGRO_BITMAP *                bitmapNotHovered_;
     Company const &                 company_;
     CompanyContextualMenu           contextualMenu_;
+    FontFormat                      fontFormat_;
     bool                            isHovered_;
     bool                            isLastFetchedBitmapUpToDate_;
     DefaultObservableId             observableId_;

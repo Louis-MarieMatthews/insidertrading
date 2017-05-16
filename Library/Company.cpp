@@ -56,6 +56,13 @@ namespace it
 
 
 
+  std::string Company::getDividendString() const
+  {
+    return std::string ("$" + std::to_string (dividend_));
+  }
+
+
+
   Boolean const & Company::hasInsiders() const
   {
     return hasInsiders_;

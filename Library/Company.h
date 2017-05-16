@@ -31,6 +31,7 @@ namespace it
     std::string const & getName() const;
     PlanarPosition const & getPosition() const;
     unsigned long long const & getInsiderCost() const;
+    std::string getDividendString() const;
     Boolean const & hasInsiders() const;
 
     void addInsiders();

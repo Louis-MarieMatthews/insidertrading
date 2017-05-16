@@ -1,5 +1,7 @@
 #include "CompanyIcon.h"
 
+#include "allegro5\allegro_font.h"
+
 #include "ObserverListSingleton.h"
 #include "ContextualMenuBitmapSingleton.h"
 
@@ -21,6 +23,7 @@ namespace it
     bitmapNotHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/nothovered/company.bmp")),
     company_ (company),
     contextualMenu_ (company, gameData),
+    fontFormat_ (PlanarDimensions (WIDTH_, HEIGHT_), small),
     isHovered_ (false),
     isLastFetchedBitmapUpToDate_ (false),
     position_ (position),
@@ -32,6 +35,9 @@ namespace it
 
   CompanyIcon::~CompanyIcon()
   {
+    if (bitmap_ != nullptr) {
+      al_destroy_bitmap (bitmap_);
+    }
     al_destroy_bitmap (bitmapHovered_);
     al_destroy_bitmap (bitmapNotHovered_);
   }
@@ -84,13 +90,26 @@ namespace it
 
   ALLEGRO_BITMAP * CompanyIcon::fetchBitmap()
   {
+    if (!isLastFetchedBitmapUpToDate_) {
+      ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
+
+      if (bitmap_ != nullptr) {
+        al_destroy_bitmap (bitmap_);
+      }
+      bitmap_ = al_create_bitmap (WIDTH_, HEIGHT_);
+      al_set_target_bitmap (bitmap_);
+      if (isHovered_) {
+        al_draw_bitmap (bitmapHovered_, 0, 0, 0);
+      }
+      else {
+        al_draw_bitmap (bitmapNotHovered_, 0, 0, 0);
+      }
+      al_draw_text (fontFormat_.getFont(), al_map_rgb (0, 0, 0), 200 + fontFormat_.getXPadding(), 0, ALLEGRO_ALIGN_LEFT, company_.getDividendString().c_str());
+
+      al_set_target_bitmap (targetBitmap);
+    }
     isLastFetchedBitmapUpToDate_ = true;
-    if (isHovered_) {
-      return bitmapHovered_;
-    }
-    else {
-      return bitmapNotHovered_;
-    }
+    return bitmap_;
   }
 
 
