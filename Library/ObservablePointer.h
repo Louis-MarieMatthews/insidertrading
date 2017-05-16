@@ -11,7 +11,7 @@ namespace it
   {
     T * ptr_;
 
-    I_ObservableId observableId_;
+    DefaultObservableId observableId_;
 
   public:
     ObservablePointer();
@@ -44,8 +44,7 @@ namespace it
 
   template<class T>
   inline ObservablePointer<T>::ObservablePointer (T * ptr) :
-    ptr_ (ptr),
-    observableId_ (DefaultObservableId())
+    ptr_ (ptr)
   {
   }
 

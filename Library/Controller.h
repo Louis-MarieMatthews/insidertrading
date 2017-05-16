@@ -30,7 +30,6 @@ namespace it
     ALLEGRO_TIMER *               timerFps_;
     ALLEGRO_DISPLAY *             window_;
     PlanarDimensions              windowDimensions_;
-    ObservablePointer<I_GameData> gameData_; // TODO: move in another class
 
     Controller();
     Controller (Controller const &) = delete;

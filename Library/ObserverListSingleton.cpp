@@ -1,5 +1,7 @@
 #include "ObserverListSingleton.h"
 
+#include "DefaultObservableId.h"
+
 namespace it
 {
   ObserverListSingleton::ObserverListSingleton()

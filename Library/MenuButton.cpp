@@ -53,6 +53,7 @@ namespace it
 
   void MenuButton::reset()
   {
+    //setHovered (false);
   }
 
 

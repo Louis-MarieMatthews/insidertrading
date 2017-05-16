@@ -83,6 +83,10 @@ namespace it
   {
     next_ = this;
     buttonResumeGame_.reset();
+    buttonNewGame1_.reset();
+    buttonNewGame2_.reset();
+    buttonNewGame3_.reset();
+    buttonQuit_.reset();
   }
 
 
