@@ -20,7 +20,7 @@ namespace it
     gameData_ (gameData),
     isDisabled_ (!company.hasInsiders()),
     secTarget_ (gameData.getSec().getObservableTarget()),
-    text_ ("Remove insiders")
+    text_ ("Remove insiding proof")
   {
     ObserverListSingleton::getInstance().addObserver (company_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (secTarget_.getObservableId(), *this);

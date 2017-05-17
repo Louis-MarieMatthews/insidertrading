@@ -24,6 +24,7 @@ namespace it
     const unsigned int            FPS_ {60};
                                   
     I_BitmapView *                currentView_;
+    ALLEGRO_DISPLAY_MODE          displayMode_;
     I_AllegroEventAdapter *       eventAdapter_;
     ALLEGRO_EVENT_QUEUE*          eventQueue_;
     ALLEGRO_TIMER *               timerCentiseconds_;

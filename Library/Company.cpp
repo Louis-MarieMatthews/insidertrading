@@ -75,8 +75,8 @@ namespace it
   void Company::addInsiders()
   {
     if (playerBalance_ >= insiderCost_) {
-      playerBalance_ -= insiderCost_;
       hasInsiders_ = true;
+      playerBalance_ -= insiderCost_;
       ObserverListSingleton::getInstance().addObserver (time_.getObservableId(), *this);
       ObserverListSingleton::getInstance().notifyObservers (observableId_);
     }

@@ -3,7 +3,7 @@
 namespace it
 {
   Controller::Controller () :
-    windowDimensions_ (1800, 900)
+    windowDimensions_ (1920, 1080)
   {
     srand (time (nullptr));
 
@@ -35,11 +35,11 @@ namespace it
       throw AllegroInitializationException ("Could not initialise Allegro TTF Addon.");
     }
 
-    //al_get_display_mode (al_get_num_display_modes() -1, &displayMode); // TODO: check function does not return NULL
-    //al_set_new_display_flags (ALLEGRO_FULLSCREEN);
-    //window_ = al_create_display (displayMode.width, displayMode.height); // TODO: check function does not return NULL
+    al_get_display_mode (al_get_num_display_modes() -1, &displayMode_); // TODO: check function does not return NULL
+    al_set_new_display_flags (ALLEGRO_FULLSCREEN);
+    window_ = al_create_display (displayMode_.width, displayMode_.height); // TODO: check function does not return NULL
 
-    window_ = al_create_display (windowDimensions_.getWidth(), windowDimensions_.getHeight()); // TEMP.
+    //window_ = al_create_display (windowDimensions_.getWidth(), windowDimensions_.getHeight()); // TEMP.
 
     if (!window_) {
       throw AllegroInitializationException ("Could not initialise window_.");

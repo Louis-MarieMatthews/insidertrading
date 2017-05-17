@@ -32,12 +32,14 @@ namespace it
       ObserverListSingleton::getInstance().addObserver (programTime_.getObservableId(), *this);
     }
     sec_.startInspecting();
+    ObserverListSingleton::getInstance().addObserver (playersMoney_.getObservableId(), *this);
   }
 
 
 
   DefaultGameData::~DefaultGameData()
   {
+    ObserverListSingleton::getInstance().removeObserver (playersMoney_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (isPlayerInTheGame_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (programTime_.getObservableId(), *this);
     for (auto c : companies_) {
@@ -115,6 +117,21 @@ namespace it
       }
       else {
         ObserverListSingleton::getInstance().removeObserver (programTime_.getObservableId(), *this);
+      }
+    }
+    else if (&playersMoney_.getObservableId() == &observableId) {
+      bool playerCanInsideOneCompanyAtLeast (false);
+      bool playerHasInsiders (false);
+      for (auto c : companies_) {
+        if (playersMoney_ >= c->getInsiderCost()) {
+          playerCanInsideOneCompanyAtLeast = true;
+        }
+        if (c->hasInsiders()) {
+          playerHasInsiders = true;
+        }
+      }
+      if (!playerHasInsiders && !playerCanInsideOneCompanyAtLeast) {
+        isPlayerInTheGame_ = false;
       }
     }
   }
