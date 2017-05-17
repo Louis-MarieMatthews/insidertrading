@@ -12,7 +12,7 @@ namespace it
     companyBeingCleaned_ (nullptr),
     isPlayerInTheGame_ (true),
     playerPosition_ (0, 0),
-    sec_ (*this, PlanarPosition (500, 50), companies_, time),
+    sec_ (*this, PlanarPosition (500, 50), companies_, gameTime_),
     programTime_ (time)
   {
     std::ifstream f (std::string ("../gamefiles/games/" + gameFilename).c_str());
