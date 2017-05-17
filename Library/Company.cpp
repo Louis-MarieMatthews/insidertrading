@@ -16,6 +16,7 @@ namespace it
     position_ (position),
     time_ (gameData.getTime())
   {
+    ObserverListSingleton::getInstance().addObserver (map_.getDocuments().getObservableId(), *this);
   }
 
 
@@ -23,6 +24,7 @@ namespace it
   Company::~Company()
   {
     ObserverListSingleton::getInstance().removeObserver (time_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (map_.getDocuments().getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObservable (observableId_);
   }
 
@@ -107,6 +109,11 @@ namespace it
       if (lastSecond_ != time_.getSecond()) {
         lastSecond_ = time_.getSecond();
         playerBalance_+= (dividend_);
+      }
+    }
+    else if (&map_.getDocuments().getObservableId() == &observableId) {
+      if (map_.getDocuments().getSize() == 0) {
+        removeInsiders();
       }
     }
   }
