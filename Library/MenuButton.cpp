@@ -6,6 +6,16 @@
 
 namespace it
 {
+  void MenuButton::updateHoverTransition()
+  {
+    unsigned short value (timeSinceHovered_.getCentisecond() * 0.8 + NOT_HOVERED_COLOR_VALUE_);
+    color_ = al_map_rgb (value, value, value);
+    dimensions_.setWidth (WIDTH_ + timeSinceHovered_.getCentisecond());
+    isLastFetchedBitmapUpToDate_ = false;
+  }
+
+
+
   void MenuButton::setHovered (const bool & isHovered)
   {
     if (isHovered_ != isHovered) {
@@ -19,6 +29,7 @@ namespace it
 
   MenuButton::MenuButton (PlanarPosition const & position, std::string const & text, I_BitmapView * & next, I_ViewTransition * transition) :
     bitmap_ (nullptr),
+    color_ (al_map_rgb (NOT_HOVERED_COLOR_VALUE_, NOT_HOVERED_COLOR_VALUE_, NOT_HOVERED_COLOR_VALUE_)),
     dimensions_ (WIDTH_, HEIGHT_),
     fontFormat_ (dimensions_, TEXT_PADDING_),
     isLastFetchedBitmapUpToDate_ (false),
@@ -76,6 +87,17 @@ namespace it
         next_ = transition_->getTarget();
       }
     }
+    if (e.isMouseWithin (*this)) {
+      if (timeSinceHovered_.getCentisecond() != FADING_CS_) {
+        timeSinceHovered_.tick();
+      }
+    }
+    else {
+      if (timeSinceHovered_.getCentisecond() != 0) {
+        timeSinceHovered_.untick();
+      }
+    }
+    updateHoverTransition();
   }
 
 
@@ -104,10 +126,10 @@ namespace it
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
       al_set_target_bitmap (bitmap_);
       if (isHovered_) {
-        al_clear_to_color (al_map_rgb (40, 40, 40));
+        al_clear_to_color (color_);
       }
       else {
-        al_clear_to_color (al_map_rgb (20, 20, 20));
+        al_clear_to_color (color_);
       }
       al_draw_text (fontFormat_.getFont(), al_map_rgb (255, 255, 255), WIDTH_ / 2,  fontFormat_.getYPadding(), ALLEGRO_ALIGN_CENTER, text_.c_str());
       al_set_target_bitmap (targetBitmap);

@@ -2,6 +2,7 @@
 
 #include "DefaultObservableId.h"
 #include "DefaultLocatedRectangle.h"
+#include "Duration.h"
 #include "FontFormat.h"
 #include "I_LocatedInteractiveBitmap.h"
 #include "I_BitmapView.h"
@@ -13,8 +14,11 @@ namespace it
   {
     static unsigned const       WIDTH_ {300}; // TODO: this and HEIGHT_ should be merged into a PlanarDimensions object
     static unsigned const       HEIGHT_ {70};
+    static unsigned short const FADING_CS_ {30};
+    static unsigned short const NOT_HOVERED_COLOR_VALUE_ {20};
 
     static unsigned short const TEXT_PADDING_ {20};
+    ALLEGRO_COLOR               color_;
     ALLEGRO_BITMAP *            bitmap_;
     PlanarDimensions            dimensions_;
     FontFormat                  fontFormat_;
@@ -26,7 +30,9 @@ namespace it
     DefaultLocatedRectangle     rectangle_;
     std::string                 text_;
     I_ViewTransition *          transition_;
+    Duration                    timeSinceHovered_;
 
+    void updateHoverTransition();
     void setHovered (const bool &);
 
   public:

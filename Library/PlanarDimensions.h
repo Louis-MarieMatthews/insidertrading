@@ -11,5 +11,7 @@ namespace it
     PlanarDimensions (unsigned int const &, unsigned int const &);
     unsigned int const & getWidth() const;
     unsigned int const & getHeight() const;
+    void setWidth (unsigned const &);
+    void setHeight (unsigned const &);
   };
 }

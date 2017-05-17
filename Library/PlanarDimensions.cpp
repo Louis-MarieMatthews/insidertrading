@@ -21,5 +21,19 @@ namespace it
   {
     return height_;
   }
+
+
+
+  void PlanarDimensions::setWidth (unsigned const & width)
+  {
+    width_ = width;
+  }
+
+
+
+  void PlanarDimensions::setHeight (unsigned const & height)
+  {
+    height_ = height;
+  }
 }
 
