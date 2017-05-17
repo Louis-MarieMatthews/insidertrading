@@ -36,9 +36,11 @@ namespace it
     return PlanarDimensions (dimensions.getWidth(), dimensions.getHeight() / 2);
   }
 
-  PlanarPosition GameOverBitmap::calculatePosition (PlanarDimensions const &)
+
+
+  PlanarPosition GameOverBitmap::calculatePosition (PlanarDimensions const & dimensions)
   {
-    return PlanarPosition (0, 100); // TODO:
+    return PlanarPosition (0, dimensions.getHeight() / 4);
   }
 
 

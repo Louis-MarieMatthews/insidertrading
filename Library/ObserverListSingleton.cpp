@@ -41,8 +41,27 @@ namespace it
 
   void ObserverListSingleton::notifyObservers (I_ObservableId & id)
   {
-    for (auto o : observers_[&id]) {
-      o->notifyObserver (id);
+    //for (auto o : observers_[&id]) {
+    //  o->notifyObserver (id);
+    //}
+
+    bool finished (false);
+    while (!finished) {
+      size_t const size (observers_[&id].size());
+      bool forFinished (true);
+      for (auto o : observers_[&id]) {
+        o->notifyObserver (id);
+        if (observers_[&id].size() != size) {
+          forFinished = false;
+          break;
+        }
+      }
+      if (forFinished) {
+        finished = true;
+      }
+      else {
+        finished = false;
+      }
     }
   }
 }

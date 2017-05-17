@@ -17,7 +17,6 @@ namespace it
     ALLEGRO_BITMAP *            bitmap_;
     Company &                   company_;
     CompanyMap &                companyMap_;
-    Duration const &            countDown_;
     PlanarDimensions const &    dimensions_;
     bool                        isLastFetchedBitmapUpToDate_;
     Boolean const &             isPlayerInTheGame_;

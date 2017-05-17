@@ -17,8 +17,8 @@ namespace it
     al_set_target_bitmap (bitmapDocuments_);
     std::set<I_CompanyMapItem *> const documents (documents_.getSet());
     for (auto d : documents) {
-      ALLEGRO_BITMAP * document (al_load_bitmap ("../gamefiles/images/document.bmp"));
-      al_draw_bitmap (document, format_.convertXToPixel (d->getPosition().getX()), format_.convertYToPixel (d->getPosition().getY()), 0);
+      ALLEGRO_BITMAP * document (al_load_bitmap ("../gamefiles/images/document.tga"));
+      al_draw_scaled_bitmap (document, 0, 0, 200, 200, format_.convertXToPixel (d->getPosition().getX()), format_.convertYToPixel (d->getPosition().getY()), format_.getItemWidth(), format_.getItemHeight(), 0);
       al_destroy_bitmap (document);
     }
     isDocumentsBitmapUpToDate_ = true;
@@ -39,23 +39,22 @@ namespace it
     }
     bitmapStructure_ = al_create_bitmap (format_.getMapWidth(), format_.getMapHeight());
     al_set_target_bitmap (bitmapStructure_);
-    al_clear_to_color (al_map_rgb (24, 124, 150));
+    ALLEGRO_BITMAP * floor (al_load_bitmap ("../gamefiles/images/floor.bmp"));
+    al_draw_bitmap (floor, 0, 0, 0);
+    al_destroy_bitmap (floor);
+    ALLEGRO_BITMAP * metal (al_load_bitmap ("../gamefiles/images/metal.bmp"));
     for (unsigned short r (0); r < map_.getNumberOfRows(); r++) {
       for (unsigned short c (0); c < map_.getNumberOfColums(); c++) {
         if (map_.getItem (r, c) == nullptr) {
           continue;
         }
-        ALLEGRO_BITMAP * item (nullptr); // TODO: hard-coded values
         if (!map_.getItem (r, c)->isTraversable()) {
-          item = al_create_bitmap (format_.getItemWidth(), format_.getItemHeight());
-          al_set_target_bitmap (item);
-          al_clear_to_color (al_map_rgb (0, 0, 0));
           al_set_target_bitmap (bitmapStructure_);
-          al_draw_bitmap (item, format_.convertXToPixel (r), format_.convertYToPixel (c), 0); // TODO: hard-coded values
-          al_destroy_bitmap (item);
+          al_draw_scaled_bitmap (metal, 0, 0, 200, 200, format_.convertXToPixel (r), format_.convertYToPixel (c), format_.getItemWidth(), format_.getItemHeight(), 0); // TODO: hard-coded values
         }
       }
     }
+    al_destroy_bitmap (metal);
 
 
     al_set_target_bitmap (targetBitmap);
@@ -68,7 +67,7 @@ namespace it
     if (bitmapPlayer_ != nullptr) {
       al_destroy_bitmap (bitmapPlayer_);
     }
-    bitmapPlayer_ = al_load_bitmap ("../gamefiles/images/player.bmp");
+    bitmapPlayer_ = al_load_bitmap ("../gamefiles/images/player.tga");
   }
 
 
@@ -176,7 +175,7 @@ namespace it
       if (bitmapPlayer_ == nullptr) {
         updatePlayerBitmap();
       }
-      al_draw_bitmap (bitmapPlayer_, format_.convertXToPixel (playerPosition_.getX()), format_.convertYToPixel (playerPosition_.getY()), 0);
+      al_draw_scaled_bitmap (bitmapPlayer_, 0, 0, 200, 200, format_.convertXToPixel (playerPosition_.getX()), format_.convertYToPixel (playerPosition_.getY()), format_.getItemWidth(), format_.getItemHeight(), 0);
 
 
       isLastFetchedBitmapUpToDate_ = true;

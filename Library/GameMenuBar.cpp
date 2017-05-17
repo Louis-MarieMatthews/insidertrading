@@ -26,6 +26,7 @@ namespace it
     if (bitmap_ != nullptr) {
       al_destroy_bitmap (bitmap_);
     }
+    ObserverListSingleton::getInstance().removeObserver (gameData_.getPlayersMoney().getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (secCountDown_.getObservableId(), *this);
   }
 

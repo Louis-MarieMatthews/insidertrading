@@ -137,7 +137,7 @@ namespace it
   BribedEmployee::~BribedEmployee()
   {
     ObserverListSingleton::getInstance().removeObserver (secTarget_.getObservableId(), *this);
-    ObserverListSingleton::getInstance().removeObserver (secTarget_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().removeObserver (time_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObservable (observableId_);
     for (auto n : allNodes_) {
       delete n;

@@ -47,7 +47,6 @@ namespace it
   CompanyView::CompanyView (Company & company, ViewData & viewData, PlanarDimensions const & dimensions) :
     company_ (company),
     companyMap_ (company.getMap()),
-    countDown_ (viewData.getGameData().getPointer()->getSec().getInspectingDuration()),
     dimensions_ (dimensions),
     isLastFetchedBitmapUpToDate_ (false),
     isPlayerInTheGame_ (viewData.getGameData().getPointer()->isPlayerInTheGame()),
@@ -129,14 +128,8 @@ namespace it
       }
       bitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getHeight());
       al_set_target_bitmap (bitmap_);
-      //al_clear_to_color (al_map_rgb (0, 0, 0));
       al_draw_bitmap (menuBar_.fetchBitmap(), menuBar_.getX(), menuBar_.getY(), 0);
       al_draw_bitmap (mapBitmap_.fetchBitmap(), mapBitmap_.getX(), mapBitmap_.getY(), 0);
-
-      FontFormat ff (20, 40, 40);
-
-      //viewData_.getGameData().getSec().getInspectingDuration().getString().c_str()
-      al_draw_text (ff.getFont(), al_map_rgb (0, 0, 0), dimensions_.getWidth() - ff.getXPadding(), ff.getYPadding(), ALLEGRO_ALIGN_RIGHT, viewData_.getGameData().getPointer()->getSec().getInspectingDuration().getString().c_str());
 
       al_set_target_bitmap (targetBitmap);
     }

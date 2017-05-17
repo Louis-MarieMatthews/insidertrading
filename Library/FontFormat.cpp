@@ -10,10 +10,10 @@ namespace it
   {
     if (style == large) {
       if (dimensions.getWidth() > dimensions.getHeight() * 10) {
-        return dimensions.getHeight() * 0.90;
+        return round (dimensions.getHeight() * 0.90);
       }
       else {
-        return dimensions.getHeight() * 0.40;
+        return round (dimensions.getHeight() * 0.40);
       }
     }
     else if (style == small) {
@@ -27,14 +27,14 @@ namespace it
   {
     if (style == large) {
       if (dimensions.getWidth() > dimensions.getHeight() * 10) {
-        return dimensions.getHeight() * 0.05;
+        return 0;
       }
       else {
-        return dimensions.getHeight() * 0.30;
+        return round (dimensions.getHeight() * 0.30);
       }
     }
     else if (style == small) {
-      return (dimensions.getHeight() - 20) / 2;
+      return round ((dimensions.getHeight() - 20) / 2);
     }
   }
 
@@ -76,7 +76,7 @@ namespace it
     font_ (al_load_ttf_font ("../gamefiles/fonts/good times rg.ttf", getFontSize (dimensions, large), 0)),
     fontSize_ (getFontSize (dimensions, large)),
     isLastFetchedBitmapUpToDate_ (false),
-    paddingX_ (dimensions.getWidth() * 0.05),
+    paddingX_ (dimensions.getWidth() * 0.01),
     paddingY_ (getYPadding (dimensions, large)),
     position_ (0, 0),
     rectangle_ (PlanarPosition (0, 0), PlanarDimensions (0, 0))
