@@ -78,15 +78,28 @@ namespace it
     stateCountDown_ (0, 0, IDLENESS_S_, 0),
     time_ (time)
   {
-    ObserverListSingleton::getInstance().addObserver (time_.getObservableId(), *this);
   }
 
 
 
   Sec::~Sec()
   {
-    ObserverListSingleton::getInstance().removeObserver (time_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObservable (observableId_);
+  }
+
+
+
+
+  void Sec::startInspecting()
+  {
+    ObserverListSingleton::getInstance().addObserver (time_.getObservableId(), *this);
+  }
+
+
+
+  void Sec::stopInspecting()
+  {
+    ObserverListSingleton::getInstance().removeObserver (time_.getObservableId(), *this);
   }
 
 

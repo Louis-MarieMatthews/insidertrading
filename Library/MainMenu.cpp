@@ -28,6 +28,7 @@ namespace it
 
   MainMenu::MainMenu (ObservablePointer<I_GameData> & gameData, ViewData & viewData, PlanarDimensions const & dimensions) :
     bitmap_ (nullptr),
+    bitmapBackground_ (al_load_bitmap ("../gamefiles/images/background.bmp")),
     buttonNewGame1_ (getButtonPosition (dimensions, 1), "New Game 1", next_, new NewGameViewTransition (viewData, "game0.json")),
     buttonNewGame2_ (getButtonPosition (dimensions, 2), "New Game 2", next_, new NewGameViewTransition (viewData, "game1.json")),
     buttonNewGame3_ (getButtonPosition (dimensions, 3), "New Game 3", next_, new NewGameViewTransition (viewData, "game2.json")),
@@ -48,6 +49,9 @@ namespace it
     stopObserving();
     if (bitmap_ != nullptr) {
       al_destroy_bitmap (bitmap_);
+    }
+    if (bitmapBackground_ != nullptr) {
+      al_destroy_bitmap (bitmapBackground_);
     }
   }
 
@@ -118,7 +122,7 @@ namespace it
       bitmap_ = al_create_bitmap (dimensions_.getWidth(), dimensions_.getHeight());
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
       al_set_target_bitmap (bitmap_);
-      al_clear_to_color (al_map_rgb (0, 0, 0));
+      al_draw_bitmap (bitmapBackground_, 0, 0, 0);
 
       if (gameData_.getPointer() != nullptr) {
         al_draw_bitmap (buttonResumeGame_.fetchBitmap(), buttonResumeGame_.getPosition().getX(), buttonResumeGame_.getPosition().getY(), 0);

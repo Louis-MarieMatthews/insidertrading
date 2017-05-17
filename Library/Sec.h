@@ -38,7 +38,8 @@ namespace it
   public:
     Sec (I_GameData &, PlanarPosition const &, std::set<Company *> const &, Duration const &);
     ~Sec();
-
+    void startInspecting();
+    void stopInspecting();
     PlanarPosition const & getPosition() const;
     Company const * getTarget();
     ObservablePointer<Company const> & getObservableTarget();

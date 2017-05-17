@@ -31,6 +31,7 @@ namespace it
     if (isPlayerInTheGame_) {
       ObserverListSingleton::getInstance().addObserver (programTime_.getObservableId(), *this);
     }
+    sec_.startInspecting();
   }
 
 
@@ -42,6 +43,7 @@ namespace it
     for (auto c : companies_) {
       delete c;
     }
+    sec_.stopInspecting();
   }
 
 

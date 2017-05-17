@@ -16,6 +16,7 @@ namespace it
     static const unsigned           BUTTON_BOTTOM_MARGIN_ {100};
 
     ALLEGRO_BITMAP *                bitmap_;
+    ALLEGRO_BITMAP *                bitmapBackground_;
     MenuButton                      buttonQuit_;
     MenuButton                      buttonNewGame1_;
     MenuButton                      buttonNewGame2_;
