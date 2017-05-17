@@ -104,7 +104,7 @@ namespace it
       else {
         al_draw_bitmap (bitmapNotHovered_, 0, 0, 0);
       }
-      al_draw_text (fontFormat_.getFont(), al_map_rgb (0, 0, 0), 200 + fontFormat_.getXPadding(), 0, ALLEGRO_ALIGN_LEFT, company_.getDividendString().c_str());
+      al_draw_text (fontFormat_.getFont(), al_map_rgb (255, 255, 255), 200 + fontFormat_.getXPadding(), 0, ALLEGRO_ALIGN_LEFT, company_.getDividendString().c_str());
 
       al_set_target_bitmap (targetBitmap);
     }
