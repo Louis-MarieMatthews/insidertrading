@@ -152,6 +152,7 @@
     <ClCompile Include="BitmapCreationException.cpp" />
     <ClCompile Include="BitmapLoadingException.cpp" />
     <ClCompile Include="Boolean.cpp" />
+    <ClCompile Include="BribedEmployee.cpp" />
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="CompanyContextualMenu.cpp" />
     <ClCompile Include="CompanyIcon.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="DefaultObservableId.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="NewGameViewTransition.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="NoticeView.cpp" />
     <ClCompile Include="NullContextualMenuChoice.cpp" />
     <ClCompile Include="ObserverListSingleton.cpp" />
@@ -198,6 +200,7 @@
     <ClInclude Include="BitmapCreationException.h" />
     <ClInclude Include="BitmapLoadingException.h" />
     <ClInclude Include="Boolean.h" />
+    <ClInclude Include="BribedEmployee.h" />
     <ClInclude Include="Company.h" />
     <ClInclude Include="CompanyContextualMenu.h" />
     <ClInclude Include="CompanyIcon.h" />
@@ -207,6 +210,7 @@
     <ClInclude Include="DefaultGameData.h" />
     <ClInclude Include="DocumentMapItem.h" />
     <ClInclude Include="GameOverBitmap.h" />
+    <ClInclude Include="I_CompanyMap.h" />
     <ClInclude Include="I_ViewTransition.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="MapBitmap.h" />
@@ -239,6 +243,7 @@
     <ClInclude Include="I_Rectangle.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NewGameViewTransition.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="NoticeView.h" />
     <ClInclude Include="NullContextualMenuChoice.h" />
     <ClInclude Include="ObservablePointer.h" />

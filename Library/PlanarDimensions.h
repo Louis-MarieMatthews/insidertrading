@@ -6,9 +6,10 @@ namespace it
   {
     unsigned int width_;
     unsigned int height_;
+
   public:
-    PlanarDimensions (const unsigned int&, const unsigned int&);
-    const unsigned int& getWidth() const;
-    const unsigned int& getHeight() const;
+    PlanarDimensions (unsigned int const &, unsigned int const &);
+    unsigned int const & getWidth() const;
+    unsigned int const & getHeight() const;
   };
 }

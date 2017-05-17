@@ -9,12 +9,12 @@ namespace it
     ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
 
 
-    if (documentsBitmap_ != nullptr) {
-      al_destroy_bitmap (documentsBitmap_);
+    if (bitmapDocuments_ != nullptr) {
+      al_destroy_bitmap (bitmapDocuments_);
     }
 
-    documentsBitmap_ = al_create_bitmap (format_.getMapWidth(), format_.getMapHeight());
-    al_set_target_bitmap (documentsBitmap_);
+    bitmapDocuments_ = al_create_bitmap (format_.getMapWidth(), format_.getMapHeight());
+    al_set_target_bitmap (bitmapDocuments_);
     std::set<I_CompanyMapItem *> const documents (documents_.getSet());
     for (auto d : documents) {
       ALLEGRO_BITMAP * document (al_load_bitmap ("../gamefiles/images/document.bmp"));
@@ -34,11 +34,11 @@ namespace it
     ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
 
 
-    if (structureBitmap_ != nullptr) {
-      al_destroy_bitmap (structureBitmap_);
+    if (bitmapStructure_ != nullptr) {
+      al_destroy_bitmap (bitmapStructure_);
     }
-    structureBitmap_ = al_create_bitmap (format_.getMapWidth(), format_.getMapHeight());
-    al_set_target_bitmap (structureBitmap_);
+    bitmapStructure_ = al_create_bitmap (format_.getMapWidth(), format_.getMapHeight());
+    al_set_target_bitmap (bitmapStructure_);
     al_clear_to_color (al_map_rgb (24, 124, 150));
     for (unsigned short r (0); r < map_.getNumberOfRows(); r++) {
       for (unsigned short c (0); c < map_.getNumberOfColums(); c++) {
@@ -50,7 +50,7 @@ namespace it
           item = al_create_bitmap (format_.getItemWidth(), format_.getItemHeight());
           al_set_target_bitmap (item);
           al_clear_to_color (al_map_rgb (0, 0, 0));
-          al_set_target_bitmap (structureBitmap_);
+          al_set_target_bitmap (bitmapStructure_);
           al_draw_bitmap (item, format_.convertXToPixel (r), format_.convertYToPixel (c), 0); // TODO: hard-coded values
           al_destroy_bitmap (item);
         }
@@ -65,13 +65,28 @@ namespace it
 
   void MapBitmap::updatePlayerBitmap()
   {
-    playerBitmap_ = al_load_bitmap ("../gamefiles/images/player.bmp");
+    if (bitmapPlayer_ != nullptr) {
+      al_destroy_bitmap (bitmapPlayer_);
+    }
+    bitmapPlayer_ = al_load_bitmap ("../gamefiles/images/player.bmp");
   }
 
 
 
-  MapBitmap::MapBitmap (MapFormat const & format, CompanyMap const & map, PlanarPosition const & position) :
-    documentsBitmap_ (nullptr),
+  void MapBitmap::updateBribedEmployeeBitmap()
+  {
+    if (bitmapBribedEmployee_ != nullptr) {
+      al_destroy_bitmap (bitmapBribedEmployee_);
+    }
+
+    bitmapBribedEmployee_ = al_load_bitmap ("../gamefiles/images/employee.tga");
+  }
+
+
+
+  MapBitmap::MapBitmap (MapFormat const & format, CompanyMap & map, PlanarPosition const & position) :
+    bitmapDocuments_ (nullptr),
+    bribedEmployee_ (map.getBribedEmployee()),
     documents_ (map.getDocuments()),
     format_ (format),
     isLastFetchedBitmapUpToDate_ (false),
@@ -83,6 +98,7 @@ namespace it
   {
     ObserverListSingleton::getInstance().addObserver (documents_.getObservableId(), *this);
     ObserverListSingleton::getInstance().addObserver (playerPosition_.getObservableId(), *this);
+    ObserverListSingleton::getInstance().addObserver (bribedEmployee_->getObservableId(), *this);
   }
 
 
@@ -91,14 +107,18 @@ namespace it
   {
     ObserverListSingleton::getInstance().removeObserver (playerPosition_.getObservableId(), *this);
     ObserverListSingleton::getInstance().removeObserver (documents_.getObservableId(), *this);
-    if (documentsBitmap_ != nullptr) {
-      al_destroy_bitmap (documentsBitmap_);
+    ObserverListSingleton::getInstance().removeObserver (bribedEmployee_->getObservableId(), *this);
+    if (bitmapDocuments_ != nullptr) {
+      al_destroy_bitmap (bitmapDocuments_);
     }
-    if (structureBitmap_ != nullptr) {
-      al_destroy_bitmap (structureBitmap_);
+    if (bitmapStructure_ != nullptr) {
+      al_destroy_bitmap (bitmapStructure_);
     }
-    if (mapBitmap_ != nullptr) {
-      al_destroy_bitmap (mapBitmap_);
+    if (bitmapMap_ != nullptr) {
+      al_destroy_bitmap (bitmapMap_);
+    }
+    if (bitmapBribedEmployee_ != nullptr) {
+      al_destroy_bitmap (bitmapBribedEmployee_);
     }
   }
 
@@ -136,33 +156,33 @@ namespace it
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
 
 
-      if (mapBitmap_ != nullptr) {
-        al_destroy_bitmap (mapBitmap_);
+      if (bitmapMap_ != nullptr) {
+        al_destroy_bitmap (bitmapMap_);
       }
-      mapBitmap_ = al_create_bitmap (format_.getMapWidth(), format_.getMapHeight());
-      al_set_target_bitmap (mapBitmap_);
+      bitmapMap_ = al_create_bitmap (format_.getMapWidth(), format_.getMapHeight());
+      al_set_target_bitmap (bitmapMap_);
       al_clear_to_color (al_map_rgb (255, 0, 0));
 
-      if (structureBitmap_ == nullptr) {
+      if (bitmapStructure_ == nullptr) {
         updateStructureBitmap();
       }
-      al_draw_bitmap (structureBitmap_, 0, 0, 0);
+      al_draw_bitmap (bitmapStructure_, 0, 0, 0);
 
       if (!isDocumentsBitmapUpToDate_) {
         updateDocumentsBitmap();
       }
-      al_draw_bitmap (documentsBitmap_, 0, 0, 0);
+      al_draw_bitmap (bitmapDocuments_, 0, 0, 0);
 
-      if (playerBitmap_ == nullptr) {
+      if (bitmapPlayer_ == nullptr) {
         updatePlayerBitmap();
       }
-      al_draw_bitmap (playerBitmap_, format_.convertXToPixel (playerPosition_.getX()), format_.convertYToPixel (playerPosition_.getY()), 0);
+      al_draw_bitmap (bitmapPlayer_, format_.convertXToPixel (playerPosition_.getX()), format_.convertYToPixel (playerPosition_.getY()), 0);
 
 
       isLastFetchedBitmapUpToDate_ = true;
       al_set_target_bitmap (targetBitmap);
     }
-    return mapBitmap_;
+    return bitmapMap_;
   }
 
 
@@ -218,7 +238,8 @@ namespace it
 
   void MapBitmap::notifyObserver (I_ObservableId const & observableId)
   {
-    if (&playerPosition_.getObservableId() == &observableId) {
+    if (&playerPosition_.getObservableId() == &observableId ||
+        &bribedEmployee_->getObservableId() == &observableId) {
       isLastFetchedBitmapUpToDate_ = false;
       ObserverListSingleton::getInstance().notifyObservers (observableId_);
     }

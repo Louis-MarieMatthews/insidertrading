@@ -23,8 +23,8 @@ namespace it
 
   GameMenuBar::~GameMenuBar()
   {
-    if (mapBitmap_ != nullptr) {
-      al_destroy_bitmap (mapBitmap_);
+    if (bitmap_ != nullptr) {
+      al_destroy_bitmap (bitmap_);
     }
     ObserverListSingleton::getInstance().removeObserver (secCountDown_.getObservableId(), *this);
   }
@@ -61,12 +61,12 @@ namespace it
   {
     // fetchBitmap could be moved in an abstract class this class would inherit. It would call a function implement by this class to initialise the bitmap.
     if (!isLastFetchedBitmapUpToDate_) {
-      if (mapBitmap_ != nullptr) {
-        al_destroy_bitmap (mapBitmap_);
+      if (bitmap_ != nullptr) {
+        al_destroy_bitmap (bitmap_);
       }
-      mapBitmap_ = al_create_bitmap (rectangle_.getWidth(), rectangle_.getHeight());
+      bitmap_ = al_create_bitmap (rectangle_.getWidth(), rectangle_.getHeight());
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
-      al_set_target_bitmap (mapBitmap_);
+      al_set_target_bitmap (bitmap_);
       al_clear_to_color (al_map_rgb (0, 0, 0));
       al_draw_text (fontFormat_.getFont(), al_map_rgb (255, 255, 255), rectangle_.getWidth() - fontFormat_.getXPadding(), fontFormat_.getYPadding(), ALLEGRO_ALIGN_RIGHT, gameData_.getPlayersMoney().getString().c_str());
 
@@ -81,7 +81,7 @@ namespace it
       al_set_target_bitmap (targetBitmap);
       isLastFetchedBitmapUpToDate_ = true;
     }
-    return mapBitmap_;
+    return bitmap_;
   }
 
 

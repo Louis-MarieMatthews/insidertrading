@@ -30,6 +30,6 @@ namespace it
     virtual Boolean & isPlayerInTheGame() override;
 
     // Inherited via I_ConstantObserver
-    virtual void notifyObserver(I_ObservableId const &) override;
+    virtual void notifyObserver (I_ObservableId const &) override;
   };
 }

@@ -16,6 +16,7 @@ namespace it
   class Sec : public I_ConstantObservable, public I_ConstantObserver
   {
     static unsigned short const      IDLENESS_S_ {5};
+    static unsigned short const      INSPECTING_COMPANY_WITH_INSIDERS_ {20};
 
     std::set<Company *> const &      companies_;
     ObservablePointer<Company const> currentTarget_;
@@ -23,7 +24,6 @@ namespace it
     PlanarPosition                   initialPosition_;
     bool                             inspecting_;
     unsigned short                   lastSecond_;
-    unsigned short                   maxSecondsOfInspectingInsidedCompany_;
     unsigned short                   maxSecondsOfInspectingGenuineCompany_;
     DefaultObservableId              observableId_;
     PlanarPosition                   position_;

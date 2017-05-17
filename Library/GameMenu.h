@@ -15,7 +15,7 @@ namespace it
 {
   class GameMenu : public I_BitmapView, public I_ConstantObserver
   {
-    ALLEGRO_BITMAP *                mapBitmap_;
+    ALLEGRO_BITMAP *                bitmap_;
     ObservablePointer<Company> &    companyBeingCleaned_;
     std::set<CompanyIcon *>         companyIcons_;
     PlanarDimensions                dimensions_;

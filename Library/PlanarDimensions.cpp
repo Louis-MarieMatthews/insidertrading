@@ -2,7 +2,7 @@
 
 namespace it
 {
-  PlanarDimensions::PlanarDimensions (const unsigned int& width, const unsigned int& height) :
+  PlanarDimensions::PlanarDimensions (unsigned int const & width, unsigned int const & height) :
     width_ (width),
     height_ (height)
   {
@@ -10,14 +10,14 @@ namespace it
 
 
 
-  const unsigned int& PlanarDimensions::getWidth() const
+  unsigned int const & PlanarDimensions::getWidth() const
   {
     return width_;
   }
 
 
 
-  const unsigned int& PlanarDimensions::getHeight() const
+  unsigned int const & PlanarDimensions::getHeight() const
   {
     return height_;
   }

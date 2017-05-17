@@ -5,16 +5,19 @@
 #include "DefaultObservableId.h"
 #include "I_LocatedInteractiveBitmap.h"
 #include "MapFormat.h"
+#include "BribedEmployee.h"
 
 namespace it
 {
   class MapBitmap : public I_LocatedInteractiveBitmap, public I_ConstantObserver
   {
+    ALLEGRO_BITMAP *                          bitmapBribedEmployee_;
+    ALLEGRO_BITMAP *                          bitmapDocuments_;
+    BribedEmployee *                          bribedEmployee_;
+    ALLEGRO_BITMAP *                          bitmapMap_;
+    ALLEGRO_BITMAP *                          bitmapPlayer_;
+    ALLEGRO_BITMAP *                          bitmapStructure_;
     ObservableSet<I_CompanyMapItem *> const & documents_;
-    ALLEGRO_BITMAP *                          mapBitmap_;
-    ALLEGRO_BITMAP *                          structureBitmap_;
-    ALLEGRO_BITMAP *                          playerBitmap_;
-    ALLEGRO_BITMAP *                          documentsBitmap_;
     MapFormat                                 format_;
     bool                                      isLastFetchedBitmapUpToDate_;
     bool                                      isDocumentsBitmapUpToDate_;
@@ -27,9 +30,10 @@ namespace it
     void updateDocumentsBitmap();
     void updateStructureBitmap();
     void updatePlayerBitmap();
+    void updateBribedEmployeeBitmap();
 
   public:
-    MapBitmap (MapFormat const &, CompanyMap const &, PlanarPosition const & position);
+    MapBitmap (MapFormat const &, CompanyMap &, PlanarPosition const & position);
     ~MapBitmap();
 
     // Inherited via I_LocatedInteractiveBitmap

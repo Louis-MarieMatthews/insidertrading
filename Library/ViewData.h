@@ -9,7 +9,7 @@ namespace it
 {
   class ViewData
   {
-    std::map<Company *, I_BitmapView *> companyMenus_; // TODO: should be moved in viewOfGame_!
+    std::map<Company *, I_BitmapView *> companyMenus_; // TODO: should be moved in viewOfGame_ (would prevent any ordering problem when destroying viewOfGame_ and companyMenus_'s views
     PlanarDimensions                    dimensions_;
     I_BitmapView *                      exit_;
     ObservablePointer<I_GameData> &     gameData_;
@@ -26,7 +26,7 @@ namespace it
     ~ViewData();
 
     ObservablePointer<I_GameData> &  getGameData();
-    I_BitmapView * getGameView(); // TODO: const!
+    I_BitmapView * getGameView();
     ObservablePointer<I_BitmapView> const & getObservableGameView();
     I_BitmapView * & getMainMenu();
     I_BitmapView * & getExit();

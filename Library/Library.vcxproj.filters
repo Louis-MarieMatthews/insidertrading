@@ -189,6 +189,12 @@
     <ClCompile Include="SimpleViewTransition.cpp">
       <Filter>Source Files\Semantic View</Filter>
     </ClCompile>
+    <ClCompile Include="BribedEmployee.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroInitializationException.h">
@@ -376,6 +382,15 @@
     </ClInclude>
     <ClInclude Include="SimpleViewTransition.h">
       <Filter>Header Files\Semantic View</Filter>
+    </ClInclude>
+    <ClInclude Include="I_CompanyMap.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="BribedEmployee.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

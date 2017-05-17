@@ -11,7 +11,40 @@
 
 namespace it
 {
+  PlanarPosition CompanyMap::move(Direction const & direction, PlanarPosition const & position)
+  {
+    PlanarPosition targetPosition (0, 0);
+    switch (direction) {
+    case up:
+      targetPosition.update (PlanarPosition (position.getX(), position.getY() + speed_));
+      break;         
+                     
+    case down:       
+      targetPosition.update (PlanarPosition (position.getX(), position.getY() - speed_));
+      break;         
+                     
+    case left:       
+      targetPosition.update (PlanarPosition (position.getX() - speed_, position.getY()));
+      break;         
+                     
+    case right:      
+      targetPosition.update (PlanarPosition (position.getX() + speed_, position.getY()));
+      break;
+    }
+    I_CompanyMapItem * targetDestination (items_[targetPosition.getX()][targetPosition.getY()]);
+    if (targetDestination == nullptr || targetDestination->isTraversable()) {
+      return targetPosition;
+    }
+    else {
+      return position;
+    }
+  }
+
+
+
   CompanyMap::CompanyMap (I_GameData & gameData, Company & company, std::string const & filename) :
+    bribedEmployee_ (new BribedEmployee (gameData, bribedEmployeePosition_, company)),
+    bribedEmployeePosition_ (3, 3),
     company_ (company),
     playerEntryPoint_ (1, 1),
     playerPosition_ (1, 1),
@@ -92,41 +125,36 @@ namespace it
 
 
 
+  BribedEmployee * CompanyMap::getBribedEmployee()
+  {
+    return bribedEmployee_;
+  }
+
+
+
   void CompanyMap::movePlayer (Direction const & direction)
   {
-    PlanarPosition const * targetPosition (nullptr);
-    switch (direction) {
-    case up:
-      targetPosition = new PlanarPosition (playerPosition_.getX(), playerPosition_.getY() + speed_);
-      break;         
-                     
-    case down:       
-      targetPosition = new PlanarPosition (playerPosition_.getX(), playerPosition_.getY() - speed_);
-      break;         
-                     
-    case left:       
-      targetPosition = new PlanarPosition (playerPosition_.getX() - speed_, playerPosition_.getY());
-      break;         
-                     
-    case right:      
-      targetPosition = new PlanarPosition (playerPosition_.getX() + speed_, playerPosition_.getY());
-      break;
+    playerPosition_.update (move (direction, PlanarPosition (playerPosition_.getX(), playerPosition_.getY())));
+    I_CompanyMapItem * & destination (items_[playerPosition_.getX()][playerPosition_.getY()]);
+    if (destination != nullptr && destination->isDocument()) {
+      documents_.erase (destination);
+      destination = nullptr;
     }
-    if (targetPosition == nullptr) { // error in the code
-      throw std::exception();
-    }
-    I_CompanyMapItem * targetDestination (items_[targetPosition->getX()][targetPosition->getY()]);
-    if (targetDestination == nullptr || targetDestination->isTraversable()) {
-      playerPosition_.update (*targetPosition);
-      if (targetDestination != nullptr && targetDestination->isDocument()) {
-        documents_.erase (targetDestination);
-        if (documents_.getSize() == 0) {
-          company_.removeInsiders();
-        }
-      }
-    }
-    delete targetPosition;
   }
+
+
+
+  void CompanyMap::moveBribedEmployee (Direction const & direction)
+  {
+    bribedEmployeePosition_.update (move (direction, PlanarPosition (bribedEmployeePosition_.getX(), bribedEmployeePosition_.getY())));
+    I_CompanyMapItem * & destination (items_[bribedEmployeePosition_.getX()][bribedEmployeePosition_.getY()]);
+    if (destination != nullptr && destination->isDocument()) {
+      documents_.erase (destination);
+      destination = nullptr;
+    }
+  }
+
+
 
   ObservableSet<I_CompanyMapItem *> const & CompanyMap::getDocuments() const
   {

@@ -40,7 +40,7 @@ namespace it
         timeSinceInState_.reset();
         currentTarget_.setPointer (&getRandomCompany());
         if (currentTarget_.getPointer()->hasInsiders()) {
-          stateCountDown_ = Duration (0, 0, maxSecondsOfInspectingInsidedCompany_, 0);
+          stateCountDown_ = Duration (0, 0, INSPECTING_COMPANY_WITH_INSIDERS_, 0);
         }
         else {
           stateCountDown_ = Duration (0, 0, maxSecondsOfInspectingGenuineCompany_, 0);
@@ -72,7 +72,6 @@ namespace it
     initialPosition_ (position),
     inspecting_ (false),
     lastSecond_ (-1),
-    maxSecondsOfInspectingInsidedCompany_ (15),
     maxSecondsOfInspectingGenuineCompany_ (5),
     position_ (position),
     radius_ (300),

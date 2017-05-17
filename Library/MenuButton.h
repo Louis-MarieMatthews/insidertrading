@@ -11,8 +11,11 @@ namespace it
 {
   class MenuButton : public I_LocatedInteractiveBitmap
   {
+    static unsigned const       WIDTH_ {300}; // TODO: this and HEIGHT_ should be merged into a PlanarDimensions object
+    static unsigned const       HEIGHT_ {70};
+
     static unsigned short const TEXT_PADDING_ {20};
-    ALLEGRO_BITMAP *            mapBitmap_;
+    ALLEGRO_BITMAP *            bitmap_;
     PlanarDimensions            dimensions_;
     FontFormat                  fontFormat_;
     bool                        isHovered_;
@@ -24,13 +27,10 @@ namespace it
     std::string                 text_;
     I_ViewTransition *          transition_;
 
-    static unsigned const       WIDTH_ {300}; // TODO: this and HEIGHT_ should be merged into a PlanarDimensions object
-    static unsigned const       HEIGHT_ {70};
-
     void setHovered (const bool &);
 
   public:
-    MenuButton (PlanarPosition const &, std::string const &, I_BitmapView * &, I_ViewTransition *); // TODO: would it not be better for the menu to listen to its buttons which would notify their parent menu when they're triggered
+    MenuButton (PlanarPosition const &, std::string const &, I_BitmapView * &, I_ViewTransition *);
     ~MenuButton();
     I_ViewTransition * getViewTransition();
 

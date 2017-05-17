@@ -8,6 +8,7 @@
 #include "I_ConstantObservable.h"
 #include "I_ConstantObserver.h"
 #include "CompanyMap.h"
+#include "BribedEmployee.h"
 
 namespace it
 {
