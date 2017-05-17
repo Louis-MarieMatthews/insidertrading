@@ -43,14 +43,14 @@ namespace it
     al_draw_bitmap (floor, 0, 0, 0);
     al_destroy_bitmap (floor);
     ALLEGRO_BITMAP * metal (al_load_bitmap ("../gamefiles/images/metal.bmp"));
-    for (unsigned short r (0); r < map_.getNumberOfRows(); r++) {
-      for (unsigned short c (0); c < map_.getNumberOfColums(); c++) {
-        if (map_.getItem (r, c) == nullptr) {
+    for (unsigned short c (0); c < map_.getNumberOfColums(); c++) {
+      for (unsigned short r (0); r < map_.getNumberOfRows(); r++) {
+        if (map_.getItem (c, r) == nullptr) {
           continue;
         }
-        if (!map_.getItem (r, c)->isTraversable()) {
+        if (!map_.getItem (c, r)->isTraversable()) {
           al_set_target_bitmap (bitmapStructure_);
-          al_draw_scaled_bitmap (metal, 0, 0, 200, 200, format_.convertXToPixel (r), format_.convertYToPixel (c), format_.getItemWidth(), format_.getItemHeight(), 0); // TODO: hard-coded values
+          al_draw_scaled_bitmap (metal, 0, 0, 200, 200, format_.convertXToPixel (c), format_.convertYToPixel (r), format_.getItemWidth(), format_.getItemHeight(), 0); // TODO: hard-coded values
         }
       }
     }

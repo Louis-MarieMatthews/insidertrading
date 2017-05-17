@@ -11,7 +11,7 @@
 
 namespace it
 {
-  PlanarPosition CompanyMap::move(Direction const & direction, PlanarPosition const & position)
+  PlanarPosition CompanyMap::move (Direction const & direction, PlanarPosition const & position)
   {
     PlanarPosition targetPosition (0, 0);
     switch (direction) {
@@ -65,18 +65,18 @@ namespace it
       for (unsigned short currentColumn (0); currentColumn < N_COLUMNS_; currentColumn++) {
         std::string item (line.substr (currentColumn, 1));
         if (item == "0") {
-          items_[currentRow][currentColumn] = nullptr;
+          items_[currentColumn][currentRow] = nullptr;
         }
         else if (item == "1") {
-          items_[currentRow][currentColumn] = new WallCompanyMapItem (PlanarPosition (currentRow, currentColumn));
+          items_[currentColumn][currentRow] = new WallCompanyMapItem (PlanarPosition (currentColumn, currentRow));
         }
         else if (item == "2") {
-          items_[currentRow][currentColumn] = new DocumentMapItem (PlanarPosition (currentRow, currentColumn));
-          documents_.insert (items_[currentRow][currentColumn]);
+          items_[currentColumn][currentRow] = new DocumentMapItem (PlanarPosition (currentColumn, currentRow));
+          documents_.insert (items_[currentColumn][currentRow]);
         }
         else if (item == "3") {
-          items_[currentRow][currentColumn] = nullptr;
-          playerEntryPoint_ = PlanarPosition (currentRow, currentColumn);
+          items_[currentColumn][currentRow] = nullptr;
+          playerEntryPoint_ = PlanarPosition (currentColumn, currentRow);
         }
       }
     }

@@ -12,13 +12,13 @@ namespace it
 {
   class CompanyMap : public I_CompanyMap
   {
-    static unsigned short const       N_ROWS_ {50};
+    static unsigned short const       N_ROWS_ {20};
     static unsigned short const       N_COLUMNS_ {50};
     
     PlanarPosition                    bribedEmployeePosition_;
     BribedEmployee *                  bribedEmployee_;
     Company &                         company_;
-    I_CompanyMapItem *                items_[N_ROWS_][N_COLUMNS_];
+    I_CompanyMapItem *                items_[N_COLUMNS_][N_ROWS_];
     PlanarPosition                    playerEntryPoint_;
     double                            speed_;
     PlanarPosition                    playerPosition_;
