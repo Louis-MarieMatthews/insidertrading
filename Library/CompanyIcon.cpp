@@ -19,8 +19,8 @@ namespace it
 
 
   CompanyIcon::CompanyIcon (Company & company, I_GameData & gameData, PlanarPosition const & position) :
-    bitmapHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/hovered/company.bmp")),
-    bitmapNotHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/nothovered/company.bmp")),
+    bitmapHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/hovered/company.tga")),
+    bitmapNotHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/nothovered/company.tga")),
     company_ (company),
     contextualMenu_ (company, gameData),
     fontFormat_ (PlanarDimensions (WIDTH_, HEIGHT_), small),

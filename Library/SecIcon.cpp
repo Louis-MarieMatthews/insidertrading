@@ -6,21 +6,29 @@
 namespace it
 {
   SecIcon::SecIcon (Sec & sec) :
-    bitmap_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/sec.bmp")),
+    bitmapHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/hovered/sec.tga")),
+    bitmapNotHovered_ (al_load_bitmap ("../gamefiles/images/interactivebitmap/nothovered/sec.tga")),
+    isHovered_ (false),
     isLastFetchedBitmapUpToDate_ (false),
     position_ (sec.getPosition()),
     rectangle_ (sec.getPosition(), PlanarDimensions (200, 200)),
     sec_ (sec)
   {
-    if (bitmap_ == nullptr) {
-      throw BitmapLoadingException();
-    }
   }
 
 
 
   SecIcon::~SecIcon()
   {
+    if (bitmapHovered_ != nullptr) {
+      al_destroy_bitmap (bitmapHovered_);
+    }
+    if (bitmapNotHovered_ != nullptr) {
+      al_destroy_bitmap (bitmapNotHovered_);
+    }
+    if (bitmap_ != nullptr) {
+      al_destroy_bitmap (bitmap_);
+    }
   }
 
 
@@ -34,12 +42,19 @@ namespace it
 
   void SecIcon::reset()
   {
+    isHovered_ = false;
   }
 
 
 
   void SecIcon::processEvent (I_AllegroEventAdapter const & e)
   {
+    if (e.didTheMouseEnter (*this)) {
+      isHovered_ = true;
+    }
+    else if (e.didTheMouseLeave (*this)) {
+      isHovered_ = false;
+    }
   }
 
 
@@ -53,7 +68,12 @@ namespace it
 
   ALLEGRO_BITMAP * SecIcon::fetchBitmap()
   {
-    return bitmap_;
+    if (isHovered_) {
+      return bitmapHovered_;
+    }
+    else {
+      return bitmapNotHovered_;
+    }
   }
 
 

@@ -52,6 +52,7 @@ namespace it
 
 
   GameMenu::GameMenu (ViewData & viewData, PlanarDimensions const & dimensions) :
+    bitmapBackground_ (al_load_bitmap ("../gamefiles/images/background.bmp")),
     companyBeingCleaned_ (viewData.getGameData().getPointer()->getCompanyBeingCleaned()),
     companyIcons_ (getCompanyIcons (*viewData.getGameData().getPointer(), contextualMenu_)),
     contextualMenuBitmapSingleton_ (ContextualMenuBitmapSingleton::getInstance()),
@@ -70,6 +71,12 @@ namespace it
 
   GameMenu::~GameMenu()
   {
+    if (bitmap_ != nullptr) {
+      al_destroy_bitmap (bitmap_);
+    }
+    if (bitmapBackground_ != nullptr) {
+      al_destroy_bitmap (bitmapBackground_);
+    }
     stopObserving();
   }
 
@@ -99,7 +106,7 @@ namespace it
     else if (e.isNewCentisecond()) {
 
     }
-    else if (gameData_.isPlayerInTheGame().getValue()){
+    else if (gameData_.isPlayerInTheGame().getValue()) {
       I_LocatedInteractiveBitmap * menu (ContextualMenuBitmapSingleton::getInstance().getContextualMenuBitmap());
       if (menu != nullptr) {
         menu->processEvent (e);
@@ -109,6 +116,7 @@ namespace it
         ci->processEvent (e);
       }
     }
+    secIcon_.processEvent (e);
   }
 
 
@@ -130,7 +138,7 @@ namespace it
       ALLEGRO_BITMAP * targetBitmap (al_get_target_bitmap());
       al_set_target_bitmap (bitmap_);
 
-      al_clear_to_color (al_map_rgb (100, 100, 100));
+      al_draw_bitmap (bitmapBackground_, 0, 0, 0);
 
       Sec & sec (gameData_.getSec());
       if (sec.getTarget() != nullptr) {
