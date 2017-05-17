@@ -93,7 +93,7 @@ namespace it
     Duration time;
     ObservablePointer<I_GameData> gameData;
     ViewData viewData (gameData, time, windowDimensions_);
-    currentView_ = viewData.getMainMenu(); // TODO: TEMP (display insider trading ln)
+    currentView_ = viewData.getInsiderTradingLegalNoticeView();
     eventAdapter_ = new DefaultAllegroEventAdapter (timerFps_, timerCentiseconds_);
 
     al_start_timer (timerCentiseconds_);

@@ -33,6 +33,7 @@ namespace it
       lines[0] = "A game made by Louis-Marie Matthews. Good Times RG by Ray Larabie.";
       lines[1] = "Images from Wikimedia and pixabay.com.";
       lines[2] = "2D graphics powered by the C++ Allegro library. JSON for Modern C++ by Niels Lohmann.";
+      lines[2] = "Some textures by textures.com.";
       viewOfCredits_ = new NoticeView (mainMenu_, dimensions_, lines, *this);
   }
 
