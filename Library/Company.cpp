@@ -90,6 +90,7 @@ namespace it
   void Company::removeInsiders()
   {
     hasInsiders_ = false;
+    map_.reset();
     ObserverListSingleton::getInstance().removeObserver (time_.getObservableId(), *this);
     ObserverListSingleton::getInstance().notifyObservers (observableId_);
   }

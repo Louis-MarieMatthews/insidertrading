@@ -15,6 +15,7 @@ namespace it
     static unsigned short const       N_ROWS_ {20};
     static unsigned short const       N_COLUMNS_ {50};
     
+    std::string                       filename_;
     PlanarPosition                    bribedEmployeePosition_;
     BribedEmployee *                  bribedEmployee_;
     Company &                         company_;
@@ -38,6 +39,6 @@ namespace it
     virtual ObservableSet<I_CompanyMapItem *> const & getDocuments() const;
     virtual void movePlayer (Direction const &);
     virtual void moveBribedEmployee (Direction const &);
-
+    virtual void reset();
   };
 }

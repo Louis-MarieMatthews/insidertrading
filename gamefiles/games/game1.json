@@ -2,7 +2,7 @@
   "companyList": [ "pageIndustries" ],
   "companies": {
     "pageIndustries": {
-      "dividend": 15,
+      "dividend": 3,
       "map": "pagesindustries.map",
       "name": "Pages Industries",
       "position": [ 500, 500 ]

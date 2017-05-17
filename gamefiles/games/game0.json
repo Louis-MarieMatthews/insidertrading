@@ -3,13 +3,13 @@
   "companies": {
     "sarifIndustries": {
       "dividend": 15,
-      "map": "pagesindustries.map",
+      "map": "map0.map",
       "name": "Sarif Industries",
       "position": [ 100, 100 ]
     },
     "versalife": {
       "dividend": 10,
-      "map": "pagesindustries.map",
+      "map": "map1.map",
       "name": "Versalife",
       "position": [ 400, 400 ]
     },

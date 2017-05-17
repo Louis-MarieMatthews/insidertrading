@@ -21,5 +21,6 @@ namespace it
     virtual ObservableSet<I_CompanyMapItem *> const & getDocuments() const = 0;
     virtual void movePlayer (Direction const &) = 0;
     virtual void moveBribedEmployee (Direction const &) = 0;
+    virtual void reset() = 0;
   };
 }

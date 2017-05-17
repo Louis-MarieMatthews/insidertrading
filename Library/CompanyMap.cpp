@@ -48,38 +48,10 @@ namespace it
     company_ (company),
     playerEntryPoint_ (1, 1),
     playerPosition_ (1, 1),
-    speed_ (1)
+    speed_ (1),
+    filename_ (filename)
   {
-    std::ifstream file;
-    file.open ((std::string ("../gamefiles/maps/" + filename)).c_str(), std::ios::in);
-    if (!file) {
-      throw std::exception(); // TODO: custom ex
-    }
-
-    std::string line;
-    unsigned short currentRow (0);
-    for (unsigned short currentRow (0); currentRow < N_ROWS_; currentRow++)
-    {
-      getline (file, line);
-      
-      for (unsigned short currentColumn (0); currentColumn < N_COLUMNS_; currentColumn++) {
-        std::string item (line.substr (currentColumn, 1));
-        if (item == "0") {
-          items_[currentColumn][currentRow] = nullptr;
-        }
-        else if (item == "1") {
-          items_[currentColumn][currentRow] = new WallCompanyMapItem (PlanarPosition (currentColumn, currentRow));
-        }
-        else if (item == "2") {
-          items_[currentColumn][currentRow] = new DocumentMapItem (PlanarPosition (currentColumn, currentRow));
-          documents_.insert (items_[currentColumn][currentRow]);
-        }
-        else if (item == "3") {
-          items_[currentColumn][currentRow] = nullptr;
-          playerEntryPoint_ = PlanarPosition (currentColumn, currentRow);
-        }
-      }
-    }
+    reset();
   }
 
 
@@ -258,4 +230,40 @@ namespace it
 
   //  delete newPosition;
   //}
+
+
+  
+  void CompanyMap::reset()
+  {
+    std::ifstream file;
+    file.open ((std::string ("../gamefiles/maps/" + filename_)).c_str(), std::ios::in);
+    if (!file) {
+      throw std::exception(); // TODO: custom ex
+    }
+
+    std::string line;
+    unsigned short currentRow (0);
+    for (unsigned short currentRow (0); currentRow < N_ROWS_; currentRow++)
+    {
+      getline (file, line);
+      
+      for (unsigned short currentColumn (0); currentColumn < N_COLUMNS_; currentColumn++) {
+        std::string item (line.substr (currentColumn, 1));
+        if (item == "0") {
+          items_[currentColumn][currentRow] = nullptr;
+        }
+        else if (item == "1") {
+          items_[currentColumn][currentRow] = new WallCompanyMapItem (PlanarPosition (currentColumn, currentRow));
+        }
+        else if (item == "2") {
+          items_[currentColumn][currentRow] = new DocumentMapItem (PlanarPosition (currentColumn, currentRow));
+          documents_.insert (items_[currentColumn][currentRow]);
+        }
+        else if (item == "3") {
+          items_[currentColumn][currentRow] = nullptr;
+          playerEntryPoint_ = PlanarPosition (currentColumn, currentRow);
+        }
+      }
+    }
+  }
 }

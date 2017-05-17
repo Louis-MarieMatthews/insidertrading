@@ -5,25 +5,25 @@
       "dividend": 10,
       "map": "map0.map",
       "name": "Pages Industries",
-      "position": [ 150, 300 ]
+      "position": [ 50, 300 ]
     },
     "tym": {
       "dividend": 20,
       "map": "map1.map",
       "name": "Pages Industries",
-      "position": [ 400, 400 ]
+      "position": [ 150, 600 ]
     },
     "prout": {
       "dividend": 8,
       "map": "map2.map",
       "name": "Pages Industries",
-      "position": [ 600, 300 ]
+      "position": [ 700, 500 ]
     },
     "camembert": {
       "dividend": 15,
       "map": "map3.map",
       "name": "Pages Industries",
-      "position": [ 500, 700 ]
+      "position": [ 900, 300 ]
     }
   }
 }
